@@ -1,0 +1,2777 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8">
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  >
+
+  <title>10°C Rule：Arrhenius 與 Collision Theory</title>
+
+  <style>
+    :root {
+      --background: #f3f7fc;
+      --surface: #ffffff;
+      --surface-soft: #f7faff;
+      --text: #172033;
+      --muted: #667085;
+      --border: #dbe4f0;
+
+      --primary: #2563eb;
+      --primary-dark: #174ea6;
+      --collision: #ef7d32;
+      --target: #16a34a;
+      --purple: #7c3aed;
+
+      --success-bg: #effbf3;
+      --success-border: #85d7a0;
+      --success-text: #176235;
+
+      --warning-bg: #fff8e7;
+      --warning-border: #efcc70;
+      --warning-text: #795300;
+
+      --danger-bg: #fff1f1;
+      --danger-border: #efa5a5;
+      --danger-text: #8a2525;
+
+      --shadow:
+        0 12px 35px rgba(31, 49, 80, 0.08);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      color: var(--text);
+      background:
+        radial-gradient(
+          circle at top left,
+          #e5efff 0,
+          transparent 30%
+        ),
+        linear-gradient(
+          180deg,
+          #f9fbff,
+          var(--background)
+        );
+      font-family:
+        Inter,
+        "Noto Sans TC",
+        "Microsoft JhengHei",
+        system-ui,
+        -apple-system,
+        BlinkMacSystemFont,
+        "Segoe UI",
+        sans-serif;
+      line-height: 1.65;
+    }
+
+    button,
+    input {
+      font: inherit;
+    }
+
+    header {
+      padding: 36px 24px 30px;
+      color: white;
+      background:
+        linear-gradient(
+          120deg,
+          #123a72,
+          #2563eb 55%,
+          #5b8ff9
+        );
+      box-shadow:
+        0 8px 25px rgba(20, 60, 120, 0.18);
+    }
+
+    .header-inner,
+    main {
+      width: min(1450px, calc(100% - 32px));
+      margin: 0 auto;
+    }
+
+    header h1 {
+      margin: 0 0 8px;
+      font-size: clamp(1.8rem, 4vw, 2.9rem);
+      line-height: 1.2;
+    }
+
+    header p {
+      max-width: 1050px;
+      margin: 0;
+      color: #e8f1ff;
+      font-size: 1rem;
+    }
+
+    main {
+      padding: 26px 0 60px;
+    }
+
+    .main-layout {
+      display: grid;
+      grid-template-columns:
+        minmax(290px, 390px)
+        minmax(0, 1fr);
+      gap: 22px;
+      align-items: start;
+    }
+
+    .left-column {
+      display: grid;
+      gap: 20px;
+      position: sticky;
+      top: 14px;
+    }
+
+    .right-column {
+      display: grid;
+      gap: 22px;
+    }
+
+    .panel {
+      padding: 22px;
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      background: var(--surface);
+      box-shadow: var(--shadow);
+    }
+
+    .section-heading {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 18px;
+    }
+
+    .section-number {
+      display: inline-grid;
+      place-items: center;
+      flex: 0 0 34px;
+      width: 34px;
+      height: 34px;
+      color: white;
+      border-radius: 50%;
+      background: var(--primary);
+      font-weight: 800;
+    }
+
+    h2,
+    h3,
+    p {
+      margin-top: 0;
+    }
+
+    h2 {
+      margin-bottom: 0;
+      font-size: 1.3rem;
+      line-height: 1.3;
+    }
+
+    h3 {
+      font-size: 1.05rem;
+      line-height: 1.35;
+    }
+
+    .control-group {
+      padding: 0 0 20px;
+      margin: 0 0 20px;
+      border-bottom: 1px solid #edf1f6;
+    }
+
+    .control-group:last-of-type {
+      margin-bottom: 14px;
+    }
+
+    .control-label {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 9px;
+      font-weight: 750;
+    }
+
+    .value-pill {
+      min-width: 94px;
+      padding: 3px 10px;
+      color: var(--primary-dark);
+      text-align: center;
+      white-space: nowrap;
+      border: 1px solid #c7dcff;
+      border-radius: 999px;
+      background: #eef5ff;
+      font-size: 0.9rem;
+      font-variant-numeric: tabular-nums;
+    }
+
+    input[type="range"] {
+      width: 100%;
+      accent-color: var(--primary);
+      cursor: pointer;
+    }
+
+    .range-labels {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 3px;
+      color: var(--muted);
+      font-size: 0.77rem;
+    }
+
+    .small-note {
+      margin: 6px 0 0;
+      color: var(--muted);
+      font-size: 0.87rem;
+    }
+
+    .reset-button {
+      width: 100%;
+      padding: 11px 14px;
+      color: white;
+      border: 0;
+      border-radius: 10px;
+      background: #173b73;
+      cursor: pointer;
+      font-weight: 800;
+      transition:
+        transform 0.15s ease,
+        background 0.15s ease;
+    }
+
+    .reset-button:hover {
+      background: #245493;
+      transform: translateY(-1px);
+    }
+
+    .formula-card {
+      margin-bottom: 14px;
+      padding: 14px;
+      border: 1px solid #dce7f6;
+      border-radius: 13px;
+      background: var(--surface-soft);
+    }
+
+    .formula-card:last-child {
+      margin-bottom: 0;
+    }
+
+    .formula-card h3 {
+      margin-bottom: 8px;
+      color: #173b73;
+    }
+
+    .equation {
+      overflow-x: auto;
+      padding: 11px 8px;
+      color: #152f55;
+      text-align: center;
+      border-radius: 9px;
+      background: white;
+      font-family:
+        "Times New Roman",
+        "Noto Serif TC",
+        serif;
+      font-size: 1.06rem;
+    }
+
+    .equation + .equation {
+      margin-top: 8px;
+    }
+
+    .formula-description {
+      margin: 9px 0 0;
+      color: var(--muted);
+      font-size: 0.85rem;
+    }
+
+    .results-grid {
+      display: grid;
+      grid-template-columns:
+        repeat(3, minmax(170px, 1fr));
+      gap: 14px;
+    }
+
+    .result-card {
+      min-height: 145px;
+      padding: 16px;
+      border: 1px solid var(--border);
+      border-top: 5px solid var(--primary);
+      border-radius: 15px;
+      background: white;
+    }
+
+    .result-card.collision {
+      border-top-color: var(--collision);
+    }
+
+    .result-card.temperature {
+      border-top-color: var(--purple);
+    }
+
+    .result-card.required {
+      border-top-color: var(--target);
+    }
+
+    .result-label {
+      color: var(--muted);
+      font-size: 0.84rem;
+      font-weight: 750;
+    }
+
+    .result-number {
+      margin: 7px 0 4px;
+      font-size: clamp(1.35rem, 2.7vw, 2rem);
+      font-weight: 900;
+      line-height: 1.2;
+      font-variant-numeric: tabular-nums;
+    }
+
+    .result-detail {
+      color: var(--muted);
+      font-size: 0.83rem;
+    }
+
+    .judgement-box {
+      margin-top: 18px;
+      padding: 18px 20px;
+      border: 1px solid;
+      border-radius: 14px;
+    }
+
+    .judgement-box.good {
+      color: var(--success-text);
+      border-color: var(--success-border);
+      background: var(--success-bg);
+    }
+
+    .judgement-box.partial {
+      color: var(--warning-text);
+      border-color: var(--warning-border);
+      background: var(--warning-bg);
+    }
+
+    .judgement-box.bad {
+      color: var(--danger-text);
+      border-color: var(--danger-border);
+      background: var(--danger-bg);
+    }
+
+    .judgement-title {
+      display: block;
+      margin-bottom: 6px;
+      font-size: 1.1rem;
+      font-weight: 900;
+    }
+
+    .criteria-box {
+      margin-top: 14px;
+      padding: 14px 16px;
+      color: #344054;
+      border-left: 4px solid var(--primary);
+      border-radius: 8px;
+      background: #f5f8fc;
+      font-size: 0.91rem;
+    }
+
+    .chart-buttons {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 10px;
+      margin-bottom: 18px;
+    }
+
+    .chart-button {
+      padding: 11px 12px;
+      color: #344054;
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      background: white;
+      cursor: pointer;
+      font-weight: 800;
+      transition:
+        background 0.15s ease,
+        color 0.15s ease,
+        border 0.15s ease,
+        transform 0.15s ease;
+    }
+
+    .chart-button:hover {
+      transform: translateY(-1px);
+      border-color: #98b9ed;
+    }
+
+    .chart-button.active {
+      color: white;
+      border-color: var(--primary);
+      background: var(--primary);
+    }
+
+    .chart-header {
+      display: flex;
+      justify-content: space-between;
+      gap: 18px;
+      margin-bottom: 10px;
+    }
+
+    .chart-header h3 {
+      margin-bottom: 4px;
+    }
+
+    .legend {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: flex-end;
+      gap: 10px;
+      color: var(--muted);
+      font-size: 0.83rem;
+    }
+
+    .legend-item {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .legend-line {
+      width: 22px;
+      height: 4px;
+      border-radius: 4px;
+    }
+
+    .canvas-container {
+      position: relative;
+      width: 100%;
+      height: 420px;
+    }
+
+    canvas {
+      display: block;
+      width: 100%;
+      height: 100%;
+      border-radius: 10px;
+      background: white;
+    }
+
+    .chart-explanation {
+      margin-top: 12px;
+      padding: 12px 14px;
+      color: #475467;
+      border-radius: 9px;
+      background: #f7f9fc;
+      font-size: 0.9rem;
+    }
+
+    .tooltip {
+      position: fixed;
+      z-index: 100;
+      display: none;
+      max-width: 280px;
+      padding: 9px 11px;
+      color: white;
+      pointer-events: none;
+      border-radius: 8px;
+      background: rgba(17, 24, 39, 0.94);
+      box-shadow:
+        0 8px 25px rgba(0, 0, 0, 0.22);
+      font-size: 0.82rem;
+      font-variant-numeric: tabular-nums;
+    }
+
+    .learning-summary {
+      display: grid;
+      grid-template-columns:
+        repeat(4, minmax(130px, 1fr));
+      gap: 12px;
+      margin-bottom: 18px;
+    }
+
+    .learning-value {
+      padding: 13px;
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      background: #f8faff;
+    }
+
+    .learning-value-label {
+      color: var(--muted);
+      font-size: 0.78rem;
+      font-weight: 750;
+    }
+
+    .learning-value-number {
+      margin-top: 4px;
+      color: #173b73;
+      font-size: 1.17rem;
+      font-weight: 900;
+      font-variant-numeric: tabular-nums;
+    }
+
+    .learning-content {
+      padding: 18px;
+      border: 1px solid #ddd5ff;
+      border-radius: 14px;
+      background:
+        linear-gradient(
+          135deg,
+          #f8f5ff,
+          #f5f9ff
+        );
+    }
+
+    .learning-content h3 {
+      margin-bottom: 8px;
+      color: #5630b5;
+    }
+
+    .learning-content ul {
+      margin-bottom: 0;
+      padding-left: 22px;
+    }
+
+    .learning-content li + li {
+      margin-top: 7px;
+    }
+
+    .highlight {
+      color: #5630b5;
+      font-weight: 850;
+    }
+
+    .model-limitations {
+      margin-top: 18px;
+      padding-top: 16px;
+      border-top: 1px solid #ddd5ff;
+    }
+
+    .model-limitations h3 {
+      margin-bottom: 7px;
+    }
+
+    .footer-note {
+      margin-top: 22px;
+      padding: 15px 18px;
+      color: #475467;
+      text-align: center;
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      background: rgba(255, 255, 255, 0.7);
+      font-size: 0.87rem;
+    }
+
+    @media (max-width: 1120px) {
+      .main-layout {
+        grid-template-columns: 1fr;
+      }
+
+      .left-column {
+        position: static;
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .results-grid {
+        grid-template-columns:
+          repeat(2, minmax(170px, 1fr));
+      }
+    }
+
+    @media (max-width: 760px) {
+      .left-column {
+        grid-template-columns: 1fr;
+      }
+
+      .results-grid,
+      .learning-summary {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .chart-buttons {
+        grid-template-columns: 1fr;
+      }
+
+      .chart-header {
+        display: block;
+      }
+
+      .legend {
+        justify-content: flex-start;
+        margin-top: 10px;
+      }
+
+      .canvas-container {
+        height: 350px;
+      }
+    }
+
+    @media (max-width: 520px) {
+      .results-grid,
+      .learning-summary {
+        grid-template-columns: 1fr;
+      }
+
+      .header-inner,
+      main {
+        width: min(100% - 20px, 1450px);
+      }
+
+      header {
+        padding-left: 10px;
+        padding-right: 10px;
+      }
+
+      .panel {
+        padding: 17px;
+      }
+
+      .canvas-container {
+        height: 320px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <header>
+    <div class="header-inner">
+      <h1>
+        驗證 10°C Rule：
+        Arrhenius Equation vs. Collision Theory
+      </h1>
+
+      <p>
+        改變起始溫度與活化能，觀察溫度升高
+        10°C 後速率常數的倍率
+        Q<sub>10</sub>，並判斷目前條件是否符合
+        Q<sub>10</sub> = 2 的經驗法則。
+      </p>
+    </div>
+  </header>
+
+  <main>
+    <div class="main-layout">
+      <!-- 左側 -->
+      <aside class="left-column">
+        <!-- (1) 實驗參數 -->
+        <section class="panel">
+          <div class="section-heading">
+            <span class="section-number">1</span>
+            <h2>實驗參數</h2>
+          </div>
+
+          <div class="control-group">
+            <label
+              class="control-label"
+              for="startTemperature"
+            >
+              <span>起始溫度</span>
+              <span
+                class="value-pill"
+                id="startTemperatureValue"
+              >
+                25°C
+              </span>
+            </label>
+
+            <input
+              id="startTemperature"
+              type="range"
+              min="0"
+              max="200"
+              step="1"
+              value="25"
+            >
+
+            <div class="range-labels">
+              <span>0°C</span>
+              <span>200°C</span>
+            </div>
+
+            <p class="small-note">
+              系統比較起始溫度
+              <em>T</em> 與
+              <em>T + 10°C</em>。
+            </p>
+          </div>
+
+          <div class="control-group">
+            <label
+              class="control-label"
+              for="activationEnergy"
+            >
+              <span>活化能 E<sub>a</sub></span>
+              <span
+                class="value-pill"
+                id="activationEnergyValue"
+              >
+                53 kJ/mol
+              </span>
+            </label>
+
+            <input
+              id="activationEnergy"
+              type="range"
+              min="10"
+              max="100"
+              step="1"
+              value="53"
+            >
+
+            <div class="range-labels">
+              <span>10 kJ/mol</span>
+              <span>100 kJ/mol</span>
+            </div>
+          </div>
+
+          <div class="control-group">
+            <label
+              class="control-label"
+              for="tolerance"
+            >
+              <span>判斷容許誤差</span>
+              <span
+                class="value-pill"
+                id="toleranceValue"
+              >
+                ±5%
+              </span>
+            </label>
+
+            <input
+              id="tolerance"
+              type="range"
+              min="1"
+              max="10"
+              step="1"
+              value="5"
+            >
+
+            <div class="range-labels">
+              <span>±1%</span>
+              <span>±10%</span>
+            </div>
+          </div>
+
+          <button
+            class="reset-button"
+            id="resetButton"
+            type="button"
+          >
+            恢復預設參數
+          </button>
+        </section>
+
+        <!-- (2) 理論公式 -->
+        <section class="panel">
+          <div class="section-heading">
+            <span class="section-number">2</span>
+            <h2>理論公式</h2>
+          </div>
+
+          <article class="formula-card">
+            <h3>Arrhenius equation</h3>
+
+            <div class="equation">
+              k = A exp(−E<sub>a</sub>/RT)
+            </div>
+
+            <div class="equation">
+              Q<sub>10,A</sub>
+              =
+              exp{
+              (E<sub>a</sub>/R)
+              [1/T − 1/(T + 10)]
+              }
+            </div>
+
+            <p class="formula-description">
+              假設前指數因子
+              <em>A</em> 在這段小溫度範圍內不變。
+            </p>
+          </article>
+
+          <article class="formula-card">
+            <h3>Simplified collision theory</h3>
+
+            <div class="equation">
+              k = C T<sup>1/2</sup>
+              exp(−E<sub>a</sub>/RT)
+            </div>
+
+            <div class="equation">
+              Q<sub>10,C</sub>
+              =
+              [(T + 10)/T]<sup>1/2</sup>
+              Q<sub>10,A</sub>
+            </div>
+
+            <p class="formula-description">
+              T<sup>1/2</sup> 近似表示平均相對速率與
+              碰撞頻率的溫度效應。
+            </p>
+          </article>
+
+          <article class="formula-card">
+            <h3>10°C rule</h3>
+
+            <div class="equation">
+              Q<sub>10</sub>
+              =
+              k(T + 10)/k(T)
+              ≈ 2
+            </div>
+
+            <p class="formula-description">
+              Q<sub>10</sub> = 2 代表溫度升高
+              10°C 後，速率常數約增加為原來的兩倍。
+            </p>
+          </article>
+        </section>
+      </aside>
+
+      <!-- 右側 -->
+      <div class="right-column">
+        <!-- (3) 計算與判斷 -->
+        <section class="panel">
+          <div class="section-heading">
+            <span class="section-number">3</span>
+            <h2>計算及判斷結果</h2>
+          </div>
+
+          <div class="results-grid">
+            <article class="result-card">
+              <div class="result-label">
+                Arrhenius Q<sub>10</sub>
+              </div>
+
+              <div
+                class="result-number"
+                id="arrheniusQ10"
+              >
+                —
+              </div>
+
+              <div
+                class="result-detail"
+                id="arrheniusDetail"
+              >
+                —
+              </div>
+            </article>
+
+            <article class="result-card collision">
+              <div class="result-label">
+                Collision Q<sub>10</sub>
+              </div>
+
+              <div
+                class="result-number"
+                id="collisionQ10"
+              >
+                —
+              </div>
+
+              <div
+                class="result-detail"
+                id="collisionDetail"
+              >
+                —
+              </div>
+            </article>
+
+            <article class="result-card temperature">
+              <div class="result-label">
+                比較溫度
+              </div>
+
+              <div
+                class="result-number"
+                id="comparedTemperature"
+              >
+                —
+              </div>
+
+              <div class="result-detail">
+                高溫比低溫高 10°C
+              </div>
+            </article>
+
+            <article class="result-card required">
+              <div class="result-label">
+                Arrhenius 所需活化能
+              </div>
+
+              <div
+                class="result-number"
+                id="requiredEaArrhenius"
+              >
+                —
+              </div>
+
+              <div class="result-detail">
+                使 Q<sub>10,A</sub> 恰好等於 2
+              </div>
+            </article>
+
+            <article class="result-card required">
+              <div class="result-label">
+                Collision 所需活化能
+              </div>
+
+              <div
+                class="result-number"
+                id="requiredEaCollision"
+              >
+                —
+              </div>
+
+              <div class="result-detail">
+                使 Q<sub>10,C</sub> 恰好等於 2
+              </div>
+            </article>
+
+            <article class="result-card temperature">
+              <div class="result-label">
+                目前輸入活化能
+              </div>
+
+              <div
+                class="result-number"
+                id="currentEa"
+              >
+                —
+              </div>
+
+              <div
+                class="result-detail"
+                id="eaComparison"
+              >
+                —
+              </div>
+            </article>
+          </div>
+
+          <div
+            class="judgement-box"
+            id="judgementBox"
+          >
+            <span
+              class="judgement-title"
+              id="judgementTitle"
+            >
+              —
+            </span>
+
+            <div id="judgementText">
+              —
+            </div>
+          </div>
+
+          <div class="criteria-box">
+            <strong>判定標準：</strong>
+            若模型的
+            Q<sub>10</sub> 落在
+            <span id="acceptedRange">—</span>
+            之間，即視為在目前容許誤差下符合
+            10°C rule。判定公式為
+            |Q<sub>10</sub> − 2| / 2 × 100%
+            ≤ 容許誤差。
+          </div>
+        </section>
+
+        <!-- (4) 圖表 -->
+        <section class="panel">
+          <div class="section-heading">
+            <span class="section-number">4</span>
+            <h2>圖表比較</h2>
+          </div>
+
+          <div class="chart-buttons">
+            <button
+              type="button"
+              class="chart-button active"
+              data-chart="q10"
+            >
+              Q<sub>10</sub> vs. Temperature
+            </button>
+
+            <button
+              type="button"
+              class="chart-button"
+              data-chart="k"
+            >
+              k vs. Temperature
+            </button>
+
+            <button
+              type="button"
+              class="chart-button"
+              data-chart="requiredEa"
+            >
+              達到目標倍率所需活化能
+            </button>
+          </div>
+
+          <div class="chart-header">
+            <div>
+              <h3 id="chartTitle">
+                Q₁₀ vs. Temperature
+              </h3>
+
+              <p
+                class="small-note"
+                id="chartSubtitle"
+              >
+                固定目前活化能，改變起始溫度。
+              </p>
+            </div>
+
+            <div
+              class="legend"
+              id="chartLegend"
+            ></div>
+          </div>
+
+          <div class="canvas-container">
+            <canvas id="mainChart"></canvas>
+          </div>
+
+          <div
+            class="chart-explanation"
+            id="chartExplanation"
+          >
+            —
+          </div>
+        </section>
+
+        <!-- (5) 思考與學習 -->
+        <section class="panel">
+          <div class="section-heading">
+            <span class="section-number">5</span>
+            <h2>
+              思考與學習：為什麼 10°C rule
+              不會在所有條件下成立？
+            </h2>
+          </div>
+
+          <div class="learning-summary">
+            <div class="learning-value">
+              <div class="learning-value-label">
+                目前起始溫度
+              </div>
+              <div
+                class="learning-value-number"
+                id="learningTemperature"
+              >
+                —
+              </div>
+            </div>
+
+            <div class="learning-value">
+              <div class="learning-value-label">
+                目前活化能
+              </div>
+              <div
+                class="learning-value-number"
+                id="learningEa"
+              >
+                —
+              </div>
+            </div>
+
+            <div class="learning-value">
+              <div class="learning-value-label">
+                Arrhenius Q₁₀
+              </div>
+              <div
+                class="learning-value-number"
+                id="learningArrhenius"
+              >
+                —
+              </div>
+            </div>
+
+            <div class="learning-value">
+              <div class="learning-value-label">
+                Collision Q₁₀
+              </div>
+              <div
+                class="learning-value-number"
+                id="learningCollision"
+              >
+                —
+              </div>
+            </div>
+          </div>
+
+          <div class="learning-content">
+            <h3 id="learningConclusion">
+              —
+            </h3>
+
+            <div id="learningExplanation">
+              —
+            </div>
+
+            <div class="model-limitations">
+              <h3>更進一步的物理與化學限制</h3>
+
+              <ul>
+                <li>
+                  <strong>活化能依賴性：</strong>
+                  活化能越大，速率常數通常對溫度越敏感，
+                  Q<sub>10</sub> 可能明顯大於 2。
+                </li>
+
+                <li>
+                  <strong>起始溫度依賴性：</strong>
+                  即使活化能固定，相同的 10°C 升溫在不同
+                  起始溫度下也不會產生相同倍率。
+                </li>
+
+                <li>
+                  <strong>反應機構改變：</strong>
+                  如果升溫使主導步驟改變，表觀活化能與
+                  速率方程式也可能改變。
+                </li>
+
+                <li>
+                  <strong>前指數因子不是絕對常數：</strong>
+                  碰撞頻率、分子取向與熵效應都可能隨溫度
+                  改變。
+                </li>
+
+                <li>
+                  <strong>非化學反應步驟控制：</strong>
+                  擴散、傳質、表面吸附飽和或酵素變性，
+                  都可能使簡單的 Arrhenius 模型失效。
+                </li>
+              </ul>
+            </div>
+          </div>
+        </section>
+      </div>
+    </div>
+
+    <div class="footer-note">
+      本網頁採用簡化 collision model：
+      k ∝ T<sup>1/2</sup> exp(−E<sub>a</sub>/RT)。
+      圖中的 k 為相對速率常數，因為未指定實際前指數因子。
+    </div>
+  </main>
+
+  <div
+    class="tooltip"
+    id="tooltip"
+  ></div>
+
+  <script>
+    "use strict";
+
+    const R = 8.314462618;
+    const DELTA_T = 10;
+    const TARGET_Q10 = 2;
+    const COLLISION_EXPONENT = 0.5;
+
+    const $ = id => document.getElementById(id);
+
+    const elements = {
+      startTemperature: $("startTemperature"),
+      activationEnergy: $("activationEnergy"),
+      tolerance: $("tolerance"),
+
+      startTemperatureValue: $("startTemperatureValue"),
+      activationEnergyValue: $("activationEnergyValue"),
+      toleranceValue: $("toleranceValue"),
+
+      arrheniusQ10: $("arrheniusQ10"),
+      collisionQ10: $("collisionQ10"),
+      comparedTemperature: $("comparedTemperature"),
+      requiredEaArrhenius: $("requiredEaArrhenius"),
+      requiredEaCollision: $("requiredEaCollision"),
+      currentEa: $("currentEa"),
+
+      arrheniusDetail: $("arrheniusDetail"),
+      collisionDetail: $("collisionDetail"),
+      eaComparison: $("eaComparison"),
+
+      judgementBox: $("judgementBox"),
+      judgementTitle: $("judgementTitle"),
+      judgementText: $("judgementText"),
+      acceptedRange: $("acceptedRange"),
+
+      mainChart: $("mainChart"),
+      chartTitle: $("chartTitle"),
+      chartSubtitle: $("chartSubtitle"),
+      chartLegend: $("chartLegend"),
+      chartExplanation: $("chartExplanation"),
+
+      learningTemperature: $("learningTemperature"),
+      learningEa: $("learningEa"),
+      learningArrhenius: $("learningArrhenius"),
+      learningCollision: $("learningCollision"),
+      learningConclusion: $("learningConclusion"),
+      learningExplanation: $("learningExplanation"),
+
+      resetButton: $("resetButton"),
+      tooltip: $("tooltip")
+    };
+
+    let activeChart = "q10";
+
+    function getParameters() {
+      const temperatureC =
+        Number(elements.startTemperature.value);
+
+      return {
+        temperatureC,
+        temperatureK: temperatureC + 273.15,
+        activationEnergyKJ:
+          Number(elements.activationEnergy.value),
+        tolerancePercent:
+          Number(elements.tolerance.value)
+      };
+    }
+
+    function arrheniusQ10(temperatureK, activationEnergyKJ) {
+      const activationEnergyJ =
+        activationEnergyKJ * 1000;
+
+      return Math.exp(
+        activationEnergyJ / R *
+        (
+          1 / temperatureK -
+          1 / (temperatureK + DELTA_T)
+        )
+      );
+    }
+
+    function collisionQ10(
+      temperatureK,
+      activationEnergyKJ
+    ) {
+      const collisionFactor =
+        Math.pow(
+          (temperatureK + DELTA_T) / temperatureK,
+          COLLISION_EXPONENT
+        );
+
+      return collisionFactor *
+        arrheniusQ10(
+          temperatureK,
+          activationEnergyKJ
+        );
+    }
+
+    function requiredEaForArrhenius(temperatureK) {
+      const reciprocalDifference =
+        1 / temperatureK -
+        1 / (temperatureK + DELTA_T);
+
+      return (
+        R * Math.log(TARGET_Q10) /
+        reciprocalDifference /
+        1000
+      );
+    }
+
+    function requiredEaForCollision(temperatureK) {
+      const reciprocalDifference =
+        1 / temperatureK -
+        1 / (temperatureK + DELTA_T);
+
+      const collisionContribution =
+        COLLISION_EXPONENT *
+        Math.log(
+          (temperatureK + DELTA_T) / temperatureK
+        );
+
+      return (
+        R *
+        (
+          Math.log(TARGET_Q10) -
+          collisionContribution
+        ) /
+        reciprocalDifference /
+        1000
+      );
+    }
+
+    function relativeArrheniusK(
+      temperatureK,
+      referenceTemperatureK,
+      activationEnergyKJ
+    ) {
+      const activationEnergyJ =
+        activationEnergyKJ * 1000;
+
+      return Math.exp(
+        -activationEnergyJ / R *
+        (
+          1 / temperatureK -
+          1 / referenceTemperatureK
+        )
+      );
+    }
+
+    function relativeCollisionK(
+      temperatureK,
+      referenceTemperatureK,
+      activationEnergyKJ
+    ) {
+      const temperatureFactor =
+        Math.pow(
+          temperatureK / referenceTemperatureK,
+          COLLISION_EXPONENT
+        );
+
+      return temperatureFactor *
+        relativeArrheniusK(
+          temperatureK,
+          referenceTemperatureK,
+          activationEnergyKJ
+        );
+    }
+
+    function percentError(value, target = TARGET_Q10) {
+      return Math.abs(value - target) /
+        target * 100;
+    }
+
+    function formatNumber(value, digits = 3) {
+      if (!Number.isFinite(value)) {
+        return "—";
+      }
+
+      if (
+        Math.abs(value) >= 10000 ||
+        (
+          Math.abs(value) > 0 &&
+          Math.abs(value) < 0.001
+        )
+      ) {
+        return value.toExponential(2);
+      }
+
+      return value.toLocaleString("zh-TW", {
+        minimumFractionDigits: 0,
+        maximumFractionDigits: digits
+      });
+    }
+
+    function getStatus(
+      arrheniusValue,
+      collisionValue,
+      tolerance
+    ) {
+      const arrheniusError =
+        percentError(arrheniusValue);
+
+      const collisionError =
+        percentError(collisionValue);
+
+      const arrheniusPass =
+        arrheniusError <= tolerance;
+
+      const collisionPass =
+        collisionError <= tolerance;
+
+      return {
+        arrheniusError,
+        collisionError,
+        arrheniusPass,
+        collisionPass
+      };
+    }
+
+    function updateParameterLabels(parameters) {
+      elements.startTemperatureValue.textContent =
+        `${parameters.temperatureC.toFixed(0)}°C`;
+
+      elements.activationEnergyValue.textContent =
+        `${parameters.activationEnergyKJ.toFixed(0)} kJ/mol`;
+
+      elements.toleranceValue.textContent =
+        `±${parameters.tolerancePercent.toFixed(0)}%`;
+    }
+
+    function updateResults(parameters) {
+      const q10A = arrheniusQ10(
+        parameters.temperatureK,
+        parameters.activationEnergyKJ
+      );
+
+      const q10C = collisionQ10(
+        parameters.temperatureK,
+        parameters.activationEnergyKJ
+      );
+
+      const requiredEaA =
+        requiredEaForArrhenius(
+          parameters.temperatureK
+        );
+
+      const requiredEaC =
+        requiredEaForCollision(
+          parameters.temperatureK
+        );
+
+      const status = getStatus(
+        q10A,
+        q10C,
+        parameters.tolerancePercent
+      );
+
+      const lowerBound =
+        TARGET_Q10 *
+        (1 - parameters.tolerancePercent / 100);
+
+      const upperBound =
+        TARGET_Q10 *
+        (1 + parameters.tolerancePercent / 100);
+
+      elements.arrheniusQ10.innerHTML =
+        `${formatNumber(q10A, 3)} ×`;
+
+      elements.collisionQ10.innerHTML =
+        `${formatNumber(q10C, 3)} ×`;
+
+      elements.comparedTemperature.innerHTML =
+        `${parameters.temperatureC.toFixed(0)}°C<br>` +
+        `<span style="font-size:0.62em;color:#667085;">` +
+        `vs. ${(parameters.temperatureC + 10).toFixed(0)}°C` +
+        `</span>`;
+
+      elements.requiredEaArrhenius.innerHTML =
+        `${formatNumber(requiredEaA, 2)}` +
+        `<span style="font-size:0.55em;"> kJ/mol</span>`;
+
+      elements.requiredEaCollision.innerHTML =
+        `${formatNumber(requiredEaC, 2)}` +
+        `<span style="font-size:0.55em;"> kJ/mol</span>`;
+
+      elements.currentEa.innerHTML =
+        `${parameters.activationEnergyKJ.toFixed(0)}` +
+        `<span style="font-size:0.55em;"> kJ/mol</span>`;
+
+      elements.arrheniusDetail.innerHTML =
+        `相對於 2 的偏差：` +
+        `${status.arrheniusError.toFixed(2)}%`;
+
+      elements.collisionDetail.innerHTML =
+        `相對於 2 的偏差：` +
+        `${status.collisionError.toFixed(2)}%`;
+
+      const nearestRequiredEa =
+        Math.min(
+          Math.abs(
+            parameters.activationEnergyKJ -
+            requiredEaA
+          ),
+          Math.abs(
+            parameters.activationEnergyKJ -
+            requiredEaC
+          )
+        );
+
+      elements.eaComparison.textContent =
+        nearestRequiredEa < 0.5
+          ? "非常接近加倍條件"
+          : `與最近的理論需求相差約 ` +
+            `${nearestRequiredEa.toFixed(1)} kJ/mol`;
+
+      elements.acceptedRange.innerHTML =
+        `<strong>` +
+        `${lowerBound.toFixed(3)} ≤ ` +
+        `Q<sub>10</sub> ≤ ` +
+        `${upperBound.toFixed(3)}` +
+        `</strong>`;
+
+      updateJudgement(
+        parameters,
+        q10A,
+        q10C,
+        status
+      );
+
+      updateLearningSection(
+        parameters,
+        q10A,
+        q10C,
+        requiredEaA,
+        requiredEaC,
+        status
+      );
+
+      return {
+        q10A,
+        q10C,
+        requiredEaA,
+        requiredEaC,
+        status
+      };
+    }
+
+    function updateJudgement(
+      parameters,
+      q10A,
+      q10C,
+      status
+    ) {
+      elements.judgementBox.className =
+        "judgement-box";
+
+      if (
+        status.arrheniusPass &&
+        status.collisionPass
+      ) {
+        elements.judgementBox.classList.add("good");
+
+        elements.judgementTitle.textContent =
+          "結論：目前條件符合 10°C rule";
+
+        elements.judgementText.innerHTML =
+          `Arrhenius 模型與簡化 collision 模型的 ` +
+          `Q<sub>10</sub> 都落在容許範圍內。` +
+          `因此，在起始溫度 ` +
+          `<strong>${parameters.temperatureC.toFixed(0)}°C</strong>` +
+          `、活化能 ` +
+          `<strong>${parameters.activationEnergyKJ.toFixed(0)} ` +
+          `kJ/mol</strong> 的條件下，溫度升高 10°C ` +
+          `可近似視為使速率常數增加兩倍。`;
+      } else if (
+        status.arrheniusPass ||
+        status.collisionPass
+      ) {
+        elements.judgementBox.classList.add("partial");
+
+        const passingModel =
+          status.arrheniusPass
+            ? "Arrhenius 模型"
+            : "簡化 collision 模型";
+
+        const failingModel =
+          status.arrheniusPass
+            ? "簡化 collision 模型"
+            : "Arrhenius 模型";
+
+        elements.judgementTitle.textContent =
+          "結論：目前條件僅部分符合 10°C rule";
+
+        elements.judgementText.innerHTML =
+          `${passingModel} 的 Q<sub>10</sub> ` +
+          `落在容許範圍內，但 ${failingModel} 未通過。` +
+          `這表示溫度前因子的處理方式已足以影響是否判定為加倍，` +
+          `所以 10°C rule 只能視為局部近似。`;
+      } else {
+        elements.judgementBox.classList.add("bad");
+
+        const direction =
+          q10A < TARGET_Q10 &&
+          q10C < TARGET_Q10
+            ? "低於"
+            : q10A > TARGET_Q10 &&
+              q10C > TARGET_Q10
+              ? "高於"
+              : "分布在";
+
+        elements.judgementTitle.textContent =
+          "結論：目前條件不符合 10°C rule";
+
+        elements.judgementText.innerHTML =
+          `兩個模型的 Q<sub>10</sub> 都未落在容許範圍內，` +
+          `其預測倍率${direction}目標值 2 附近。` +
+          `目前的溫度與活化能組合，不能近似為` +
+          `「每升高 10°C，速率常數增加兩倍」。`;
+      }
+    }
+
+    function updateLearningSection(
+      parameters,
+      q10A,
+      q10C,
+      requiredEaA,
+      requiredEaC,
+      status
+    ) {
+      elements.learningTemperature.textContent =
+        `${parameters.temperatureC.toFixed(0)}°C → ` +
+        `${(parameters.temperatureC + 10).toFixed(0)}°C`;
+
+      elements.learningEa.textContent =
+        `${parameters.activationEnergyKJ.toFixed(0)} kJ/mol`;
+
+      elements.learningArrhenius.textContent =
+        `${formatNumber(q10A, 3)} ×`;
+
+      elements.learningCollision.textContent =
+        `${formatNumber(q10C, 3)} ×`;
+
+      let heading = "";
+      let explanation = "";
+
+      if (
+        status.arrheniusPass &&
+        status.collisionPass
+      ) {
+        heading =
+          "目前為何近似成立？";
+
+        explanation = `
+          <p>
+            在目前的起始溫度
+            <strong>${parameters.temperatureC.toFixed(0)}°C</strong>
+            下，若只使用 Arrhenius equation，
+            要使 Q<sub>10</sub> 恰好等於 2，
+            所需活化能約為
+            <strong>${requiredEaA.toFixed(2)} kJ/mol</strong>；
+            collision model 所需值則約為
+            <strong>${requiredEaC.toFixed(2)} kJ/mol</strong>。
+          </p>
+
+          <p>
+            目前輸入的活化能為
+            <strong>${parameters.activationEnergyKJ.toFixed(0)}
+            kJ/mol</strong>，接近這個加倍區域，
+            因此兩個模型都預測 Q<sub>10</sub> 約為 2。
+          </p>
+
+          <ul>
+            <li>
+              這不是普遍定律，而是目前
+              <span class="highlight">溫度與活化能剛好搭配</span>
+              所得到的結果。
+            </li>
+
+            <li>
+              改變起始溫度後，即使 E<sub>a</sub> 不變，
+              Q<sub>10</sub> 仍會改變。
+            </li>
+
+            <li>
+              若反應機構、前指數因子或控制步驟改變，
+              此近似可能立即失效。
+            </li>
+          </ul>
+        `;
+      } else if (
+        q10A < TARGET_Q10 &&
+        q10C < TARGET_Q10
+      ) {
+        heading =
+          "目前為何沒有增加到兩倍？";
+
+        explanation = `
+          <p>
+            目前兩個 Q<sub>10</sub> 都小於 2，
+            表示溫度升高 10°C 所造成的速率提升
+            <strong>不足兩倍</strong>。
+          </p>
+
+          <p>
+            在目前溫度下，Arrhenius 模型需要約
+            <strong>${requiredEaA.toFixed(2)} kJ/mol</strong>，
+            collision model 需要約
+            <strong>${requiredEaC.toFixed(2)} kJ/mol</strong>，
+            才能恰好達到 Q<sub>10</sub> = 2。
+            目前 E<sub>a</sub> =
+            <strong>${parameters.activationEnergyKJ.toFixed(0)}
+            kJ/mol</strong>，其溫度敏感度相對不足。
+          </p>
+
+          <ul>
+            <li>
+              較低活化能代表較小的溫度敏感度，
+              因此升高 10°C 不一定會加倍。
+            </li>
+
+            <li>
+              在較高起始溫度下，相同的 10 K 只占
+              絕對溫度較小的比例，Q<sub>10</sub>
+              通常會下降。
+            </li>
+
+            <li>
+              碰撞頻率隨溫度增加可稍微提高倍率，
+              但不保證足以使 Q<sub>10</sub> 達到 2。
+            </li>
+          </ul>
+        `;
+      } else if (
+        q10A > TARGET_Q10 &&
+        q10C > TARGET_Q10
+      ) {
+        heading =
+          "目前為何增加超過兩倍？";
+
+        explanation = `
+          <p>
+            目前兩個 Q<sub>10</sub> 都大於 2，
+            表示溫度升高 10°C 後，預測速率常數
+            <strong>增加超過兩倍</strong>。
+          </p>
+
+          <p>
+            目前活化能
+            <strong>${parameters.activationEnergyKJ.toFixed(0)}
+            kJ/mol</strong>
+            高於目前溫度下達到加倍所需的約
+            <strong>${requiredEaA.toFixed(2)} kJ/mol</strong>
+            或
+            <strong>${requiredEaC.toFixed(2)} kJ/mol</strong>，
+            因此速率常數對溫度更加敏感。
+          </p>
+
+          <ul>
+            <li>
+              較大的 E<sub>a</sub> 使
+              exp(−E<sub>a</sub>/RT)
+              對溫度變化更敏感。
+            </li>
+
+            <li>
+              在較低起始溫度下，相同的 10 K 升溫
+              通常造成較明顯的指數變化。
+            </li>
+
+            <li>
+              因此「至少增加兩倍」不等於
+              「符合 Q<sub>10</sub> = 2」；
+              經驗法則要求倍率接近 2。
+            </li>
+          </ul>
+        `;
+      } else {
+        heading =
+          "為何兩個模型得到不同判定？";
+
+        explanation = `
+          <p>
+            Arrhenius 模型把前指數因子視為常數，
+            collision model 則額外加入
+            T<sup>1/2</sup> 的碰撞頻率效應。
+            這使 collision Q<sub>10</sub> 通常略高於
+            Arrhenius Q<sub>10</sub>。
+          </p>
+
+          <p>
+            目前參數剛好位於判定邊界附近，
+            因此這個看似很小的模型差異，
+            足以讓其中一個模型通過、另一個不通過。
+          </p>
+
+          <ul>
+            <li>
+              判定結果會受到容許誤差設定影響。
+            </li>
+
+            <li>
+              這也顯示 Q<sub>10</sub> = 2
+              不是基本定律，而是近似判斷。
+            </li>
+
+            <li>
+              真實反應還可能受到分子取向、溶劑、
+              擴散與反應機構的影響。
+            </li>
+          </ul>
+        `;
+      }
+
+      elements.learningConclusion.textContent =
+        heading;
+
+      elements.learningExplanation.innerHTML =
+        explanation;
+    }
+
+    class InteractiveChart {
+      constructor(canvas, tooltip) {
+        this.canvas = canvas;
+        this.context = canvas.getContext("2d");
+        this.tooltip = tooltip;
+        this.series = [];
+        this.options = {};
+        this.bounds = null;
+
+        this.canvas.addEventListener(
+          "mousemove",
+          event => this.handleMouseMove(event)
+        );
+
+        this.canvas.addEventListener(
+          "mouseleave",
+          () => {
+            this.tooltip.style.display = "none";
+          }
+        );
+
+        window.addEventListener(
+          "resize",
+          () => this.draw()
+        );
+      }
+
+      setData(series, options) {
+        this.series = series;
+        this.options = options;
+        this.draw();
+      }
+
+      resize() {
+        const rectangle =
+          this.canvas.getBoundingClientRect();
+
+        const devicePixelRatio =
+          window.devicePixelRatio || 1;
+
+        this.canvas.width =
+          Math.round(
+            rectangle.width * devicePixelRatio
+          );
+
+        this.canvas.height =
+          Math.round(
+            rectangle.height * devicePixelRatio
+          );
+
+        this.context.setTransform(
+          devicePixelRatio,
+          0,
+          0,
+          devicePixelRatio,
+          0,
+          0
+        );
+
+        return {
+          width: rectangle.width,
+          height: rectangle.height
+        };
+      }
+
+      draw() {
+        if (!this.series.length) {
+          return;
+        }
+
+        const { width, height } = this.resize();
+        const context = this.context;
+
+        context.clearRect(0, 0, width, height);
+
+        const margins = {
+          left: 76,
+          right: 28,
+          top: 28,
+          bottom: 62
+        };
+
+        const plotWidth =
+          width - margins.left - margins.right;
+
+        const plotHeight =
+          height - margins.top - margins.bottom;
+
+        const finitePoints =
+          this.series.flatMap(series =>
+            series.points.filter(point =>
+              Number.isFinite(point.x) &&
+              Number.isFinite(point.y)
+            )
+          );
+
+        let xMin =
+          this.options.xMin ??
+          Math.min(...finitePoints.map(point => point.x));
+
+        let xMax =
+          this.options.xMax ??
+          Math.max(...finitePoints.map(point => point.x));
+
+        let yMin =
+          this.options.yMin ??
+          Math.min(...finitePoints.map(point => point.y));
+
+        let yMax =
+          this.options.yMax ??
+          Math.max(...finitePoints.map(point => point.y));
+
+        if (this.options.includeZero) {
+          yMin = Math.min(0, yMin);
+        }
+
+        if (yMax === yMin) {
+          yMax += 1;
+        }
+
+        const yPadding =
+          (yMax - yMin) * 0.08;
+
+        if (this.options.yMin === undefined) {
+          yMin -= yPadding;
+        }
+
+        if (this.options.yMax === undefined) {
+          yMax += yPadding;
+        }
+
+        const mapX = value =>
+          margins.left +
+          (
+            (value - xMin) /
+            (xMax - xMin)
+          ) * plotWidth;
+
+        const mapY = value =>
+          margins.top +
+          (
+            (yMax - value) /
+            (yMax - yMin)
+          ) * plotHeight;
+
+        this.bounds = {
+          xMin,
+          xMax,
+          yMin,
+          yMax,
+          margins,
+          plotWidth,
+          plotHeight,
+          mapX,
+          mapY
+        };
+
+        this.drawAxes(
+          context,
+          width,
+          height,
+          margins,
+          xMin,
+          xMax,
+          yMin,
+          yMax,
+          mapX,
+          mapY
+        );
+
+        this.series.forEach(series => {
+          this.drawSeries(
+            context,
+            series,
+            mapX,
+            mapY
+          );
+        });
+
+        if (
+          Number.isFinite(
+            this.options.verticalMarker
+          )
+        ) {
+          this.drawVerticalMarker(
+            context,
+            this.options.verticalMarker,
+            mapX,
+            margins,
+            plotHeight
+          );
+        }
+      }
+
+      drawAxes(
+        context,
+        width,
+        height,
+        margins,
+        xMin,
+        xMax,
+        yMin,
+        yMax,
+        mapX,
+        mapY
+      ) {
+        const xTicks = 5;
+        const yTicks = 6;
+
+        context.save();
+        context.font =
+          '12px system-ui, "Noto Sans TC", sans-serif';
+
+        for (let index = 0; index <= xTicks; index++) {
+          const value =
+            xMin +
+            (
+              (xMax - xMin) *
+              index / xTicks
+            );
+
+          const x = mapX(value);
+
+          context.strokeStyle = "#e7ecf3";
+          context.lineWidth = 1;
+          context.beginPath();
+          context.moveTo(x, margins.top);
+          context.lineTo(
+            x,
+            height - margins.bottom
+          );
+          context.stroke();
+
+          context.fillStyle = "#667085";
+          context.textAlign = "center";
+          context.textBaseline = "top";
+          context.fillText(
+            formatNumber(value, 1),
+            x,
+            height - margins.bottom + 9
+          );
+        }
+
+        for (let index = 0; index <= yTicks; index++) {
+          const value =
+            yMin +
+            (
+              (yMax - yMin) *
+              index / yTicks
+            );
+
+          const y = mapY(value);
+
+          context.strokeStyle = "#e7ecf3";
+          context.lineWidth = 1;
+          context.beginPath();
+          context.moveTo(margins.left, y);
+          context.lineTo(
+            width - margins.right,
+            y
+          );
+          context.stroke();
+
+          context.fillStyle = "#667085";
+          context.textAlign = "right";
+          context.textBaseline = "middle";
+          context.fillText(
+            formatNumber(value, 2),
+            margins.left - 9,
+            y
+          );
+        }
+
+        context.strokeStyle = "#8490a3";
+        context.lineWidth = 1.3;
+        context.beginPath();
+        context.moveTo(
+          margins.left,
+          margins.top
+        );
+        context.lineTo(
+          margins.left,
+          height - margins.bottom
+        );
+        context.lineTo(
+          width - margins.right,
+          height - margins.bottom
+        );
+        context.stroke();
+
+        context.fillStyle = "#344054";
+        context.font =
+          '700 13px system-ui, "Noto Sans TC", sans-serif';
+
+        context.textAlign = "center";
+        context.textBaseline = "bottom";
+        context.fillText(
+          this.options.xLabel || "",
+          margins.left + plotWidth(width, margins) / 2,
+          height - 5
+        );
+
+        context.save();
+        context.translate(
+          17,
+          margins.top +
+          (
+            height -
+            margins.top -
+            margins.bottom
+          ) / 2
+        );
+        context.rotate(-Math.PI / 2);
+        context.fillText(
+          this.options.yLabel || "",
+          0,
+          0
+        );
+        context.restore();
+
+        context.restore();
+
+        function plotWidth(totalWidth, chartMargins) {
+          return totalWidth -
+            chartMargins.left -
+            chartMargins.right;
+        }
+      }
+
+      drawSeries(
+        context,
+        series,
+        mapX,
+        mapY
+      ) {
+        const points =
+          series.points.filter(point =>
+            Number.isFinite(point.x) &&
+            Number.isFinite(point.y)
+          );
+
+        if (!points.length) {
+          return;
+        }
+
+        context.save();
+        context.strokeStyle = series.color;
+        context.fillStyle = series.color;
+        context.lineWidth = series.width || 3;
+
+        if (series.dashed) {
+          context.setLineDash([8, 6]);
+        }
+
+        context.beginPath();
+
+        points.forEach((point, index) => {
+          const x = mapX(point.x);
+          const y = mapY(point.y);
+
+          if (index === 0) {
+            context.moveTo(x, y);
+          } else {
+            context.lineTo(x, y);
+          }
+        });
+
+        context.stroke();
+
+        if (series.showPoints) {
+          points.forEach(point => {
+            context.beginPath();
+            context.arc(
+              mapX(point.x),
+              mapY(point.y),
+              3.2,
+              0,
+              Math.PI * 2
+            );
+            context.fill();
+          });
+        }
+
+        context.restore();
+      }
+
+      drawVerticalMarker(
+        context,
+        value,
+        mapX,
+        margins,
+        plotHeight
+      ) {
+        const x = mapX(value);
+
+        context.save();
+        context.strokeStyle = "#7c3aed";
+        context.fillStyle = "#6d36ce";
+        context.lineWidth = 1.5;
+        context.setLineDash([5, 5]);
+
+        context.beginPath();
+        context.moveTo(x, margins.top);
+        context.lineTo(
+          x,
+          margins.top + plotHeight
+        );
+        context.stroke();
+
+        context.font =
+          '700 12px system-ui, "Noto Sans TC", sans-serif';
+        context.textAlign = "left";
+        context.fillText(
+          "目前溫度",
+          x + 5,
+          margins.top + 14
+        );
+
+        context.restore();
+      }
+
+      handleMouseMove(event) {
+        if (!this.bounds || !this.series.length) {
+          return;
+        }
+
+        const rectangle =
+          this.canvas.getBoundingClientRect();
+
+        const mouseX =
+          event.clientX - rectangle.left;
+
+        const mouseY =
+          event.clientY - rectangle.top;
+
+        const bounds = this.bounds;
+
+        if (
+          mouseX < bounds.margins.left ||
+          mouseX >
+            bounds.margins.left +
+            bounds.plotWidth ||
+          mouseY < bounds.margins.top ||
+          mouseY >
+            bounds.margins.top +
+            bounds.plotHeight
+        ) {
+          this.tooltip.style.display = "none";
+          return;
+        }
+
+        const dataX =
+          bounds.xMin +
+          (
+            (mouseX - bounds.margins.left) /
+            bounds.plotWidth
+          ) *
+          (bounds.xMax - bounds.xMin);
+
+        let closestX = null;
+        let closestDistance = Infinity;
+
+        this.series.forEach(series => {
+          series.points.forEach(point => {
+            const distance =
+              Math.abs(point.x - dataX);
+
+            if (distance < closestDistance) {
+              closestDistance = distance;
+              closestX = point.x;
+            }
+          });
+        });
+
+        if (closestX === null) {
+          return;
+        }
+
+        const rows = this.series
+          .map(series => {
+            const point = series.points.reduce(
+              (closest, current) => {
+                if (!closest) {
+                  return current;
+                }
+
+                return Math.abs(
+                  current.x - closestX
+                ) <
+                Math.abs(
+                  closest.x - closestX
+                )
+                  ? current
+                  : closest;
+              },
+              null
+            );
+
+            if (!point) {
+              return "";
+            }
+
+            return `
+              <div style="margin-top:4px;">
+                <span style="
+                  display:inline-block;
+                  width:9px;
+                  height:9px;
+                  margin-right:5px;
+                  border-radius:50%;
+                  background:${series.color};
+                "></span>
+                ${series.name}:
+                <strong>
+                  ${formatNumber(point.y, 4)}
+                </strong>
+              </div>
+            `;
+          })
+          .join("");
+
+        this.tooltip.innerHTML = `
+          <strong>
+            ${this.options.xLabel}:
+            ${formatNumber(closestX, 2)}
+          </strong>
+          ${rows}
+        `;
+
+        this.tooltip.style.display = "block";
+
+        const left =
+          Math.min(
+            event.clientX + 14,
+            window.innerWidth - 295
+          );
+
+        const top =
+          Math.min(
+            event.clientY + 14,
+            window.innerHeight - 170
+          );
+
+        this.tooltip.style.left =
+          `${Math.max(8, left)}px`;
+
+        this.tooltip.style.top =
+          `${Math.max(8, top)}px`;
+      }
+    }
+
+    const chart = new InteractiveChart(
+      elements.mainChart,
+      elements.tooltip
+    );
+
+    function temperatureArray(
+      minimum = 0,
+      maximum = 200,
+      step = 2
+    ) {
+      const values = [];
+
+      for (
+        let temperature = minimum;
+        temperature <= maximum;
+        temperature += step
+      ) {
+        values.push(temperature);
+      }
+
+      return values;
+    }
+
+    function createLegend(items) {
+      elements.chartLegend.innerHTML =
+        items.map(item => `
+          <span class="legend-item">
+            <span
+              class="legend-line"
+              style="
+                background:${item.color};
+                ${item.dashed
+                  ? "border-top:2px dashed " +
+                    item.color +
+                    ";background:transparent;"
+                  : ""}
+              "
+            ></span>
+            ${item.name}
+          </span>
+        `).join("");
+    }
+
+    function updateChart(parameters) {
+      const temperaturesC = temperatureArray();
+
+      if (activeChart === "q10") {
+        const arrheniusPoints =
+          temperaturesC.map(temperatureC => ({
+            x: temperatureC,
+            y: arrheniusQ10(
+              temperatureC + 273.15,
+              parameters.activationEnergyKJ
+            )
+          }));
+
+        const collisionPoints =
+          temperaturesC.map(temperatureC => ({
+            x: temperatureC,
+            y: collisionQ10(
+              temperatureC + 273.15,
+              parameters.activationEnergyKJ
+            )
+          }));
+
+        const lowerBound =
+          TARGET_Q10 *
+          (
+            1 -
+            parameters.tolerancePercent / 100
+          );
+
+        const upperBound =
+          TARGET_Q10 *
+          (
+            1 +
+            parameters.tolerancePercent / 100
+          );
+
+        const targetPoints = [
+          { x: 0, y: TARGET_Q10 },
+          { x: 200, y: TARGET_Q10 }
+        ];
+
+        const lowerPoints = [
+          { x: 0, y: lowerBound },
+          { x: 200, y: lowerBound }
+        ];
+
+        const upperPoints = [
+          { x: 0, y: upperBound },
+          { x: 200, y: upperBound }
+        ];
+
+        const allValues = [
+          ...arrheniusPoints.map(point => point.y),
+          ...collisionPoints.map(point => point.y),
+          upperBound
+        ];
+
+        elements.chartTitle.innerHTML =
+          "Q<sub>10</sub> vs. Temperature";
+
+        elements.chartSubtitle.innerHTML =
+          `固定 E<sub>a</sub> = ` +
+          `${parameters.activationEnergyKJ.toFixed(0)} ` +
+          `kJ/mol，觀察不同起始溫度的 Q₁₀。`;
+
+        elements.chartExplanation.innerHTML =
+          `曲線通常隨起始溫度升高而下降。這是因為固定的 ` +
+          `10 K 升溫，在高溫時只占絕對溫度較小的比例。` +
+          `綠色虛線為 Q<sub>10</sub> = 2；灰色虛線為目前` +
+          `容許誤差的上下界。`;
+
+        createLegend([
+          {
+            name: "Arrhenius Q₁₀",
+            color: "#2563eb"
+          },
+          {
+            name: "Collision Q₁₀",
+            color: "#ef7d32"
+          },
+          {
+            name: "目標 Q₁₀ = 2",
+            color: "#16a34a",
+            dashed: true
+          },
+          {
+            name: "容許範圍",
+            color: "#98a2b3",
+            dashed: true
+          }
+        ]);
+
+        chart.setData(
+          [
+            {
+              name: "Arrhenius Q₁₀",
+              color: "#2563eb",
+              points: arrheniusPoints
+            },
+            {
+              name: "Collision Q₁₀",
+              color: "#ef7d32",
+              points: collisionPoints
+            },
+            {
+              name: "目標 Q₁₀",
+              color: "#16a34a",
+              points: targetPoints,
+              dashed: true,
+              width: 2
+            },
+            {
+              name: "容許下界",
+              color: "#98a2b3",
+              points: lowerPoints,
+              dashed: true,
+              width: 1.5
+            },
+            {
+              name: "容許上界",
+              color: "#98a2b3",
+              points: upperPoints,
+              dashed: true,
+              width: 1.5
+            }
+          ],
+          {
+            xLabel: "起始溫度 / °C",
+            yLabel: "Q₁₀ = k(T + 10) / k(T)",
+            xMin: 0,
+            xMax: 200,
+            yMin: 0,
+            yMax:
+              Math.max(
+                2.6,
+                Math.max(...allValues) * 1.08
+              ),
+            verticalMarker:
+              parameters.temperatureC
+          }
+        );
+      }
+
+      if (activeChart === "k") {
+        const referenceTemperatureK =
+          parameters.temperatureK;
+
+        const arrheniusPoints =
+          temperaturesC.map(temperatureC => ({
+            x: temperatureC,
+            y: relativeArrheniusK(
+              temperatureC + 273.15,
+              referenceTemperatureK,
+              parameters.activationEnergyKJ
+            )
+          }));
+
+        const collisionPoints =
+          temperaturesC.map(temperatureC => ({
+            x: temperatureC,
+            y: relativeCollisionK(
+              temperatureC + 273.15,
+              referenceTemperatureK,
+              parameters.activationEnergyKJ
+            )
+          }));
+
+        const maximumValue =
+          Math.max(
+            ...arrheniusPoints.map(point => point.y),
+            ...collisionPoints.map(point => point.y)
+          );
+
+        const displayedMaximum =
+          Math.min(
+            Math.max(maximumValue * 1.05, 2),
+            200
+          );
+
+        elements.chartTitle.innerHTML =
+          "Relative k vs. Temperature";
+
+        elements.chartSubtitle.innerHTML =
+          `以目前起始溫度 ` +
+          `${parameters.temperatureC.toFixed(0)}°C ` +
+          `的 k 設為 1，觀察相對速率常數。`;
+
+        elements.chartExplanation.innerHTML =
+          `由於沒有指定前指數因子 A 或 C，圖中使用` +
+          `<strong>相對速率常數</strong>。目前起始溫度的 ` +
+          `k 被正規化為 1；若曲線在高 10°C 處接近 2，` +
+          `即表示符合 10°C rule。為避免極高數值壓縮圖形，` +
+          `垂直軸顯示上限設為 200。`;
+
+        createLegend([
+          {
+            name: "Arrhenius 相對 k",
+            color: "#2563eb"
+          },
+          {
+            name: "Collision 相對 k",
+            color: "#ef7d32"
+          }
+        ]);
+
+        chart.setData(
+          [
+            {
+              name: "Arrhenius 相對 k",
+              color: "#2563eb",
+              points: arrheniusPoints
+            },
+            {
+              name: "Collision 相對 k",
+              color: "#ef7d32",
+              points: collisionPoints
+            }
+          ],
+          {
+            xLabel: "溫度 / °C",
+            yLabel: "相對速率常數 k / kref",
+            xMin: 0,
+            xMax: 200,
+            yMin: 0,
+            yMax: displayedMaximum,
+            verticalMarker:
+              parameters.temperatureC
+          }
+        );
+      }
+
+      if (activeChart === "requiredEa") {
+        const requiredArrheniusPoints =
+          temperaturesC.map(temperatureC => ({
+            x: temperatureC,
+            y: requiredEaForArrhenius(
+              temperatureC + 273.15
+            )
+          }));
+
+        const requiredCollisionPoints =
+          temperaturesC.map(temperatureC => ({
+            x: temperatureC,
+            y: requiredEaForCollision(
+              temperatureC + 273.15
+            )
+          }));
+
+        const currentEaPoints = [
+          {
+            x: 0,
+            y: parameters.activationEnergyKJ
+          },
+          {
+            x: 200,
+            y: parameters.activationEnergyKJ
+          }
+        ];
+
+        const maximumValue =
+          Math.max(
+            100,
+            ...requiredArrheniusPoints.map(
+              point => point.y
+            ),
+            ...requiredCollisionPoints.map(
+              point => point.y
+            )
+          );
+
+        elements.chartTitle.innerHTML =
+          "達到 Q<sub>10</sub> = 2 所需的活化能";
+
+        elements.chartSubtitle.innerHTML =
+          `比較不同起始溫度下，兩個模型要恰好加倍所需的 ` +
+          `E<sub>a</sub>。`;
+
+        elements.chartExplanation.innerHTML =
+          `所需活化能會隨起始溫度改變，因此不存在一個` +
+          `適用於所有溫度的固定 E<sub>a</sub>，能讓每次升高 ` +
+          `10°C 都恰好加倍。紫色虛線表示目前選擇的活化能。`;
+
+        createLegend([
+          {
+            name: "Arrhenius 所需 Eₐ",
+            color: "#2563eb"
+          },
+          {
+            name: "Collision 所需 Eₐ",
+            color: "#ef7d32"
+          },
+          {
+            name: "目前 Eₐ",
+            color: "#7c3aed",
+            dashed: true
+          }
+        ]);
+
+        chart.setData(
+          [
+            {
+              name: "Arrhenius 所需 Eₐ",
+              color: "#2563eb",
+              points: requiredArrheniusPoints
+            },
+            {
+              name: "Collision 所需 Eₐ",
+              color: "#ef7d32",
+              points: requiredCollisionPoints
+            },
+            {
+              name: "目前 Eₐ",
+              color: "#7c3aed",
+              points: currentEaPoints,
+              dashed: true,
+              width: 2
+            }
+          ],
+          {
+            xLabel: "起始溫度 / °C",
+            yLabel: "所需活化能 / kJ mol⁻¹",
+            xMin: 0,
+            xMax: 200,
+            yMin: 0,
+            yMax: maximumValue * 1.08,
+            verticalMarker:
+              parameters.temperatureC
+          }
+        );
+      }
+    }
+
+    function updateAll() {
+      const parameters = getParameters();
+
+      updateParameterLabels(parameters);
+      updateResults(parameters);
+      updateChart(parameters);
+    }
+
+    [
+      elements.startTemperature,
+      elements.activationEnergy,
+      elements.tolerance
+    ].forEach(input => {
+      input.addEventListener("input", updateAll);
+    });
+
+    document
+      .querySelectorAll(".chart-button")
+      .forEach(button => {
+        button.addEventListener("click", () => {
+          document
+            .querySelectorAll(".chart-button")
+            .forEach(currentButton => {
+              currentButton.classList.remove("active");
+            });
+
+          button.classList.add("active");
+          activeChart = button.dataset.chart;
+          updateChart(getParameters());
+        });
+      });
+
+    elements.resetButton.addEventListener(
+      "click",
+      () => {
+        elements.startTemperature.value = 25;
+        elements.activationEnergy.value = 53;
+        elements.tolerance.value = 5;
+        activeChart = "q10";
+
+        document
+          .querySelectorAll(".chart-button")
+          .forEach(button => {
+            button.classList.toggle(
+              "active",
+              button.dataset.chart === "q10"
+            );
+          });
+
+        updateAll();
+      }
+    );
+
+    updateAll();
+  </script>
+</body>
+</html>
