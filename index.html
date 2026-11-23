@@ -1,44 +1,35 @@
+
 <!DOCTYPE html>
+
 <html lang="zh-Hant">
 <head>
-  <meta charset="UTF-8">
-  <meta
-    name="viewport"
-    content="width=device-width, initial-scale=1.0"
-  >
-
-  <title>10°C Rule：Arrhenius 與 Collision Theory</title>
-
-  <style>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>10°C Rule：Arrhenius 與 Collision Theory</title>
+<style>
     :root {
-      --background: #f3f7fc;
-      --surface: #ffffff;
-      --surface-soft: #f7faff;
-      --text: #172033;
-      --muted: #667085;
-      --border: #dbe4f0;
-
-      --primary: #2563eb;
-      --primary-dark: #174ea6;
-      --collision: #ef7d32;
-      --target: #16a34a;
-      --purple: #7c3aed;
-
-      --success-bg: #effbf3;
-      --success-border: #85d7a0;
-      --success-text: #176235;
-
-      --warning-bg: #fff8e7;
-      --warning-border: #efcc70;
-      --warning-text: #795300;
-
-      --danger-bg: #fff1f1;
-      --danger-border: #efa5a5;
-      --danger-text: #8a2525;
-
-      --shadow:
-        0 12px 35px rgba(31, 49, 80, 0.08);
-    }
+  --background: #F4F7FC;
+  --surface: #FFFFFF;
+  --surface-soft: #F0F5FC;
+  --text: #172B4D;
+  --muted: #50627B;
+  --border: #D7E2F0;
+  --primary: #2563A6;
+  --primary-dark: #174879;
+  --collision: #3C82BD;
+  --target: #4976A5;
+  --purple: #567CA8;
+  --success-bg: #E9F3FC;
+  --success-border: #A8C9E7;
+  --success-text: #174879;
+  --warning-bg: #EDF4FC;
+  --warning-border: #B8CCE4;
+  --warning-text: #345475;
+  --danger-bg: #F1F5FA;
+  --danger-border: #B6C8DC;
+  --danger-text: #385773;
+  --shadow: 0 6px 22px rgba(27, 67, 114, 0.07);
+}
 
     * {
       box-sizing: border-box;
@@ -52,45 +43,23 @@
       margin: 0;
       color: var(--text);
       background:
-        radial-gradient(
-          circle at top left,
-          #e5efff 0,
-          transparent 30%
-        ),
-        linear-gradient(
-          180deg,
-          #f9fbff,
-          var(--background)
-        );
-      font-family:
-        Inter,
-        "Noto Sans TC",
-        "Microsoft JhengHei",
-        system-ui,
-        -apple-system,
-        BlinkMacSystemFont,
-        "Segoe UI",
-        sans-serif;
+        radial-gradient(circle at top left, #E9E5DE 0, transparent 30%),
+        linear-gradient(180deg, #FAF8F5, var(--background));
+      font-family: Inter, "Noto Sans TC", "Microsoft JhengHei", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
       line-height: 1.65;
     }
 
     button,
-    input {
+    input,
+    select {
       font: inherit;
     }
 
     header {
       padding: 36px 24px 30px;
       color: white;
-      background:
-        linear-gradient(
-          120deg,
-          #123a72,
-          #2563eb 55%,
-          #5b8ff9
-        );
-      box-shadow:
-        0 8px 25px rgba(20, 60, 120, 0.18);
+      background: linear-gradient(120deg, #657C85, #8299A6 55%, #A5B5B1);
+      box-shadow: 0 8px 25px rgba(20, 60, 120, 0.18);
     }
 
     .header-inner,
@@ -108,7 +77,7 @@
     header p {
       max-width: 1050px;
       margin: 0;
-      color: #e8f1ff;
+      color: #F6F4EF;
       font-size: 1rem;
     }
 
@@ -118,20 +87,12 @@
 
     .main-layout {
       display: grid;
-      grid-template-columns:
-        minmax(290px, 390px)
-        minmax(0, 1fr);
+      grid-template-columns: minmax(300px, 410px) minmax(0, 1fr);
       gap: 22px;
       align-items: start;
     }
 
-    .left-column {
-      display: grid;
-      gap: 20px;
-      position: sticky;
-      top: 14px;
-    }
-
+    .left-column,
     .right-column {
       display: grid;
       gap: 22px;
@@ -182,9 +143,9 @@
     }
 
     .control-group {
-      padding: 0 0 20px;
-      margin: 0 0 20px;
-      border-bottom: 1px solid #edf1f6;
+      padding: 0 0 18px;
+      margin: 0 0 18px;
+      border-bottom: 1px solid #E6E7E1;
     }
 
     .control-group:last-of-type {
@@ -206,9 +167,9 @@
       color: var(--primary-dark);
       text-align: center;
       white-space: nowrap;
-      border: 1px solid #c7dcff;
+      border: 1px solid #C8D5D3;
       border-radius: 999px;
-      background: #eef5ff;
+      background: #EAF0EE;
       font-size: 0.9rem;
       font-variant-numeric: tabular-nums;
     }
@@ -216,6 +177,16 @@
     input[type="range"] {
       width: 100%;
       accent-color: var(--primary);
+      cursor: pointer;
+    }
+
+    select {
+      width: 100%;
+      padding: 9px 12px;
+      color: var(--text);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      background: var(--surface-soft);
       cursor: pointer;
     }
 
@@ -239,23 +210,166 @@
       color: white;
       border: 0;
       border-radius: 10px;
-      background: #173b73;
+      background: #526E7D;
       cursor: pointer;
       font-weight: 800;
-      transition:
-        transform 0.15s ease,
-        background 0.15s ease;
+      transition: transform 0.15s ease, background 0.15s ease;
     }
 
     .reset-button:hover {
-      background: #245493;
+      background: #6B8793;
       transform: translateY(-1px);
+    }
+
+    .subtab-buttons {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 8px;
+      margin-bottom: 16px;
+    }
+
+    .subtab-button {
+      padding: 9px 12px;
+      color: #505D5A;
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      background: var(--surface-soft);
+      cursor: pointer;
+      font-weight: 750;
+      transition: background 0.15s ease, color 0.15s ease, border-color 0.15s ease;
+    }
+
+    .subtab-button.active {
+      color: white;
+      border-color: var(--primary);
+      background: var(--primary);
+    }
+
+    .collision-tab-content {
+      display: none;
+    }
+
+    .collision-tab-content.active {
+      display: block;
+    }
+
+    .two-column-input {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 12px;
+      margin-bottom: 16px;
+    }
+
+    .two-column-input label {
+      display: block;
+      margin-bottom: 6px;
+      font-size: 0.88rem;
+      font-weight: 700;
+    }
+
+    .collision-animation-card {
+      margin-top: 14px;
+      padding: 14px;
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      background: var(--surface-soft);
+    }
+
+    .animation-title {
+      margin-bottom: 10px;
+      font-weight: 800;
+      color: #526E7D;
+    }
+
+    #collisionCanvas {
+      width: 100%;
+      height: 210px;
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      background: #FFFEFC;
+    }
+
+    .animation-data-grid,
+    .reaction-information-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 10px;
+      margin-top: 12px;
+    }
+
+    .animation-data-grid > div,
+    .reaction-information-grid > div {
+      padding: 10px 12px;
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      background: #FFFEFC;
+    }
+
+    .animation-data-grid span,
+    .reaction-information-grid span {
+      display: block;
+      color: var(--muted);
+      font-size: 0.78rem;
+    }
+
+    .animation-data-grid strong,
+    .reaction-information-grid strong {
+      font-size: 0.95rem;
+      font-variant-numeric: tabular-nums;
+    }
+
+    .reaction-display {
+      margin-top: 14px;
+      padding: 14px;
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      background: var(--surface-soft);
+    }
+
+    .reaction-particles {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 8px;
+      margin-top: 10px;
+    }
+
+    .particle-chip {
+      padding: 5px 10px;
+      border: 1px solid #C8D5D3;
+      border-radius: 999px;
+      background: #EAF0EE;
+      color: var(--primary-dark);
+      font-size: 0.85rem;
+      font-weight: 700;
+    }
+
+    .particle-chip.product {
+      border-color: #C5D6C7;
+      background: #EEF3ED;
+      color: var(--success-text);
+    }
+
+    .reaction-plus,
+    .reaction-arrow {
+      font-weight: 800;
+      color: var(--muted);
+    }
+
+    .model-warning {
+      margin-top: 14px;
+      padding: 12px 14px;
+      border: 1px solid var(--warning-border);
+      border-radius: 12px;
+      background: var(--warning-bg);
+      color: var(--warning-text);
+      font-size: 0.85rem;
     }
 
     .formula-card {
       margin-bottom: 14px;
       padding: 14px;
-      border: 1px solid #dce7f6;
+      border: 1px solid #DDE4DF;
       border-radius: 13px;
       background: var(--surface-soft);
     }
@@ -266,20 +380,17 @@
 
     .formula-card h3 {
       margin-bottom: 8px;
-      color: #173b73;
+      color: #526E7D;
     }
 
     .equation {
       overflow-x: auto;
       padding: 11px 8px;
-      color: #152f55;
+      color: #536C74;
       text-align: center;
       border-radius: 9px;
       background: white;
-      font-family:
-        "Times New Roman",
-        "Noto Serif TC",
-        serif;
+      font-family: "Times New Roman", "Noto Serif TC", serif;
       font-size: 1.06rem;
     }
 
@@ -295,8 +406,7 @@
 
     .results-grid {
       display: grid;
-      grid-template-columns:
-        repeat(3, minmax(170px, 1fr));
+      grid-template-columns: repeat(3, minmax(170px, 1fr));
       gap: 14px;
     }
 
@@ -375,10 +485,10 @@
     .criteria-box {
       margin-top: 14px;
       padding: 14px 16px;
-      color: #344054;
+      color: #505D5A;
       border-left: 4px solid var(--primary);
       border-radius: 8px;
-      background: #f5f8fc;
+      background: #F2F3EE;
       font-size: 0.91rem;
     }
 
@@ -391,22 +501,18 @@
 
     .chart-button {
       padding: 11px 12px;
-      color: #344054;
+      color: #505D5A;
       border: 1px solid var(--border);
       border-radius: 10px;
       background: white;
       cursor: pointer;
       font-weight: 800;
-      transition:
-        background 0.15s ease,
-        color 0.15s ease,
-        border 0.15s ease,
-        transform 0.15s ease;
+      transition: background 0.15s ease, color 0.15s ease, border 0.15s ease, transform 0.15s ease;
     }
 
     .chart-button:hover {
       transform: translateY(-1px);
-      border-color: #98b9ed;
+      border-color: #AABEB9;
     }
 
     .chart-button.active {
@@ -430,7 +536,7 @@
       display: flex;
       flex-wrap: wrap;
       justify-content: flex-end;
-      gap: 10px;
+      gap: 12px;
       color: var(--muted);
       font-size: 0.83rem;
     }
@@ -464,9 +570,9 @@
     .chart-explanation {
       margin-top: 12px;
       padding: 12px 14px;
-      color: #475467;
+      color: #66736F;
       border-radius: 9px;
-      background: #f7f9fc;
+      background: #F3F4EF;
       font-size: 0.9rem;
     }
 
@@ -480,16 +586,14 @@
       pointer-events: none;
       border-radius: 8px;
       background: rgba(17, 24, 39, 0.94);
-      box-shadow:
-        0 8px 25px rgba(0, 0, 0, 0.22);
+      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.22);
       font-size: 0.82rem;
       font-variant-numeric: tabular-nums;
     }
 
     .learning-summary {
       display: grid;
-      grid-template-columns:
-        repeat(4, minmax(130px, 1fr));
+      grid-template-columns: repeat(4, minmax(130px, 1fr));
       gap: 12px;
       margin-bottom: 18px;
     }
@@ -498,7 +602,7 @@
       padding: 13px;
       border: 1px solid var(--border);
       border-radius: 12px;
-      background: #f8faff;
+      background: #F3F4EF;
     }
 
     .learning-value-label {
@@ -509,7 +613,7 @@
 
     .learning-value-number {
       margin-top: 4px;
-      color: #173b73;
+      color: #526E7D;
       font-size: 1.17rem;
       font-weight: 900;
       font-variant-numeric: tabular-nums;
@@ -517,19 +621,14 @@
 
     .learning-content {
       padding: 18px;
-      border: 1px solid #ddd5ff;
+      border: 1px solid #D8D1DA;
       border-radius: 14px;
-      background:
-        linear-gradient(
-          135deg,
-          #f8f5ff,
-          #f5f9ff
-        );
+      background: linear-gradient(135deg, #F4F0F1, #F1F3EF);
     }
 
     .learning-content h3 {
       margin-bottom: 8px;
-      color: #5630b5;
+      color: #85748E;
     }
 
     .learning-content ul {
@@ -542,14 +641,14 @@
     }
 
     .highlight {
-      color: #5630b5;
+      color: #85748E;
       font-weight: 850;
     }
 
     .model-limitations {
       margin-top: 18px;
       padding-top: 16px;
-      border-top: 1px solid #ddd5ff;
+      border-top: 1px solid #D8D1DA;
     }
 
     .model-limitations h3 {
@@ -559,7 +658,7 @@
     .footer-note {
       margin-top: 22px;
       padding: 15px 18px;
-      color: #475467;
+      color: #66736F;
       text-align: center;
       border: 1px solid var(--border);
       border-radius: 12px;
@@ -572,24 +671,17 @@
         grid-template-columns: 1fr;
       }
 
-      .left-column {
-        position: static;
-        grid-template-columns: repeat(2, 1fr);
-      }
-
       .results-grid {
-        grid-template-columns:
-          repeat(2, minmax(170px, 1fr));
+        grid-template-columns: repeat(2, minmax(170px, 1fr));
       }
     }
 
     @media (max-width: 760px) {
-      .left-column {
-        grid-template-columns: 1fr;
-      }
-
       .results-grid,
-      .learning-summary {
+      .learning-summary,
+      .two-column-input,
+      .animation-data-grid,
+      .reaction-information-grid {
         grid-template-columns: 1fr 1fr;
       }
 
@@ -613,7 +705,10 @@
 
     @media (max-width: 520px) {
       .results-grid,
-      .learning-summary {
+      .learning-summary,
+      .two-column-input,
+      .animation-data-grid,
+      .reaction-information-grid {
         grid-template-columns: 1fr;
       }
 
@@ -635,550 +730,543 @@
         height: 320px;
       }
     }
-  </style>
-</head>
+  
+.result-view-buttons{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:8px;margin-bottom:20px}
+.result-view-button{border:1px solid #D9DDD5;border-radius:10px;background:#F0F1EC;color:#505D5A;padding:10px 5px;cursor:pointer;font-weight:750;font-size:.83rem}
+.result-view-button.active{background:#8299A6;color:white;border-color:#8299A6}
+.result-view{display:none}.result-view.active{display:block}
+@media(max-width:760px){.result-view-buttons{grid-template-columns:repeat(2,minmax(0,1fr))}}
 
+.experiment-tab-content{display:none}.experiment-tab-content.active{display:block}.experiment-tabs{margin-top:6px;margin-bottom:18px}.result-view-buttons{grid-template-columns:repeat(3,minmax(0,1fr))}#reactionCanvas{width:100%;height:230px;border:1px solid #D9DDD5;border-radius:10px;background:#F9F8F4;display:block}.reaction-legend{font-size:.82rem;color:#66736F;margin-top:8px}.reaction-display h3{color:#526E7D}@media(max-width:650px){.result-view-buttons{grid-template-columns:repeat(2,minmax(0,1fr))}}
+
+/* Streamlined experiment control */
+.left-column .panel{padding:24px;border-radius:22px}
+.experiment-tabs{display:grid;grid-template-columns:1fr 1fr;padding:5px;background:#E9ECE6;border-radius:14px;gap:5px;margin:8px 0 22px}
+.experiment-tabs .subtab-button{border:0;background:transparent;color:#697771;border-radius:10px;padding:13px 7px;font-size:.93rem}
+.experiment-tabs .subtab-button.active{background:white;color:#526E7D;box-shadow:0 3px 12px rgba(27,62,113,.12)}
+.mode-intro{display:flex;flex-direction:column;gap:3px;padding:13px 15px;background:#EFF1EB;border:1px solid #DDE4DD;border-radius:12px;margin:0 0 22px}
+.mode-intro strong{font-size:.94rem;color:#526E7D}
+.mode-intro span{font-size:.81rem;color:#738079}
+.left-column .control-group{padding-bottom:16px;margin-bottom:17px}
+.left-column .control-label{font-size:.93rem}
+.left-column .value-pill{font-size:.84rem}
+.left-column .control-group:last-child{border-bottom:0}
+.compact-reset{margin-top:20px;background:#F0F1EB;color:#5F746F;border:1px solid #D9DDD5;box-shadow:none}
+.compact-reset:hover{background:#e8f0fb;color:#526E7D}
+#collisionParameterTab>.subtab-buttons{background:#f6f8fc;padding:4px;border-radius:12px}
+#collisionParameterTab>.subtab-buttons button{font-size:.88rem}
+#reactionPreset{margin:8px 0 14px;padding:12px}
+#reactionPresetTab .reaction-display{margin-top:8px}
+@media(max-width:520px){.left-column .panel{padding:17px}.experiment-tabs .subtab-button{font-size:.82rem}}
+
+/* Blue-only visual refresh: original teaching features and interactions retained. */
+body { background: #F4F7FC; }
+header { background: #194D83; box-shadow: 0 4px 16px rgba(18,55,98,.13); }
+header p { color: #E8F1FC; }
+.panel { background: #FFFFFF; }
+.control-group { border-bottom-color: #DFE7F2; }
+.value-pill, .particle-chip { background: #EAF3FC; border-color: #BED3E9; color: #194D83; }
+.particle-chip.product { background: #DCEBFA; border-color: #A9C9E7; color: #174879; }
+.reset-button { background: #194D83; }
+.reset-button:hover { background: #2563A6; }
+.subtab-button { color: #274869; }
+.animation-title { color: #194D83; }
+#collisionCanvas { background: #FFFFFF; }
+.animation-data-grid > div, .reaction-information-grid > div { background: #FFFFFF; }
+:focus-visible { outline: 3px solid #2C73BA; outline-offset: 2px; }
+
+/* High contrast on dark blue controls */
+.experiment-tabs .subtab-button.active,.result-view-buttons button.active,.collision-mode-buttons button.active,
+.explore-buttons button.active,.reset-button,.primary-button,button[aria-selected="true"]{color:#fff!important}
+.experiment-tabs .subtab-button.active *, .result-view-buttons button.active *{color:#fff!important}
+#reactionCanvas{background:#fff;border-color:#c9d8ea}
+</style>
+<style>
+.teaching-intro{background:#eff6ff;border:1px solid #cfe0ff;border-radius:14px;padding:14px;margin:8px 0 14px}
+.teaching-intro p{font-size:.87rem;color:#66736F;margin:5px 0 0}
+.explore-buttons{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:6px;margin-bottom:12px}
+.explore-btn{border:1px solid #cbd5e1;border-radius:10px;background:white;padding:10px 3px;font-size:.82rem;font-weight:750;cursor:pointer;color:#334155}
+.explore-btn.active{background:#1d4ed8;color:white;border-color:#1d4ed8}
+.lesson-prompt{background:#f8fafc;border-left:4px solid #8299A6;padding:11px;border-radius:8px;margin-bottom:15px;font-size:.9rem}
+.lesson-insight{background:#ecfdf5;border:1px solid #a7f3d0;color:#065f46;border-radius:10px;padding:11px;margin-top:12px;font-weight:650;font-size:.9rem}
+.lesson-takeaway{background:#fff7ed;border:1px solid #fed7aa;border-radius:10px;padding:11px;margin-top:12px;font-size:.86rem;color:#7c2d12}
+@media(max-width:450px){.explore-buttons{grid-template-columns:1fr}.explore-btn{padding:8px}}
+</style><style>
+.experiment-tabs{grid-template-columns:repeat(3,minmax(0,1fr))}.experiment-tabs .subtab-button{font-size:.82rem;padding:12px 4px}.result-view-buttons{grid-template-columns:repeat(3,minmax(0,1fr))}.lab-intro{background:#edf0ea;padding:15px;border-radius:13px;margin-bottom:15px}.lab-intro p,.lab-note{font-size:.83rem;color:#67736f;line-height:1.6}.lab-label{display:block;font-weight:650;margin-bottom:9px}.predict-row,.lab-controls{display:flex;flex-wrap:wrap;gap:8px;margin:12px 0}.predict-row button,.lab-controls button{background:#e8ece8;color:#485e5a;border:1px solid #cbd5cf;border-radius:10px;padding:10px 13px;cursor:pointer}.predict-row button.selected,.lab-controls button:first-child{background:#8299a6;color:white}.predict-row button:focus-visible,.lab-controls button:focus-visible{outline:3px solid #c28f7b;outline-offset:2px}#labCanvas,.teaching-chart{width:100%;height:auto;border-radius:13px;border:1px solid #d8ddd6;background:#fbfaf7;display:block;margin:14px 0}.lab-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}.lab-stats div{background:#eff1ec;border-radius:10px;padding:12px 7px;text-align:center;font-size:.77rem}.lab-stats strong{display:block;font-size:1.35rem;color:#506e70;margin-top:6px}.lab-outcome{padding:12px 14px;border-left:3px solid #91a89a;background:#f0f2ed;border-radius:7px;margin:12px 0;font-size:.9rem;line-height:1.6}.compare-scroll{overflow:auto}.compare-scroll table{width:100%;border-collapse:collapse;margin:14px 0;font-size:.9rem}.compare-scroll th,.compare-scroll td{padding:10px;border-bottom:1px solid #d8ddd6;text-align:left}.compare-scroll th{background:#eef0ea}@media(max-width:500px){.experiment-tabs .subtab-button{font-size:.73rem}.lab-stats div{font-size:.7rem}}
+</style><style>:root {
+      --background: #f3f7fc;
+      --surface: #ffffff;
+      --surface-soft: #f7faff;
+      --text: #172033;
+      --muted: #667085;
+      --border: #dbe4f0;
+
+      --primary: #2563eb;
+      --primary-dark: #174ea6;
+      --collision: #ef7d32;
+      --target: #16a34a;
+      --purple: #7c3aed;
+
+      --success-bg: #effbf3;
+      --success-border: #85d7a0;
+      --success-text: #176235;
+
+      --warning-bg: #fff8e7;
+      --warning-border: #efcc70;
+      --warning-text: #795300;
+
+      --danger-bg: #fff1f1;
+      --danger-border: #efa5a5;
+      --danger-text: #8a2525;
+
+      --shadow: 0 12px 35px rgba(31, 49, 80, 0.08);
+    }
+/* Original blue interface, with accessible contrast and preserved full features. */
+body{background:var(--background);color:var(--text)}
+.card,.panel,.result-panel{background:var(--surface)}
+.experiment-tabs{grid-template-columns:repeat(2,minmax(0,1fr))}
+.result-view-buttons{grid-template-columns:repeat(3,minmax(0,1fr))}
+.subtab-button.active,.result-view-button.active,.explore-btn.active{background:var(--primary)!important;color:white!important;border-color:var(--primary)!important}
+button:focus-visible,input:focus-visible,select:focus-visible{outline:3px solid #93c5fd;outline-offset:2px}
+.teaching-intro,.lab-intro{background:#eff6ff;border-color:#bfdbfe}
+.teaching-intro p,.small-note,.lab-note{color:#475569}
+#distributionCanvas,#barrierCanvas,.teaching-chart{background:#fff;border-color:#dbe4f0}
+[hidden]{display:none!important}
+</style></head>
 <body>
-  <header>
-    <div class="header-inner">
-      <h1>
-        驗證 10°C Rule：
-        Arrhenius Equation vs. Collision Theory
-      </h1>
-
-      <p>
-        改變起始溫度與活化能，觀察溫度升高
-        10°C 後速率常數的倍率
-        Q<sub>10</sub>，並判斷目前條件是否符合
-        Q<sub>10</sub> = 2 的經驗法則。
+<header>
+<div class="header-inner">
+<h1>驗證 10°C Rule：Arrhenius Equation vs. Collision Theory</h1>
+<p>
+        改變起始溫度與活化能，觀察溫度升高 10°C 後速率常數的倍率 Q<sub>10</sub>，並判斷目前條件是否符合 Q<sub>10</sub> = 2 的經驗法則。
       </p>
-    </div>
-  </header>
-
-  <main>
-    <div class="main-layout">
-      <!-- 左側 -->
-      <aside class="left-column">
-        <!-- (1) 實驗參數 -->
-        <section class="panel">
-          <div class="section-heading">
-            <span class="section-number">1</span>
-            <h2>實驗參數</h2>
-          </div>
-
-          <div class="control-group">
-            <label
-              class="control-label"
-              for="startTemperature"
-            >
-              <span>起始溫度</span>
-              <span
-                class="value-pill"
-                id="startTemperatureValue"
-              >
-                25°C
-              </span>
-            </label>
-
-            <input
-              id="startTemperature"
-              type="range"
-              min="0"
-              max="200"
-              step="1"
-              value="25"
-            >
-
-            <div class="range-labels">
-              <span>0°C</span>
-              <span>200°C</span>
-            </div>
-
-            <p class="small-note">
-              系統比較起始溫度
-              <em>T</em> 與
-              <em>T + 10°C</em>。
+</div>
+</header>
+<main>
+<div class="main-layout">
+<!-- 左側 -->
+<aside class="left-column">
+<!-- (1) 實驗參數 -->
+<section class="panel">
+<div class="section-heading">
+<span class="section-number">1</span>
+<h2>實驗參數</h2>
+</div><div class="subtab-buttons experiment-tabs"><button class="subtab-button active" data-experiment-tab="basic" type="button">01 · 基本參數</button><button class="subtab-button" data-experiment-tab="collision" type="button">02 · 碰撞探索</button></div>
+<div class="experiment-tab-content active" id="basicParameterTab">
+<div class="mode-intro"><strong>① 設定溫度與活化能</strong><span>選擇一個教學情境，先預測、再觀察結果。</span></div>
+<div class="control-group">
+<label class="control-label" for="startTemperature">
+<span>起始溫度</span>
+<span class="value-pill" id="startTemperatureValue">25°C</span>
+</label>
+<input id="startTemperature" max="200" min="0" step="1" type="range" value="25"/>
+<div class="range-labels">
+<span>0°C</span>
+<span>200°C</span>
+</div>
+<p class="small-note">
+              系統比較起始溫度 <em>T</em> 與 <em>T + 10°C</em>。
             </p>
-          </div>
-
-          <div class="control-group">
-            <label
-              class="control-label"
-              for="activationEnergy"
-            >
-              <span>活化能 E<sub>a</sub></span>
-              <span
-                class="value-pill"
-                id="activationEnergyValue"
-              >
-                53 kJ/mol
-              </span>
-            </label>
-
-            <input
-              id="activationEnergy"
-              type="range"
-              min="10"
-              max="100"
-              step="1"
-              value="53"
-            >
-
-            <div class="range-labels">
-              <span>10 kJ/mol</span>
-              <span>100 kJ/mol</span>
-            </div>
-          </div>
-
-          <div class="control-group">
-            <label
-              class="control-label"
-              for="tolerance"
-            >
-              <span>判斷容許誤差</span>
-              <span
-                class="value-pill"
-                id="toleranceValue"
-              >
-                ±5%
-              </span>
-            </label>
-
-            <input
-              id="tolerance"
-              type="range"
-              min="1"
-              max="10"
-              step="1"
-              value="5"
-            >
-
-            <div class="range-labels">
-              <span>±1%</span>
-              <span>±10%</span>
-            </div>
-          </div>
-
-          <button
-            class="reset-button"
-            id="resetButton"
-            type="button"
-          >
-            恢復預設參數
-          </button>
-        </section>
-
-        <!-- (2) 理論公式 -->
-        <section class="panel">
-          <div class="section-heading">
-            <span class="section-number">2</span>
-            <h2>理論公式</h2>
-          </div>
-
-          <article class="formula-card">
-            <h3>Arrhenius equation</h3>
-
-            <div class="equation">
-              k = A exp(−E<sub>a</sub>/RT)
-            </div>
-
-            <div class="equation">
-              Q<sub>10,A</sub>
-              =
-              exp{
-              (E<sub>a</sub>/R)
-              [1/T − 1/(T + 10)]
-              }
-            </div>
-
-            <p class="formula-description">
-              假設前指數因子
-              <em>A</em> 在這段小溫度範圍內不變。
-            </p>
-          </article>
-
-          <article class="formula-card">
-            <h3>Simplified collision theory</h3>
-
-            <div class="equation">
-              k = C T<sup>1/2</sup>
-              exp(−E<sub>a</sub>/RT)
-            </div>
-
-            <div class="equation">
-              Q<sub>10,C</sub>
-              =
-              [(T + 10)/T]<sup>1/2</sup>
-              Q<sub>10,A</sub>
-            </div>
-
-            <p class="formula-description">
-              T<sup>1/2</sup> 近似表示平均相對速率與
-              碰撞頻率的溫度效應。
-            </p>
-          </article>
-
-          <article class="formula-card">
-            <h3>10°C rule</h3>
-
-            <div class="equation">
-              Q<sub>10</sub>
-              =
-              k(T + 10)/k(T)
-              ≈ 2
-            </div>
-
-            <p class="formula-description">
-              Q<sub>10</sub> = 2 代表溫度升高
-              10°C 後，速率常數約增加為原來的兩倍。
-            </p>
-          </article>
-        </section>
-      </aside>
-
-      <!-- 右側 -->
-      <div class="right-column">
-        <!-- (3) 計算與判斷 -->
-        <section class="panel">
-          <div class="section-heading">
-            <span class="section-number">3</span>
-            <h2>計算及判斷結果</h2>
-          </div>
-
-          <div class="results-grid">
-            <article class="result-card">
-              <div class="result-label">
-                Arrhenius Q<sub>10</sub>
-              </div>
-
-              <div
-                class="result-number"
-                id="arrheniusQ10"
-              >
-                —
-              </div>
-
-              <div
-                class="result-detail"
-                id="arrheniusDetail"
-              >
-                —
-              </div>
-            </article>
-
-            <article class="result-card collision">
-              <div class="result-label">
-                Collision Q<sub>10</sub>
-              </div>
-
-              <div
-                class="result-number"
-                id="collisionQ10"
-              >
-                —
-              </div>
-
-              <div
-                class="result-detail"
-                id="collisionDetail"
-              >
-                —
-              </div>
-            </article>
-
-            <article class="result-card temperature">
-              <div class="result-label">
-                比較溫度
-              </div>
-
-              <div
-                class="result-number"
-                id="comparedTemperature"
-              >
-                —
-              </div>
-
-              <div class="result-detail">
-                高溫比低溫高 10°C
-              </div>
-            </article>
-
-            <article class="result-card required">
-              <div class="result-label">
-                Arrhenius 所需活化能
-              </div>
-
-              <div
-                class="result-number"
-                id="requiredEaArrhenius"
-              >
-                —
-              </div>
-
-              <div class="result-detail">
-                使 Q<sub>10,A</sub> 恰好等於 2
-              </div>
-            </article>
-
-            <article class="result-card required">
-              <div class="result-label">
-                Collision 所需活化能
-              </div>
-
-              <div
-                class="result-number"
-                id="requiredEaCollision"
-              >
-                —
-              </div>
-
-              <div class="result-detail">
-                使 Q<sub>10,C</sub> 恰好等於 2
-              </div>
-            </article>
-
-            <article class="result-card temperature">
-              <div class="result-label">
-                目前輸入活化能
-              </div>
-
-              <div
-                class="result-number"
-                id="currentEa"
-              >
-                —
-              </div>
-
-              <div
-                class="result-detail"
-                id="eaComparison"
-              >
-                —
-              </div>
-            </article>
-          </div>
-
-          <div
-            class="judgement-box"
-            id="judgementBox"
-          >
-            <span
-              class="judgement-title"
-              id="judgementTitle"
-            >
-              —
-            </span>
-
-            <div id="judgementText">
-              —
-            </div>
-          </div>
-
-          <div class="criteria-box">
-            <strong>判定標準：</strong>
-            若模型的
-            Q<sub>10</sub> 落在
-            <span id="acceptedRange">—</span>
-            之間，即視為在目前容許誤差下符合
-            10°C rule。判定公式為
-            |Q<sub>10</sub> − 2| / 2 × 100%
-            ≤ 容許誤差。
-          </div>
-        </section>
-
-        <!-- (4) 圖表 -->
-        <section class="panel">
-          <div class="section-heading">
-            <span class="section-number">4</span>
-            <h2>圖表比較</h2>
-          </div>
-
-          <div class="chart-buttons">
-            <button
-              type="button"
-              class="chart-button active"
-              data-chart="q10"
-            >
-              Q<sub>10</sub> vs. Temperature
+</div>
+<div class="control-group">
+<label class="control-label" for="activationEnergy">
+<span>活化能 E<sub>a</sub></span>
+<span class="value-pill" id="activationEnergyValue">53 kJ/mol</span>
+</label>
+<input id="activationEnergy" max="100" min="10" step="1" type="range" value="53"/>
+<div class="range-labels">
+<span>10 kJ/mol</span>
+<span>100 kJ/mol</span>
+</div>
+</div>
+<div class="control-group">
+<label class="control-label" for="tolerance">
+<span>判斷容許誤差</span>
+<span class="value-pill" id="toleranceValue">±5%</span>
+</label>
+<input id="tolerance" max="10" min="1" step="1" type="range" value="5"/>
+<div class="range-labels">
+<span>±1%</span>
+<span>±10%</span>
+</div>
+</div>
+</div>
+<div class="experiment-tab-content" id="collisionParameterTab">
+<div class="mode-intro"><strong>② 探索碰撞機制</strong><span>選擇自由調整的分子模型，或觀看預設化學反應。</span></div><div class="subtab-buttons">
+<button class="subtab-button active" data-collision-tab="molecule" type="button">
+              ⚛ 分子模型
             </button>
-
-            <button
-              type="button"
-              class="chart-button"
-              data-chart="k"
-            >
-              k vs. Temperature
+<button class="subtab-button" data-collision-tab="reaction" type="button">
+              ◉ 實際反應
             </button>
-
-            <button
-              type="button"
-              class="chart-button"
-              data-chart="requiredEa"
-            >
-              達到目標倍率所需活化能
-            </button>
-          </div>
-
-          <div class="chart-header">
-            <div>
-              <h3 id="chartTitle">
-                Q₁₀ vs. Temperature
-              </h3>
-
-              <p
-                class="small-note"
-                id="chartSubtitle"
-              >
+</div>
+<!-- 分子模型 -->
+<div class="collision-tab-content active" id="moleculeParameterTab"><div class="teaching-intro"><strong>先提出假設，再改變一個變因</strong><p>選擇下面的探索題目。一次只顯示相關滑桿，觀察碰撞截面積、相對速度或有效取向如何改變。</p></div><div class="explore-buttons"><button class="explore-btn active" data-explore="size" type="button">① 分子變大</button><button class="explore-btn" data-explore="mass" type="button">② 分子變重</button><button class="explore-btn" data-explore="orientation" type="button">③ 方向不對</button></div><div class="lesson-prompt" id="lessonPrompt">預測：分子半徑增加，碰撞機會會增加還是減少？</div><div class="control-group guided-control" data-lesson="size">
+<label class="control-label" for="moleculeARadius">
+<span>分子 A 有效半徑</span>
+<span class="value-pill" id="moleculeARadiusValue">150 pm</span>
+</label>
+<input id="moleculeARadius" max="300" min="50" step="5" type="range" value="150"/>
+</div><div class="control-group guided-control" data-lesson="size">
+<label class="control-label" for="moleculeBRadius">
+<span>分子 B 有效半徑</span>
+<span class="value-pill" id="moleculeBRadiusValue">180 pm</span>
+</label>
+<input id="moleculeBRadius" max="300" min="50" step="5" type="range" value="180"/>
+</div><div class="control-group guided-control" data-lesson="mass" style="display:none">
+<label class="control-label" for="moleculeAMass">
+<span>分子 A 莫耳質量</span>
+<span class="value-pill" id="moleculeAMassValue">23 g/mol</span>
+</label>
+<input id="moleculeAMass" max="250" min="1" step="1" type="range" value="23"/>
+</div><div class="control-group guided-control" data-lesson="mass" style="display:none">
+<label class="control-label" for="moleculeBMass">
+<span>分子 B 莫耳質量</span>
+<span class="value-pill" id="moleculeBMassValue">71 g/mol</span>
+</label>
+<input id="moleculeBMass" max="250" min="1" step="1" type="range" value="71"/>
+</div><div class="control-group guided-control" data-lesson="orientation" style="display:none">
+<label class="control-label" for="stericFactor">
+<span>立體因子 P</span>
+<span class="value-pill" id="stericFactorValue">0.50</span>
+</label>
+<input id="stericFactor" max="1" min="0.01" step="0.01" type="range" value="0.50"/>
+<p class="small-note">
+<em>P</em> 表示具有適當碰撞方向的碰撞比例。
+              </p>
+</div>
+<div class="collision-animation-card">
+<div class="animation-title">分子碰撞動畫</div>
+<canvas height="210" id="collisionCanvas" width="600"></canvas>
+<div class="animation-data-grid">
+<div>
+<span>碰撞截面積 σ</span>
+<strong id="collisionCrossSection">—</strong>
+</div>
+<div>
+<span>約化莫耳質量 μ</span>
+<strong id="reducedMass">—</strong>
+</div>
+<div>
+<span>平均相對速率 ⟨v<sub>rel</sub>⟩</span>
+<strong id="relativeSpeed">—</strong>
+</div>
+<div>
+<span>立體有效碰撞比例 P</span>
+<strong id="effectiveCollisionFraction">—</strong>
+</div>
+</div>
+<p class="small-note">
+                球體大小代表有效碰撞半徑，動畫速度依平均相對速率縮放。動畫為概念模型，不代表真實分子尺度與時間尺度。
+              </p>
+<div aria-live="polite" class="lesson-insight" id="lessonInsight">調整半徑，觀察碰撞截面積如何變化。</div><div class="lesson-takeaway">核心觀念：<b>碰撞頻率增加 ≠ 每次碰撞都能反應</b>。溫度與活化能決定能量門檻，立體因子表示取向修正。</div></div>
+</div>
+<!-- 實際反應 -->
+<div class="collision-tab-content" id="reactionPresetTab">
+<label class="control-label" for="reactionPreset">選擇預設反應</label><p class="small-note">選擇反應後，反應式、分子結構及動畫會同步更新。動力學數值須有明確文獻來源；此區的分子模型僅用於結構教學。</p>
+<select id="reactionPreset"><option value="methanation">CO + 3H₂ → CH₄ + H₂O（甲烷化）</option>
+<option value="naCl2">Na + Cl₂ → NaCl + Cl</option>
+<option value="kBr2">K + Br₂ → KBr + Br</option>
+<option value="hH2">H + H₂ → H₂ + H</option>
+<option value="noO3">NO + O₃ → NO₂ + O₂</option>
+<option value="ohH2">OH + H₂ → H₂O + H</option>
+<option value="ohCO">OH + CO → CO₂ + H</option>
+<option value="h2I2">H₂ + I₂ → 2HI</option>
+</select>
+<div class="reaction-display">
+<h3 id="reactionEquation">CO + 3H₂ → CH₄ + H₂O</h3>
+<p id="reactionDescription">催化甲烷化總反應（分子結構示意）。</p>
+<div class="reaction-particles">
+<div id="reactionMoleculeA"></div>
+<span class="reaction-plus">+</span>
+<div id="reactionMoleculeB"></div>
+<span class="reaction-arrow">→</span>
+<div id="reactionProducts"></div>
+</div>
+</div><div class="collision-animation-card"><div class="animation-title">實際反應動畫（示意）</div><canvas aria-label="反應物靠近、接觸、產物形成的循環動畫" height="230" id="reactionCanvas" width="600"></canvas><div class="reaction-legend">球棒分子模型：紅＝O、白＝H、深灰＝C、藍＝N；其他元素依模型著色</div><p class="small-note" id="reactionAnimationNote">甲烷化是催化多步驟過程；動畫僅表示總反應物與產物，不代表真正的分子碰撞路徑。</p></div>
+<div class="reaction-information-grid">
+<div>
+<span>碰撞組合</span>
+<strong id="reactionType">—</strong>
+</div>
+<div>
+<span>分子 A 質量</span>
+<strong id="presetMassA">—</strong>
+</div>
+<div>
+<span>分子 B 質量</span>
+<strong id="presetMassB">—</strong>
+</div>
+<div>
+<span>建議立體因子</span>
+<strong id="presetStericFactor">—</strong>
+</div>
+</div>
+<div class="model-warning">模型提醒：甲烷化通常是催化表面多步驟反應，不能視為 CO 與 3 個 H₂ 的單一步硬球碰撞。下方質量、半徑及立體因子僅供教學示意，不是該反應的實測動力學參數。</div>
+<div aria-live="polite" class="lesson-takeaway" id="reactionAssumption">右側 Q₁₀ 由此反應的示範活化能計算；不同反應的真實動力學需要實驗資料。</div></div>
+</div><div aria-hidden="true" class="experiment-tab-content" hidden="hidden" id="labParameterTab"><div class="lab-intro"><strong>碰撞實驗室</strong><p>先預測，再觀察微觀碰撞；以下為簡化的隨機教學模型。</p></div><label class="lab-label">你認為升高溫度後，有效碰撞會如何變化？</label><div class="predict-row"><button data-predict="up" type="button">增加</button><button data-predict="same" type="button">不變</button><button data-predict="down" type="button">減少</button></div><p class="lab-note" id="predictionFeedback">選擇你的預測，再按「開始模擬」。</p><div class="lab-controls"><button id="startSimulation" type="button">▶ 開始模擬</button><button id="pauseSimulation" type="button">Ⅱ 暫停</button><button id="resetSimulation" type="button">↺ 重置計數</button></div><canvas height="245" id="labCanvas"></canvas><div class="lab-stats"><div>總碰撞<strong id="collisionCount">0</strong></div><div>能量足夠<strong id="energeticCount">0</strong></div><div>有效碰撞<strong id="successCount">0</strong></div></div><div class="lab-outcome" id="collisionOutcome">按下開始後，將出現三種碰撞結果。</div><p class="lab-note">機率示意：能量門檻採 exp(−Eₐ/RT)，取向通過率採 P；此處的事件計數不是實際反應速率或分子動力學軌跡。</p></div><button class="reset-button compact-reset" id="resetButton" type="button">↺ 恢復預設設定</button></section>
+<!-- (2) 碰撞理論參數 -->
+<!-- (3) 理論公式 -->
+</aside>
+<!-- 右側 -->
+<div class="right-column">
+<!-- (4) 計算與判斷 -->
+<!-- (5) 圖表 -->
+<!-- (6) 思考與學習 -->
+<section class="panel unified-result-panel"><div class="section-heading"><span class="section-number">2</span><h2>計算、圖表與學習結果</h2></div><div class="result-view-buttons"><button class="result-view-button active" data-result-view="calculation" type="button">計算及判斷</button><button class="result-view-button" data-result-view="q10" type="button">Q₁₀ vs. Temp.</button><button class="result-view-button" data-result-view="k" type="button">k vs. Temp.</button><button class="result-view-button" data-result-view="requiredEa" type="button">目標活化能</button><button class="result-view-button" data-result-view="learning" type="button">思考與學習</button><button class="result-view-button" data-result-view="distribution" type="button">能量分布</button><button class="result-view-button" data-result-view="formula" type="button">理論公式</button></div><div class="result-view active" id="calculationView"><div class="results-grid">
+<article class="result-card">
+<div class="result-label">Arrhenius Q<sub>10</sub></div>
+<div class="result-number" id="arrheniusQ10">—</div>
+<div class="result-detail" id="arrheniusDetail">—</div>
+</article>
+<article class="result-card collision">
+<div class="result-label">Collision Q<sub>10</sub></div>
+<div class="result-number" id="collisionQ10">—</div>
+<div class="result-detail" id="collisionDetail">—</div>
+</article>
+<article class="result-card temperature">
+<div class="result-label">比較溫度</div>
+<div class="result-number" id="comparedTemperature">—</div>
+<div class="result-detail">高溫比低溫高 10°C</div>
+</article>
+<article class="result-card required">
+<div class="result-label">Arrhenius 所需活化能</div>
+<div class="result-number" id="requiredEaArrhenius">—</div>
+<div class="result-detail">使 Q<sub>10,A</sub> 恰好等於 2</div>
+</article>
+<article class="result-card required">
+<div class="result-label">Collision 所需活化能</div>
+<div class="result-number" id="requiredEaCollision">—</div>
+<div class="result-detail">使 Q<sub>10,C</sub> 恰好等於 2</div>
+</article>
+<article class="result-card temperature">
+<div class="result-label">目前輸入活化能</div>
+<div class="result-number" id="currentEa">—</div>
+<div class="result-detail" id="eaComparison">—</div>
+</article>
+</div><div class="judgement-box" id="judgementBox">
+<span class="judgement-title" id="judgementTitle">—</span>
+<div id="judgementText">—</div>
+</div><div class="criteria-box">
+<strong>判定標準：</strong>
+            若模型的 Q<sub>10</sub> 落在 <span id="acceptedRange">—</span> 之間，即視為在目前容許誤差下符合 10°C rule。判定公式為 |Q<sub>10</sub> − 2| / 2 × 100% ≤ 容許誤差。
+          </div></div><div class="result-view" id="q10View"><h3>Q₁₀ vs. Temperature</h3><div id="sharedChartBody"><div class="chart-header">
+<div>
+<h3 id="chartTitle">Q₁₀ vs. Temperature</h3>
+<p class="small-note" id="chartSubtitle">
                 固定目前活化能，改變起始溫度。
               </p>
-            </div>
-
-            <div
-              class="legend"
-              id="chartLegend"
-            ></div>
-          </div>
-
-          <div class="canvas-container">
-            <canvas id="mainChart"></canvas>
-          </div>
-
-          <div
-            class="chart-explanation"
-            id="chartExplanation"
-          >
-            —
-          </div>
-        </section>
-
-        <!-- (5) 思考與學習 -->
-        <section class="panel">
-          <div class="section-heading">
-            <span class="section-number">5</span>
-            <h2>
-              思考與學習：為什麼 10°C rule
-              不會在所有條件下成立？
-            </h2>
-          </div>
-
-          <div class="learning-summary">
-            <div class="learning-value">
-              <div class="learning-value-label">
-                目前起始溫度
-              </div>
-              <div
-                class="learning-value-number"
-                id="learningTemperature"
-              >
-                —
-              </div>
-            </div>
-
-            <div class="learning-value">
-              <div class="learning-value-label">
-                目前活化能
-              </div>
-              <div
-                class="learning-value-number"
-                id="learningEa"
-              >
-                —
-              </div>
-            </div>
-
-            <div class="learning-value">
-              <div class="learning-value-label">
-                Arrhenius Q₁₀
-              </div>
-              <div
-                class="learning-value-number"
-                id="learningArrhenius"
-              >
-                —
-              </div>
-            </div>
-
-            <div class="learning-value">
-              <div class="learning-value-label">
-                Collision Q₁₀
-              </div>
-              <div
-                class="learning-value-number"
-                id="learningCollision"
-              >
-                —
-              </div>
-            </div>
-          </div>
-
-          <div class="learning-content">
-            <h3 id="learningConclusion">
-              —
-            </h3>
-
-            <div id="learningExplanation">
-              —
-            </div>
-
-            <div class="model-limitations">
-              <h3>更進一步的物理與化學限制</h3>
-
-              <ul>
-                <li>
-                  <strong>活化能依賴性：</strong>
-                  活化能越大，速率常數通常對溫度越敏感，
-                  Q<sub>10</sub> 可能明顯大於 2。
+</div>
+<div class="legend" id="chartLegend"></div>
+</div><div class="canvas-container">
+<canvas id="mainChart"></canvas>
+</div><div class="chart-explanation" id="chartExplanation">—</div></div></div><div class="result-view" id="kView"><h3>Relative k vs. Temperature</h3></div><div class="result-view" id="requiredEaView"><h3>Activation Energy Required for Q₁₀ = 2</h3></div><div class="result-view" id="learningView"><div class="learning-summary">
+<div class="learning-value">
+<div class="learning-value-label">目前起始溫度</div>
+<div class="learning-value-number" id="learningTemperature">—</div>
+</div>
+<div class="learning-value">
+<div class="learning-value-label">目前活化能</div>
+<div class="learning-value-number" id="learningEa">—</div>
+</div>
+<div class="learning-value">
+<div class="learning-value-label">Arrhenius Q₁₀</div>
+<div class="learning-value-number" id="learningArrhenius">—</div>
+</div>
+<div class="learning-value">
+<div class="learning-value-label">Collision Q₁₀</div>
+<div class="learning-value-number" id="learningCollision">—</div>
+</div>
+</div><div class="learning-content">
+<h3 id="learningConclusion">—</h3>
+<div id="learningExplanation">—</div>
+<div class="model-limitations">
+<h3>更進一步的物理與化學限制</h3>
+<ul>
+<li>
+<strong>活化能依賴性：</strong>
+                  活化能越大，速率常數通常對溫度越敏感，Q<sub>10</sub> 可能明顯大於 2。
                 </li>
-
-                <li>
-                  <strong>起始溫度依賴性：</strong>
-                  即使活化能固定，相同的 10°C 升溫在不同
-                  起始溫度下也不會產生相同倍率。
+<li>
+<strong>起始溫度依賴性：</strong>
+                  即使活化能固定，相同的 10°C 升溫在不同起始溫度下也不會產生相同倍率。
                 </li>
-
-                <li>
-                  <strong>反應機構改變：</strong>
-                  如果升溫使主導步驟改變，表觀活化能與
-                  速率方程式也可能改變。
+<li>
+<strong>反應機構改變：</strong>
+                  如果升溫使主導步驟改變，表觀活化能與速率方程式也可能改變。
                 </li>
-
-                <li>
-                  <strong>前指數因子不是絕對常數：</strong>
-                  碰撞頻率、分子取向與熵效應都可能隨溫度
-                  改變。
+<li>
+<strong>前指數因子不是絕對常數：</strong>
+                  碰撞頻率、分子取向與熵效應都可能隨溫度改變。
                 </li>
-
-                <li>
-                  <strong>非化學反應步驟控制：</strong>
-                  擴散、傳質、表面吸附飽和或酵素變性，
-                  都可能使簡單的 Arrhenius 模型失效。
+<li>
+<strong>非化學反應步驟控制：</strong>
+                  擴散、傳質、表面吸附飽和或酵素變性，都可能使簡單的 Arrhenius 模型失效。
                 </li>
-              </ul>
+</ul>
+</div>
+</div></div><div class="result-view" id="distributionView"><h3>Maxwell–Boltzmann 平動能分布</h3><p class="small-note">以理想氣體三維平動能分布為例；綠色陰影表示超過示範能量門檻 Eₐ 的比例。真實反應還取決於取向、能量分配及反應機構。</p><canvas class="teaching-chart" height="340" id="distributionCanvas" width="780"></canvas><div class="lab-outcome" id="distributionInsight"></div></div><div aria-hidden="true" class="result-view" hidden="hidden" id="compareView"><h3>A / B 實驗比較</h3><p class="small-note">調整左側參數後，儲存 A 與 B 兩組設定，比較溫度、活化能、Q₁₀ 與相對速率常數。</p><div class="lab-controls"><button id="saveA" type="button">儲存實驗 A</button><button id="saveB" type="button">儲存實驗 B</button><button id="clearAB" type="button">清除比較</button></div><div class="compare-scroll" id="compareTable">尚未儲存實驗。請先設定左側參數。</div><p class="lab-note">相對速率以同一個參考值 A = 1 計算；不同反應的實測速率常數不能直接由此比較。</p></div><div class="result-view" id="formulaView">
+<article class="formula-card">
+<h3>Arrhenius equation</h3>
+<div class="equation">k = A exp(−E<sub>a</sub>/RT)</div>
+<div class="equation">
+              Q<sub>10,A</sub> = exp{(E<sub>a</sub>/R)[1/T − 1/(T + 10)]}
             </div>
-          </div>
-        </section>
-      </div>
+<p class="formula-description">
+              假設前指數因子 <em>A</em> 在這段小溫度範圍內不變。
+            </p>
+</article>
+<article class="formula-card">
+<h3>Simplified collision theory</h3>
+<div class="equation">k = C T<sup>1/2</sup> exp(−E<sub>a</sub>/RT)</div>
+<div class="equation">
+              Q<sub>10,C</sub> = [(T + 10)/T]<sup>1/2</sup> Q<sub>10,A</sub>
+</div>
+<p class="formula-description">
+              T<sup>1/2</sup> 近似表示平均相對速率與碰撞頻率的溫度效應。
+            </p>
+</article>
+<article class="formula-card">
+<h3>10°C rule</h3>
+<div class="equation">Q<sub>10</sub> = k(T + 10)/k(T) ≈ 2</div>
+<p class="formula-description">
+              Q<sub>10</sub> = 2 代表溫度升高 10°C 後，速率常數約增加為原來的兩倍。
+            </p>
+</article>
+</div></section></div>
+</div>
+<div class="footer-note">
+      本網頁採用簡化 collision model：k ∝ T<sup>1/2</sup> exp(−E<sub>a</sub>/RT)。圖中的 k 為相對速率常數，因為未指定實際前指數因子。
     </div>
-
-    <div class="footer-note">
-      本網頁採用簡化 collision model：
-      k ∝ T<sup>1/2</sup> exp(−E<sub>a</sub>/RT)。
-      圖中的 k 為相對速率常數，因為未指定實際前指數因子。
-    </div>
-  </main>
-
-  <div
-    class="tooltip"
-    id="tooltip"
-  ></div>
-
-  <script>
+</main>
+<div class="tooltip" id="tooltip"></div>
+<script>
     "use strict";
 
-    const R = 8.314462618;
+    const R = 8.314462618; // J / (mol * K)
+    const KB = 1.380649e-23; // J / K
+    const NA = 6.02214076e23; // mol^-1
     const DELTA_T = 10;
     const TARGET_Q10 = 2;
-    const COLLISION_EXPONENT = 0.5;
+
+    const DEFAULTS = {
+      startTemperature: 25,
+      activationEnergy: 53,
+      tolerance: 5,
+      moleculeAType: "monatomic",
+      moleculeBType: "diatomic",
+      moleculeARadius: 150,
+      moleculeBRadius: 180,
+      moleculeAMass: 23,
+      moleculeBMass: 71,
+      stericFactor: 0.50,
+      reactionPreset: "methanation"
+    };
+
+    // Hypothetical activation energies for comparing model behavior; NOT measured reaction data.
+    const DEMO_EA = {methanation:65,naCl2:28,kBr2:24,hH2:42,noO3:18,ohH2:32,ohCO:15,h2I2:55};
+    let selectedReaction = 'methanation';
+    let activeLesson = 'size';
+    const REACTION_PRESETS = {
+      methanation: {
+        equation: "CO + 3H₂ → CH₄ + H₂O",
+        description: "一氧化碳與氫氣的甲烷化（Sabatier reaction），通常經催化劑表面多步驟進行；此處僅展示總反應與化學計量。",
+        type: "催化總反應（非單一步碰撞）",
+        molA: "CO", molB: "3H₂", products: ["CH₄", "H₂O"],
+        radiusA: 165, radiusB: 145, massA: 28, massB: 2, steric: 0.50
+      },
+      naCl2: {
+        equation: "Na + Cl₂ → NaCl + Cl",
+        description: "單原子鈉與雙原子氯分子的氣相碰撞模型。",
+        type: "單原子 + 雙原子",
+        molA: "Na (單原子)",
+        molB: "Cl₂ (雙原子)",
+        products: ["NaCl", "Cl"],
+        radiusA: 186,
+        radiusB: 180,
+        massA: 23,
+        massB: 71,
+        steric: 0.65
+      },
+      kBr2: {
+        equation: "K + Br₂ → KBr + Br",
+        description: "鹼金屬鉀與雙原子溴分子的氣相魚叉（harpooning）反應模型。",
+        type: "單原子 + 雙原子",
+        molA: "K (單原子)",
+        molB: "Br₂ (雙原子)",
+        products: ["KBr", "Br"],
+        radiusA: 227,
+        radiusB: 195,
+        massA: 39,
+        massB: 160,
+        steric: 0.70
+      },
+      hH2: {
+        equation: "H + H₂ → H₂ + H",
+        description: "氫原子與氫分子的共線交換碰撞簡化模型。",
+        type: "單原子 + 雙原子",
+        molA: "H (單原子)",
+        molB: "H₂ (雙原子)",
+        products: ["H₂", "H"],
+        radiusA: 120,
+        radiusB: 145,
+        massA: 1,
+        massB: 2,
+        steric: 0.35
+      },
+      noO3: {
+        equation: "NO + O₃ → NO₂ + O₂",
+        description: "一氧化氮與臭氧的雙分子氣相反應，具有明顯的取向需求。",
+        type: "雙原子 + 多原子",
+        molA: "NO (雙原子)",
+        molB: "O₃ (多原子)",
+        products: ["NO₂", "O₂"],
+        radiusA: 155,
+        radiusB: 190,
+        massA: 30,
+        massB: 48,
+        steric: 0.08
+      },
+      ohH2: {
+        equation: "OH + H₂ → H₂O + H",
+        description: "羥基自由基與氫分子的氫抽取反應模型。",
+        type: "雙原子 + 雙原子",
+        molA: "OH (雙原子)",
+        molB: "H₂ (雙原子)",
+        products: ["H₂O", "H"],
+        radiusA: 145,
+        radiusB: 145,
+        massA: 17,
+        massB: 2,
+        steric: 0.25
+      },
+      ohCO: {
+        equation: "OH + CO → CO₂ + H",
+        description: "大氣化學中重要的羥基與一氧化碳氧化反應。",
+        type: "雙原子 + 雙原子",
+        molA: "OH (雙原子)",
+        molB: "CO (雙原子)",
+        products: ["CO₂", "H"],
+        radiusA: 145,
+        radiusB: 165,
+        massA: 17,
+        massB: 28,
+        steric: 0.15
+      },
+      h2I2: {
+        equation: "H₂ + I₂ → 2HI",
+        description: "經典碰撞理論教材常引用的氣相雙分子反應示例。",
+        type: "雙原子 + 雙原子",
+        molA: "H₂ (雙原子)",
+        molB: "I₂ (雙原子)",
+        products: ["2HI"],
+        radiusA: 145,
+        radiusB: 215,
+        massA: 2,
+        massB: 254,
+        steric: 0.12
+      },
+    };
 
     const $ = id => document.getElementById(id);
 
@@ -1186,10 +1274,42 @@
       startTemperature: $("startTemperature"),
       activationEnergy: $("activationEnergy"),
       tolerance: $("tolerance"),
+      resetButton: $("resetButton"),
 
       startTemperatureValue: $("startTemperatureValue"),
       activationEnergyValue: $("activationEnergyValue"),
       toleranceValue: $("toleranceValue"),
+
+      moleculeAType: $("moleculeAType"),
+      moleculeBType: $("moleculeBType"),
+      moleculeARadius: $("moleculeARadius"),
+      moleculeBRadius: $("moleculeBRadius"),
+      moleculeAMass: $("moleculeAMass"),
+      moleculeBMass: $("moleculeBMass"),
+      stericFactor: $("stericFactor"),
+
+      moleculeARadiusValue: $("moleculeARadiusValue"),
+      moleculeBRadiusValue: $("moleculeBRadiusValue"),
+      moleculeAMassValue: $("moleculeAMassValue"),
+      moleculeBMassValue: $("moleculeBMassValue"),
+      stericFactorValue: $("stericFactorValue"),
+
+      collisionCanvas: $("collisionCanvas"),
+      collisionCrossSection: $("collisionCrossSection"),
+      reducedMass: $("reducedMass"),
+      relativeSpeed: $("relativeSpeed"),
+      effectiveCollisionFraction: $("effectiveCollisionFraction"),
+
+      reactionPreset: $("reactionPreset"),
+      reactionEquation: $("reactionEquation"),
+      reactionDescription: $("reactionDescription"),
+      reactionMoleculeA: $("reactionMoleculeA"),
+      reactionMoleculeB: $("reactionMoleculeB"),
+      reactionProducts: $("reactionProducts"),
+      reactionType: $("reactionType"),
+      presetMassA: $("presetMassA"),
+      presetMassB: $("presetMassB"),
+      presetStericFactor: $("presetStericFactor"),
 
       arrheniusQ10: $("arrheniusQ10"),
       collisionQ10: $("collisionQ10"),
@@ -1207,1571 +1327,909 @@
       judgementText: $("judgementText"),
       acceptedRange: $("acceptedRange"),
 
-      mainChart: $("mainChart"),
       chartTitle: $("chartTitle"),
       chartSubtitle: $("chartSubtitle"),
       chartLegend: $("chartLegend"),
+      mainChart: $("mainChart"),
       chartExplanation: $("chartExplanation"),
+      tooltip: $("tooltip"),
 
       learningTemperature: $("learningTemperature"),
       learningEa: $("learningEa"),
       learningArrhenius: $("learningArrhenius"),
       learningCollision: $("learningCollision"),
       learningConclusion: $("learningConclusion"),
-      learningExplanation: $("learningExplanation"),
-
-      resetButton: $("resetButton"),
-      tooltip: $("tooltip")
+      learningExplanation: $("learningExplanation")
     };
 
-    let activeChart = "q10";
+    let activeChartType = "q10";
+    let chartHoverPoints = [];
+    let animState = {
+      xA: 120,
+      xB: 480,
+      dirA: 1,
+      dirB: -1,
+      flashTimer: 0,
+      lastTime: performance.now()
+    };
 
-    function getParameters() {
-      const temperatureC =
-        Number(elements.startTemperature.value);
+    function cToK(tempC) {
+      return tempC + 273.15;
+    }
 
+    function calcArrheniusQ10(tempC, eaKj) {
+      const T1 = cToK(tempC);
+      const T2 = cToK(tempC + DELTA_T);
+      const eaJ = eaKj * 1000;
+      return Math.exp((eaJ / R) * (1 / T1 - 1 / T2));
+    }
+
+    function calcCollisionQ10(tempC, eaKj) {
+      const T1 = cToK(tempC);
+      const T2 = cToK(tempC + DELTA_T);
+      return Math.sqrt(T2 / T1) * calcArrheniusQ10(tempC, eaKj);
+    }
+
+    function calcRequiredEaArrhenius(tempC, targetQ = TARGET_Q10) {
+      const T1 = cToK(tempC);
+      const T2 = cToK(tempC + DELTA_T);
+      const eaJ = R * Math.log(targetQ) / (1 / T1 - 1 / T2);
+      return eaJ / 1000;
+    }
+
+    function calcRequiredEaCollision(tempC, targetQ = TARGET_Q10) {
+      const T1 = cToK(tempC);
+      const T2 = cToK(tempC + DELTA_T);
+      const tempFactor = Math.sqrt(T2 / T1);
+      const eaJ = R * Math.log(targetQ / tempFactor) / (1 / T1 - 1 / T2);
+      return eaJ / 1000;
+    }
+
+    function isWithinTolerance(q10, tolPercent) {
+      const relErrPercent = (Math.abs(q10 - TARGET_Q10) / TARGET_Q10) * 100;
       return {
-        temperatureC,
-        temperatureK: temperatureC + 273.15,
-        activationEnergyKJ:
-          Number(elements.activationEnergy.value),
-        tolerancePercent:
-          Number(elements.tolerance.value)
+        ok: relErrPercent <= tolPercent,
+        relErrPercent
       };
     }
 
-    function arrheniusQ10(temperatureK, activationEnergyKJ) {
-      const activationEnergyJ =
-        activationEnergyKJ * 1000;
+    function getCollisionPhysics(tempC, rAPm, rBPm, massGmolA, massGmolB, stericP) {
+      const T = cToK(tempC);
+      const dMeters = (rAPm + rBPm) * 1e-12;
+      const sigmaM2 = Math.PI * dMeters * dMeters;
+      const sigmaNm2 = sigmaM2 * 1e18; // nm^2
 
-      return Math.exp(
-        activationEnergyJ / R *
-        (
-          1 / temperatureK -
-          1 / (temperatureK + DELTA_T)
-        )
-      );
+      // Reduced mass in kg
+      const mA = (massGmolA * 1e-3) / NA;
+      const mB = (massGmolB * 1e-3) / NA;
+      const muKg = (mA * mB) / (mA + mB);
+      const muGmol = (massGmolA * massGmolB) / (massGmolA + massGmolB);
+
+      // Mean relative speed: <v_rel> = sqrt(8 * k_B * T / (pi * mu))
+      const vRel = Math.sqrt((8 * KB * T) / (Math.PI * muKg));
+
+      return {
+        sigmaNm2,
+        muGmol,
+        vRel,
+        stericP
+      };
     }
 
-    function collisionQ10(
-      temperatureK,
-      activationEnergyKJ
-    ) {
-      const collisionFactor =
-        Math.pow(
-          (temperatureK + DELTA_T) / temperatureK,
-          COLLISION_EXPONENT
-        );
+    function updateOutputs() {
+      const tempC = Number(elements.startTemperature.value);
+      const eaKj = Number(elements.activationEnergy.value);
+      const tol = Number(elements.tolerance.value);
 
-      return collisionFactor *
-        arrheniusQ10(
-          temperatureK,
-          activationEnergyKJ
-        );
-    }
+      const rA = Number(elements.moleculeARadius.value);
+      const rB = Number(elements.moleculeBRadius.value);
+      const mA = Number(elements.moleculeAMass.value);
+      const mB = Number(elements.moleculeBMass.value);
+      const stericP = Number(elements.stericFactor.value);
 
-    function requiredEaForArrhenius(temperatureK) {
-      const reciprocalDifference =
-        1 / temperatureK -
-        1 / (temperatureK + DELTA_T);
+      elements.startTemperatureValue.textContent = `${tempC}°C`;
+      elements.activationEnergyValue.textContent = `${eaKj} kJ/mol`;
+      elements.toleranceValue.textContent = `±${tol}%`;
 
-      return (
-        R * Math.log(TARGET_Q10) /
-        reciprocalDifference /
-        1000
-      );
-    }
+      elements.moleculeARadiusValue.textContent = `${rA} pm`;
+      elements.moleculeBRadiusValue.textContent = `${rB} pm`;
+      elements.moleculeAMassValue.textContent = `${mA} g/mol`;
+      elements.moleculeBMassValue.textContent = `${mB} g/mol`;
+      elements.stericFactorValue.textContent = stericP.toFixed(2);
 
-    function requiredEaForCollision(temperatureK) {
-      const reciprocalDifference =
-        1 / temperatureK -
-        1 / (temperatureK + DELTA_T);
+      const qA = calcArrheniusQ10(tempC, eaKj);
+      const qC = calcCollisionQ10(tempC, eaKj);
+      const reqEaA = calcRequiredEaArrhenius(tempC, TARGET_Q10);
+      const reqEaC = calcRequiredEaCollision(tempC, TARGET_Q10);
 
-      const collisionContribution =
-        COLLISION_EXPONENT *
-        Math.log(
-          (temperatureK + DELTA_T) / temperatureK
-        );
+      const checkA = isWithinTolerance(qA, tol);
+      const checkC = isWithinTolerance(qC, tol);
 
-      return (
-        R *
-        (
-          Math.log(TARGET_Q10) -
-          collisionContribution
-        ) /
-        reciprocalDifference /
-        1000
-      );
-    }
+      elements.arrheniusQ10.textContent = qA.toFixed(3);
+      elements.arrheniusDetail.textContent = `誤差 ${checkA.relErrPercent.toFixed(1)}%（${checkA.ok ? "符合" : "偏離"}）`;
 
-    function relativeArrheniusK(
-      temperatureK,
-      referenceTemperatureK,
-      activationEnergyKJ
-    ) {
-      const activationEnergyJ =
-        activationEnergyKJ * 1000;
+      elements.collisionQ10.textContent = qC.toFixed(3);
+      elements.collisionDetail.textContent = `誤差 ${checkC.relErrPercent.toFixed(1)}%（${checkC.ok ? "符合" : "偏離"}）`;
 
-      return Math.exp(
-        -activationEnergyJ / R *
-        (
-          1 / temperatureK -
-          1 / referenceTemperatureK
-        )
-      );
-    }
+      elements.comparedTemperature.textContent = `${tempC}°C → ${tempC + DELTA_T}°C`;
+      elements.requiredEaArrhenius.textContent = `${reqEaA.toFixed(1)} kJ/mol`;
+      elements.requiredEaCollision.textContent = `${reqEaC.toFixed(1)} kJ/mol`;
+      elements.currentEa.textContent = `${eaKj} kJ/mol`;
 
-    function relativeCollisionK(
-      temperatureK,
-      referenceTemperatureK,
-      activationEnergyKJ
-    ) {
-      const temperatureFactor =
-        Math.pow(
-          temperatureK / referenceTemperatureK,
-          COLLISION_EXPONENT
-        );
-
-      return temperatureFactor *
-        relativeArrheniusK(
-          temperatureK,
-          referenceTemperatureK,
-          activationEnergyKJ
-        );
-    }
-
-    function percentError(value, target = TARGET_Q10) {
-      return Math.abs(value - target) /
-        target * 100;
-    }
-
-    function formatNumber(value, digits = 3) {
-      if (!Number.isFinite(value)) {
-        return "—";
+      const diffEa = eaKj - reqEaA;
+      if (Math.abs(diffEa) < 0.5) {
+        elements.eaComparison.textContent = "與 Arrhenius 目標活化能幾乎一致";
+      } else if (diffEa > 0) {
+        elements.eaComparison.textContent = `比 Arrhenius 目標高 ${diffEa.toFixed(1)} kJ/mol`;
+      } else {
+        elements.eaComparison.textContent = `比 Arrhenius 目標低 ${Math.abs(diffEa).toFixed(1)} kJ/mol`;
       }
 
-      if (
-        Math.abs(value) >= 10000 ||
-        (
-          Math.abs(value) > 0 &&
-          Math.abs(value) < 0.001
-        )
-      ) {
-        return value.toExponential(2);
-      }
+      const lowBound = (TARGET_Q10 * (1 - tol / 100)).toFixed(3);
+      const highBound = (TARGET_Q10 * (1 + tol / 100)).toFixed(3);
+      elements.acceptedRange.textContent = `${lowBound} ～ ${highBound}`;
 
-      return value.toLocaleString("zh-TW", {
-        minimumFractionDigits: 0,
-        maximumFractionDigits: digits
-      });
-    }
-
-    function getStatus(
-      arrheniusValue,
-      collisionValue,
-      tolerance
-    ) {
-      const arrheniusError =
-        percentError(arrheniusValue);
-
-      const collisionError =
-        percentError(collisionValue);
-
-      const arrheniusPass =
-        arrheniusError <= tolerance;
-
-      const collisionPass =
-        collisionError <= tolerance;
-
-      return {
-        arrheniusError,
-        collisionError,
-        arrheniusPass,
-        collisionPass
-      };
-    }
-
-    function updateParameterLabels(parameters) {
-      elements.startTemperatureValue.textContent =
-        `${parameters.temperatureC.toFixed(0)}°C`;
-
-      elements.activationEnergyValue.textContent =
-        `${parameters.activationEnergyKJ.toFixed(0)} kJ/mol`;
-
-      elements.toleranceValue.textContent =
-        `±${parameters.tolerancePercent.toFixed(0)}%`;
-    }
-
-    function updateResults(parameters) {
-      const q10A = arrheniusQ10(
-        parameters.temperatureK,
-        parameters.activationEnergyKJ
-      );
-
-      const q10C = collisionQ10(
-        parameters.temperatureK,
-        parameters.activationEnergyKJ
-      );
-
-      const requiredEaA =
-        requiredEaForArrhenius(
-          parameters.temperatureK
-        );
-
-      const requiredEaC =
-        requiredEaForCollision(
-          parameters.temperatureK
-        );
-
-      const status = getStatus(
-        q10A,
-        q10C,
-        parameters.tolerancePercent
-      );
-
-      const lowerBound =
-        TARGET_Q10 *
-        (1 - parameters.tolerancePercent / 100);
-
-      const upperBound =
-        TARGET_Q10 *
-        (1 + parameters.tolerancePercent / 100);
-
-      elements.arrheniusQ10.innerHTML =
-        `${formatNumber(q10A, 3)} ×`;
-
-      elements.collisionQ10.innerHTML =
-        `${formatNumber(q10C, 3)} ×`;
-
-      elements.comparedTemperature.innerHTML =
-        `${parameters.temperatureC.toFixed(0)}°C<br>` +
-        `<span style="font-size:0.62em;color:#667085;">` +
-        `vs. ${(parameters.temperatureC + 10).toFixed(0)}°C` +
-        `</span>`;
-
-      elements.requiredEaArrhenius.innerHTML =
-        `${formatNumber(requiredEaA, 2)}` +
-        `<span style="font-size:0.55em;"> kJ/mol</span>`;
-
-      elements.requiredEaCollision.innerHTML =
-        `${formatNumber(requiredEaC, 2)}` +
-        `<span style="font-size:0.55em;"> kJ/mol</span>`;
-
-      elements.currentEa.innerHTML =
-        `${parameters.activationEnergyKJ.toFixed(0)}` +
-        `<span style="font-size:0.55em;"> kJ/mol</span>`;
-
-      elements.arrheniusDetail.innerHTML =
-        `相對於 2 的偏差：` +
-        `${status.arrheniusError.toFixed(2)}%`;
-
-      elements.collisionDetail.innerHTML =
-        `相對於 2 的偏差：` +
-        `${status.collisionError.toFixed(2)}%`;
-
-      const nearestRequiredEa =
-        Math.min(
-          Math.abs(
-            parameters.activationEnergyKJ -
-            requiredEaA
-          ),
-          Math.abs(
-            parameters.activationEnergyKJ -
-            requiredEaC
-          )
-        );
-
-      elements.eaComparison.textContent =
-        nearestRequiredEa < 0.5
-          ? "非常接近加倍條件"
-          : `與最近的理論需求相差約 ` +
-            `${nearestRequiredEa.toFixed(1)} kJ/mol`;
-
-      elements.acceptedRange.innerHTML =
-        `<strong>` +
-        `${lowerBound.toFixed(3)} ≤ ` +
-        `Q<sub>10</sub> ≤ ` +
-        `${upperBound.toFixed(3)}` +
-        `</strong>`;
-
-      updateJudgement(
-        parameters,
-        q10A,
-        q10C,
-        status
-      );
-
-      updateLearningSection(
-        parameters,
-        q10A,
-        q10C,
-        requiredEaA,
-        requiredEaC,
-        status
-      );
-
-      return {
-        q10A,
-        q10C,
-        requiredEaA,
-        requiredEaC,
-        status
-      };
-    }
-
-    function updateJudgement(
-      parameters,
-      q10A,
-      q10C,
-      status
-    ) {
-      elements.judgementBox.className =
-        "judgement-box";
-
-      if (
-        status.arrheniusPass &&
-        status.collisionPass
-      ) {
+      elements.judgementBox.classList.remove("good", "partial", "bad");
+      if (checkA.ok && checkC.ok) {
         elements.judgementBox.classList.add("good");
-
-        elements.judgementTitle.textContent =
-          "結論：目前條件符合 10°C rule";
-
-        elements.judgementText.innerHTML =
-          `Arrhenius 模型與簡化 collision 模型的 ` +
-          `Q<sub>10</sub> 都落在容許範圍內。` +
-          `因此，在起始溫度 ` +
-          `<strong>${parameters.temperatureC.toFixed(0)}°C</strong>` +
-          `、活化能 ` +
-          `<strong>${parameters.activationEnergyKJ.toFixed(0)} ` +
-          `kJ/mol</strong> 的條件下，溫度升高 10°C ` +
-          `可近似視為使速率常數增加兩倍。`;
-      } else if (
-        status.arrheniusPass ||
-        status.collisionPass
-      ) {
+        elements.judgementTitle.textContent = `符合 10°C Rule（容許誤差 ±${tol}%）`;
+        elements.judgementText.textContent = `在 ${tempC}°C 與 Eₐ = ${eaKj} kJ/mol 下，Arrhenius Q₁₀ (${qA.toFixed(3)}) 與 Collision Q₁₀ (${qC.toFixed(3)}) 皆落在 ${lowBound} ～ ${highBound} 區間內。`;
+      } else if (checkA.ok || checkC.ok) {
         elements.judgementBox.classList.add("partial");
-
-        const passingModel =
-          status.arrheniusPass
-            ? "Arrhenius 模型"
-            : "簡化 collision 模型";
-
-        const failingModel =
-          status.arrheniusPass
-            ? "簡化 collision 模型"
-            : "Arrhenius 模型";
-
-        elements.judgementTitle.textContent =
-          "結論：目前條件僅部分符合 10°C rule";
-
-        elements.judgementText.innerHTML =
-          `${passingModel} 的 Q<sub>10</sub> ` +
-          `落在容許範圍內，但 ${failingModel} 未通過。` +
-          `這表示溫度前因子的處理方式已足以影響是否判定為加倍，` +
-          `所以 10°C rule 只能視為局部近似。`;
+        const whichOk = checkA.ok ? "Arrhenius 模型" : "Collision 模型";
+        elements.judgementTitle.textContent = `部分符合（僅 ${whichOk} 落在容許範圍內）`;
+        elements.judgementText.textContent = `T¹/² 碰撞頻率因子使 Collision Q₁₀ 比 Arrhenius Q₁₀ 略高；在目前參數下兩者跨越了 ±${tol}% 的容許界線。`;
       } else {
         elements.judgementBox.classList.add("bad");
-
-        const direction =
-          q10A < TARGET_Q10 &&
-          q10C < TARGET_Q10
-            ? "低於"
-            : q10A > TARGET_Q10 &&
-              q10C > TARGET_Q10
-              ? "高於"
-              : "分布在";
-
-        elements.judgementTitle.textContent =
-          "結論：目前條件不符合 10°C rule";
-
-        elements.judgementText.innerHTML =
-          `兩個模型的 Q<sub>10</sub> 都未落在容許範圍內，` +
-          `其預測倍率${direction}目標值 2 附近。` +
-          `目前的溫度與活化能組合，不能近似為` +
-          `「每升高 10°C，速率常數增加兩倍」。`;
+        elements.judgementTitle.textContent = `不符合 10°C Rule（容許誤差 ±${tol}%）`;
+        elements.judgementText.textContent = `目前 Q₁₀,A = ${qA.toFixed(3)}、Q₁₀,C = ${qC.toFixed(3)}，皆超出 ${lowBound} ～ ${highBound}。若要讓 Q₁₀,A 接近 2，在 ${tempC}°C 下活化能需約 ${reqEaA.toFixed(1)} kJ/mol。`;
       }
-    }
 
-    function updateLearningSection(
-      parameters,
-      q10A,
-      q10C,
-      requiredEaA,
-      requiredEaC,
-      status
-    ) {
-      elements.learningTemperature.textContent =
-        `${parameters.temperatureC.toFixed(0)}°C → ` +
-        `${(parameters.temperatureC + 10).toFixed(0)}°C`;
+      // Collision physics readouts
+      const phys = getCollisionPhysics(tempC, rA, rB, mA, mB, stericP);
+      elements.collisionCrossSection.textContent = `${phys.sigmaNm2.toFixed(3)} nm²`;
+      elements.reducedMass.textContent = `${phys.muGmol.toFixed(2)} g/mol`;
+      elements.relativeSpeed.textContent = `${phys.vRel.toFixed(0)} m/s`;
+      elements.effectiveCollisionFraction.textContent = `${(stericP * 100).toFixed(0)}% (P = ${stericP.toFixed(2)})`;
 
-      elements.learningEa.textContent =
-        `${parameters.activationEnergyKJ.toFixed(0)} kJ/mol`;
+      // Learning summary
+      elements.learningTemperature.textContent = `${tempC}°C (${cToK(tempC).toFixed(1)} K)`;
+      elements.learningEa.textContent = `${eaKj} kJ/mol`;
+      elements.learningArrhenius.textContent = qA.toFixed(3);
+      elements.learningCollision.textContent = qC.toFixed(3);
 
-      elements.learningArrhenius.textContent =
-        `${formatNumber(q10A, 3)} ×`;
-
-      elements.learningCollision.textContent =
-        `${formatNumber(q10C, 3)} ×`;
-
-      let heading = "";
-      let explanation = "";
-
-      if (
-        status.arrheniusPass &&
-        status.collisionPass
-      ) {
-        heading =
-          "目前為何近似成立？";
-
-        explanation = `
-          <p>
-            在目前的起始溫度
-            <strong>${parameters.temperatureC.toFixed(0)}°C</strong>
-            下，若只使用 Arrhenius equation，
-            要使 Q<sub>10</sub> 恰好等於 2，
-            所需活化能約為
-            <strong>${requiredEaA.toFixed(2)} kJ/mol</strong>；
-            collision model 所需值則約為
-            <strong>${requiredEaC.toFixed(2)} kJ/mol</strong>。
-          </p>
-
-          <p>
-            目前輸入的活化能為
-            <strong>${parameters.activationEnergyKJ.toFixed(0)}
-            kJ/mol</strong>，接近這個加倍區域，
-            因此兩個模型都預測 Q<sub>10</sub> 約為 2。
-          </p>
-
-          <ul>
-            <li>
-              這不是普遍定律，而是目前
-              <span class="highlight">溫度與活化能剛好搭配</span>
-              所得到的結果。
-            </li>
-
-            <li>
-              改變起始溫度後，即使 E<sub>a</sub> 不變，
-              Q<sub>10</sub> 仍會改變。
-            </li>
-
-            <li>
-              若反應機構、前指數因子或控制步驟改變，
-              此近似可能立即失效。
-            </li>
-          </ul>
-        `;
-      } else if (
-        q10A < TARGET_Q10 &&
-        q10C < TARGET_Q10
-      ) {
-        heading =
-          "目前為何沒有增加到兩倍？";
-
-        explanation = `
-          <p>
-            目前兩個 Q<sub>10</sub> 都小於 2，
-            表示溫度升高 10°C 所造成的速率提升
-            <strong>不足兩倍</strong>。
-          </p>
-
-          <p>
-            在目前溫度下，Arrhenius 模型需要約
-            <strong>${requiredEaA.toFixed(2)} kJ/mol</strong>，
-            collision model 需要約
-            <strong>${requiredEaC.toFixed(2)} kJ/mol</strong>，
-            才能恰好達到 Q<sub>10</sub> = 2。
-            目前 E<sub>a</sub> =
-            <strong>${parameters.activationEnergyKJ.toFixed(0)}
-            kJ/mol</strong>，其溫度敏感度相對不足。
-          </p>
-
-          <ul>
-            <li>
-              較低活化能代表較小的溫度敏感度，
-              因此升高 10°C 不一定會加倍。
-            </li>
-
-            <li>
-              在較高起始溫度下，相同的 10 K 只占
-              絕對溫度較小的比例，Q<sub>10</sub>
-              通常會下降。
-            </li>
-
-            <li>
-              碰撞頻率隨溫度增加可稍微提高倍率，
-              但不保證足以使 Q<sub>10</sub> 達到 2。
-            </li>
-          </ul>
-        `;
-      } else if (
-        q10A > TARGET_Q10 &&
-        q10C > TARGET_Q10
-      ) {
-        heading =
-          "目前為何增加超過兩倍？";
-
-        explanation = `
-          <p>
-            目前兩個 Q<sub>10</sub> 都大於 2，
-            表示溫度升高 10°C 後，預測速率常數
-            <strong>增加超過兩倍</strong>。
-          </p>
-
-          <p>
-            目前活化能
-            <strong>${parameters.activationEnergyKJ.toFixed(0)}
-            kJ/mol</strong>
-            高於目前溫度下達到加倍所需的約
-            <strong>${requiredEaA.toFixed(2)} kJ/mol</strong>
-            或
-            <strong>${requiredEaC.toFixed(2)} kJ/mol</strong>，
-            因此速率常數對溫度更加敏感。
-          </p>
-
-          <ul>
-            <li>
-              較大的 E<sub>a</sub> 使
-              exp(−E<sub>a</sub>/RT)
-              對溫度變化更敏感。
-            </li>
-
-            <li>
-              在較低起始溫度下，相同的 10 K 升溫
-              通常造成較明顯的指數變化。
-            </li>
-
-            <li>
-              因此「至少增加兩倍」不等於
-              「符合 Q<sub>10</sub> = 2」；
-              經驗法則要求倍率接近 2。
-            </li>
-          </ul>
-        `;
+      if (qA > TARGET_Q10 * (1 + tol / 100)) {
+        elements.learningConclusion.textContent = `目前倍率偏高（Q₁₀,A = ${qA.toFixed(2)} > 2）：溫度敏感度較強`;
+        elements.learningExplanation.innerHTML = `<p>在 <span class="highlight">${tempC}°C</span> 且 <span class="highlight">Eₐ = ${eaKj} kJ/mol</span> 時，升溫 10°C 帶來的 Boltzmann 能量分布提升幅度大於兩倍。若降低活化能或提高起始溫度，Q₁₀ 會逐步下降並靠近 2。</p>`;
+      } else if (qA < TARGET_Q10 * (1 - tol / 100)) {
+        elements.learningConclusion.textContent = `目前倍率偏低（Q₁₀,A = ${qA.toFixed(2)} < 2）：溫度敏感度較弱`;
+        elements.learningExplanation.innerHTML = `<p>在 <span class="highlight">${tempC}°C</span> 且 <span class="highlight">Eₐ = ${eaKj} kJ/mol</span> 時，能障相對較低或溫度已較高，升溫 10°C 對速率常數的放大效果不到兩倍。提高活化能可使 Q₁₀ 上升。</p>`;
       } else {
-        heading =
-          "為何兩個模型得到不同判定？";
+        elements.learningConclusion.textContent = `目前落在 10°C Rule 經驗區間內（Q₁₀,A = ${qA.toFixed(2)}）`;
+        elements.learningExplanation.innerHTML = `<p>在 <span class="highlight">${tempC}°C</span> 與 <span class="highlight">Eₐ = ${eaKj} kJ/mol</span> 組合下，升溫 10°C 恰好使速率常數約為原本的兩倍。但只要將起始溫度拉高到 150–200°C 或大幅改變 Eₐ，Q₁₀ 就會明顯偏離 2。</p>`;
+      }
 
-        explanation = `
-          <p>
-            Arrhenius 模型把前指數因子視為常數，
-            collision model 則額外加入
-            T<sup>1/2</sup> 的碰撞頻率效應。
-            這使 collision Q<sub>10</sub> 通常略高於
-            Arrhenius Q<sub>10</sub>。
-          </p>
+      const insight = document.getElementById('lessonInsight');
+      if(insight){
+        const baseline = getCollisionPhysics(tempC,150,180,23,71,0.5);
+        if(activeLesson==='size') insight.textContent=`碰撞截面積 σ = ${phys.sigmaNm2.toFixed(3)} nm²（參考值 ${baseline.sigmaNm2.toFixed(3)} nm²）。半徑越大，幾何碰撞截面積越大。`;
+        if(activeLesson==='mass') insight.textContent=`平均相對速率 = ${phys.vRel.toFixed(0)} m/s；質量越大，平均相對速率通常越小。`;
+        if(activeLesson==='orientation') insight.textContent=`立體因子 P = ${stericP.toFixed(2)}；此模型中，能量足夠的碰撞再乘上 P 作為取向修正。`;
+      }
+      drawMainChart();
+    }
 
-          <p>
-            目前參數剛好位於判定邊界附近，
-            因此這個看似很小的模型差異，
-            足以讓其中一個模型通過、另一個不通過。
-          </p>
+    function drawMainChart() {
+      const canvas = elements.mainChart;
+      const dpr = window.devicePixelRatio || 1;
+      const rect = canvas.getBoundingClientRect();
+      const width = Math.max(300, rect.width);
+      const height = Math.max(240, rect.height);
 
-          <ul>
-            <li>
-              判定結果會受到容許誤差設定影響。
-            </li>
+      canvas.width = Math.round(width * dpr);
+      canvas.height = Math.round(height * dpr);
 
-            <li>
-              這也顯示 Q<sub>10</sub> = 2
-              不是基本定律，而是近似判斷。
-            </li>
+      const ctx = canvas.getContext("2d");
+      ctx.save();
+      ctx.scale(dpr, dpr);
+      ctx.clearRect(0, 0, width, height);
 
-            <li>
-              真實反應還可能受到分子取向、溶劑、
-              擴散與反應機構的影響。
-            </li>
-          </ul>
+      const pad = { top: 22, right: 24, bottom: 48, left: 64 };
+      const plotW = width - pad.left - pad.right;
+      const plotH = height - pad.top - pad.bottom;
+
+      const tempC = Number(elements.startTemperature.value);
+      const eaKj = Number(elements.activationEnergy.value);
+      const tol = Number(elements.tolerance.value);
+
+      chartHoverPoints = [];
+
+      // Grid lines
+      ctx.strokeStyle = "#e6eef8";
+      ctx.lineWidth = 1;
+      const rows = 5;
+      for (let i = 0; i <= rows; i++) {
+        const y = pad.top + (plotH * i) / rows;
+        ctx.beginPath();
+        ctx.moveTo(pad.left, y);
+        ctx.lineTo(pad.left + plotW, y);
+        ctx.stroke();
+      }
+
+      // Axes
+      ctx.strokeStyle = "#94a3b8";
+      ctx.lineWidth = 1.2;
+      ctx.beginPath();
+      ctx.moveTo(pad.left, pad.top);
+      ctx.lineTo(pad.left, pad.top + plotH);
+      ctx.lineTo(pad.left + plotW, pad.top + plotH);
+      ctx.stroke();
+
+      ctx.fillStyle = "#475569";
+      ctx.font = "12px sans-serif";
+      ctx.textAlign = "center";
+
+      if (activeChartType === "q10") {
+        elements.chartTitle.textContent = "Q₁₀ vs. Temperature";
+        elements.chartSubtitle.textContent = `固定活化能 Eₐ = ${eaKj} kJ/mol，觀察 0°C ～ 200°C 的 Q₁₀ 變化`;
+        elements.chartLegend.innerHTML = `
+          <span class="legend-item"><span class="legend-line" style="background:#8299A6"></span>Arrhenius Q₁₀</span>
+          <span class="legend-item"><span class="legend-line" style="background:#C28F7B"></span>Collision Q₁₀</span>
+          <span class="legend-item"><span class="legend-line" style="background:#779B83"></span>目標 Q₁₀ = 2</span>
         `;
-      }
+        elements.chartExplanation.textContent = "隨著起始溫度升高，1/T − 1/(T+10) 變小，因此 Q₁₀ 隨溫度上升而遞減；Collision Q₁₀ 因多出 [(T+10)/T]¹/² 項而略高於 Arrhenius Q₁₀。";
 
-      elements.learningConclusion.textContent =
-        heading;
+        const minT = 0;
+        const maxT = 200;
+        const ptsA = [];
+        const ptsC = [];
+        let maxVal = 3.5;
 
-      elements.learningExplanation.innerHTML =
-        explanation;
-    }
+        for (let t = minT; t <= maxT; t += 4) {
+          const qa = calcArrheniusQ10(t, eaKj);
+          const qc = calcCollisionQ10(t, eaKj);
+          ptsA.push({ t, val: qa });
+          ptsC.push({ t, val: qc });
+          maxVal = Math.max(maxVal, qa, qc);
+        }
+        const yMax = Math.min(20, Math.ceil(maxVal * 1.1));
+        const yMin = 0;
 
-    class InteractiveChart {
-      constructor(canvas, tooltip) {
-        this.canvas = canvas;
-        this.context = canvas.getContext("2d");
-        this.tooltip = tooltip;
-        this.series = [];
-        this.options = {};
-        this.bounds = null;
-
-        this.canvas.addEventListener(
-          "mousemove",
-          event => this.handleMouseMove(event)
-        );
-
-        this.canvas.addEventListener(
-          "mouseleave",
-          () => {
-            this.tooltip.style.display = "none";
-          }
-        );
-
-        window.addEventListener(
-          "resize",
-          () => this.draw()
-        );
-      }
-
-      setData(series, options) {
-        this.series = series;
-        this.options = options;
-        this.draw();
-      }
-
-      resize() {
-        const rectangle =
-          this.canvas.getBoundingClientRect();
-
-        const devicePixelRatio =
-          window.devicePixelRatio || 1;
-
-        this.canvas.width =
-          Math.round(
-            rectangle.width * devicePixelRatio
-          );
-
-        this.canvas.height =
-          Math.round(
-            rectangle.height * devicePixelRatio
-          );
-
-        this.context.setTransform(
-          devicePixelRatio,
-          0,
-          0,
-          devicePixelRatio,
-          0,
-          0
-        );
-
-        return {
-          width: rectangle.width,
-          height: rectangle.height
-        };
-      }
-
-      draw() {
-        if (!this.series.length) {
-          return;
+        for (let i = 0; i <= rows; i++) {
+          const val = yMax - ((yMax - yMin) * i) / rows;
+          const y = pad.top + (plotH * i) / rows;
+          ctx.textAlign = "right";
+          ctx.fillText(val.toFixed(1), pad.left - 8, y + 4);
         }
 
-        const { width, height } = this.resize();
-        const context = this.context;
-
-        context.clearRect(0, 0, width, height);
-
-        const margins = {
-          left: 76,
-          right: 28,
-          top: 28,
-          bottom: 62
-        };
-
-        const plotWidth =
-          width - margins.left - margins.right;
-
-        const plotHeight =
-          height - margins.top - margins.bottom;
-
-        const finitePoints =
-          this.series.flatMap(series =>
-            series.points.filter(point =>
-              Number.isFinite(point.x) &&
-              Number.isFinite(point.y)
-            )
-          );
-
-        let xMin =
-          this.options.xMin ??
-          Math.min(...finitePoints.map(point => point.x));
-
-        let xMax =
-          this.options.xMax ??
-          Math.max(...finitePoints.map(point => point.x));
-
-        let yMin =
-          this.options.yMin ??
-          Math.min(...finitePoints.map(point => point.y));
-
-        let yMax =
-          this.options.yMax ??
-          Math.max(...finitePoints.map(point => point.y));
-
-        if (this.options.includeZero) {
-          yMin = Math.min(0, yMin);
+        for (let t = 0; t <= 200; t += 40) {
+          const x = pad.left + ((t - minT) / (maxT - minT)) * plotW;
+          ctx.textAlign = "center";
+          ctx.fillText(`${t}°C`, x, pad.top + plotH + 20);
         }
+        ctx.fillText("起始溫度 T (°C)", pad.left + plotW / 2, height - 8);
 
-        if (yMax === yMin) {
-          yMax += 1;
-        }
+        // Target Q10 = 2 line & tolerance band
+        const yTarget = pad.top + (1 - (TARGET_Q10 - yMin) / (yMax - yMin)) * plotH;
+        const yHigh = pad.top + (1 - (TARGET_Q10 * (1 + tol / 100) - yMin) / (yMax - yMin)) * plotH;
+        const yLow = pad.top + (1 - (TARGET_Q10 * (1 - tol / 100) - yMin) / (yMax - yMin)) * plotH;
 
-        const yPadding =
-          (yMax - yMin) * 0.08;
+        ctx.fillStyle = "rgba(22, 163, 74, 0.10)";
+        ctx.fillRect(pad.left, Math.max(pad.top, yHigh), plotW, Math.max(0, Math.min(pad.top + plotH, yLow) - Math.max(pad.top, yHigh)));
 
-        if (this.options.yMin === undefined) {
-          yMin -= yPadding;
-        }
+        ctx.save();
+        ctx.setLineDash([6, 5]);
+        ctx.strokeStyle = "#779B83";
+        ctx.lineWidth = 1.5;
+        ctx.beginPath();
+        ctx.moveTo(pad.left, yTarget);
+        ctx.lineTo(pad.left + plotW, yTarget);
+        ctx.stroke();
+        ctx.restore();
 
-        if (this.options.yMax === undefined) {
-          yMax += yPadding;
-        }
-
-        const mapX = value =>
-          margins.left +
-          (
-            (value - xMin) /
-            (xMax - xMin)
-          ) * plotWidth;
-
-        const mapY = value =>
-          margins.top +
-          (
-            (yMax - value) /
-            (yMax - yMin)
-          ) * plotHeight;
-
-        this.bounds = {
-          xMin,
-          xMax,
-          yMin,
-          yMax,
-          margins,
-          plotWidth,
-          plotHeight,
-          mapX,
-          mapY
-        };
-
-        this.drawAxes(
-          context,
-          width,
-          height,
-          margins,
-          xMin,
-          xMax,
-          yMin,
-          yMax,
-          mapX,
-          mapY
-        );
-
-        this.series.forEach(series => {
-          this.drawSeries(
-            context,
-            series,
-            mapX,
-            mapY
-          );
+        const toXY = (t, v) => ({
+          x: pad.left + ((t - minT) / (maxT - minT)) * plotW,
+          y: pad.top + (1 - (Math.min(v, yMax) - yMin) / (yMax - yMin)) * plotH
         });
 
-        if (
-          Number.isFinite(
-            this.options.verticalMarker
-          )
-        ) {
-          this.drawVerticalMarker(
-            context,
-            this.options.verticalMarker,
-            mapX,
-            margins,
-            plotHeight
-          );
-        }
-      }
+        drawSeries(ctx, ptsA, "#8299A6", toXY, "Arrhenius Q₁₀");
+        drawSeries(ctx, ptsC, "#C28F7B", toXY, "Collision Q₁₀");
 
-      drawAxes(
-        context,
-        width,
-        height,
-        margins,
-        xMin,
-        xMax,
-        yMin,
-        yMax,
-        mapX,
-        mapY
-      ) {
-        const xTicks = 5;
-        const yTicks = 6;
-
-        context.save();
-        context.font =
-          '12px system-ui, "Noto Sans TC", sans-serif';
-
-        for (let index = 0; index <= xTicks; index++) {
-          const value =
-            xMin +
-            (
-              (xMax - xMin) *
-              index / xTicks
-            );
-
-          const x = mapX(value);
-
-          context.strokeStyle = "#e7ecf3";
-          context.lineWidth = 1;
-          context.beginPath();
-          context.moveTo(x, margins.top);
-          context.lineTo(
-            x,
-            height - margins.bottom
-          );
-          context.stroke();
-
-          context.fillStyle = "#667085";
-          context.textAlign = "center";
-          context.textBaseline = "top";
-          context.fillText(
-            formatNumber(value, 1),
-            x,
-            height - margins.bottom + 9
-          );
-        }
-
-        for (let index = 0; index <= yTicks; index++) {
-          const value =
-            yMin +
-            (
-              (yMax - yMin) *
-              index / yTicks
-            );
-
-          const y = mapY(value);
-
-          context.strokeStyle = "#e7ecf3";
-          context.lineWidth = 1;
-          context.beginPath();
-          context.moveTo(margins.left, y);
-          context.lineTo(
-            width - margins.right,
-            y
-          );
-          context.stroke();
-
-          context.fillStyle = "#667085";
-          context.textAlign = "right";
-          context.textBaseline = "middle";
-          context.fillText(
-            formatNumber(value, 2),
-            margins.left - 9,
-            y
-          );
-        }
-
-        context.strokeStyle = "#8490a3";
-        context.lineWidth = 1.3;
-        context.beginPath();
-        context.moveTo(
-          margins.left,
-          margins.top
-        );
-        context.lineTo(
-          margins.left,
-          height - margins.bottom
-        );
-        context.lineTo(
-          width - margins.right,
-          height - margins.bottom
-        );
-        context.stroke();
-
-        context.fillStyle = "#344054";
-        context.font =
-          '700 13px system-ui, "Noto Sans TC", sans-serif';
-
-        context.textAlign = "center";
-        context.textBaseline = "bottom";
-        context.fillText(
-          this.options.xLabel || "",
-          margins.left + plotWidth(width, margins) / 2,
-          height - 5
-        );
-
-        context.save();
-        context.translate(
-          17,
-          margins.top +
-          (
-            height -
-            margins.top -
-            margins.bottom
-          ) / 2
-        );
-        context.rotate(-Math.PI / 2);
-        context.fillText(
-          this.options.yLabel || "",
-          0,
-          0
-        );
-        context.restore();
-
-        context.restore();
-
-        function plotWidth(totalWidth, chartMargins) {
-          return totalWidth -
-            chartMargins.left -
-            chartMargins.right;
-        }
-      }
-
-      drawSeries(
-        context,
-        series,
-        mapX,
-        mapY
-      ) {
-        const points =
-          series.points.filter(point =>
-            Number.isFinite(point.x) &&
-            Number.isFinite(point.y)
-          );
-
-        if (!points.length) {
-          return;
-        }
-
-        context.save();
-        context.strokeStyle = series.color;
-        context.fillStyle = series.color;
-        context.lineWidth = series.width || 3;
-
-        if (series.dashed) {
-          context.setLineDash([8, 6]);
-        }
-
-        context.beginPath();
-
-        points.forEach((point, index) => {
-          const x = mapX(point.x);
-          const y = mapY(point.y);
-
-          if (index === 0) {
-            context.moveTo(x, y);
-          } else {
-            context.lineTo(x, y);
-          }
-        });
-
-        context.stroke();
-
-        if (series.showPoints) {
-          points.forEach(point => {
-            context.beginPath();
-            context.arc(
-              mapX(point.x),
-              mapY(point.y),
-              3.2,
-              0,
-              Math.PI * 2
-            );
-            context.fill();
-          });
-        }
-
-        context.restore();
-      }
-
-      drawVerticalMarker(
-        context,
-        value,
-        mapX,
-        margins,
-        plotHeight
-      ) {
-        const x = mapX(value);
-
-        context.save();
-        context.strokeStyle = "#7c3aed";
-        context.fillStyle = "#6d36ce";
-        context.lineWidth = 1.5;
-        context.setLineDash([5, 5]);
-
-        context.beginPath();
-        context.moveTo(x, margins.top);
-        context.lineTo(
-          x,
-          margins.top + plotHeight
-        );
-        context.stroke();
-
-        context.font =
-          '700 12px system-ui, "Noto Sans TC", sans-serif';
-        context.textAlign = "left";
-        context.fillText(
-          "目前溫度",
-          x + 5,
-          margins.top + 14
-        );
-
-        context.restore();
-      }
-
-      handleMouseMove(event) {
-        if (!this.bounds || !this.series.length) {
-          return;
-        }
-
-        const rectangle =
-          this.canvas.getBoundingClientRect();
-
-        const mouseX =
-          event.clientX - rectangle.left;
-
-        const mouseY =
-          event.clientY - rectangle.top;
-
-        const bounds = this.bounds;
-
-        if (
-          mouseX < bounds.margins.left ||
-          mouseX >
-            bounds.margins.left +
-            bounds.plotWidth ||
-          mouseY < bounds.margins.top ||
-          mouseY >
-            bounds.margins.top +
-            bounds.plotHeight
-        ) {
-          this.tooltip.style.display = "none";
-          return;
-        }
-
-        const dataX =
-          bounds.xMin +
-          (
-            (mouseX - bounds.margins.left) /
-            bounds.plotWidth
-          ) *
-          (bounds.xMax - bounds.xMin);
-
-        let closestX = null;
-        let closestDistance = Infinity;
-
-        this.series.forEach(series => {
-          series.points.forEach(point => {
-            const distance =
-              Math.abs(point.x - dataX);
-
-            if (distance < closestDistance) {
-              closestDistance = distance;
-              closestX = point.x;
-            }
-          });
-        });
-
-        if (closestX === null) {
-          return;
-        }
-
-        const rows = this.series
-          .map(series => {
-            const point = series.points.reduce(
-              (closest, current) => {
-                if (!closest) {
-                  return current;
-                }
-
-                return Math.abs(
-                  current.x - closestX
-                ) <
-                Math.abs(
-                  closest.x - closestX
-                )
-                  ? current
-                  : closest;
-              },
-              null
-            );
-
-            if (!point) {
-              return "";
-            }
-
-            return `
-              <div style="margin-top:4px;">
-                <span style="
-                  display:inline-block;
-                  width:9px;
-                  height:9px;
-                  margin-right:5px;
-                  border-radius:50%;
-                  background:${series.color};
-                "></span>
-                ${series.name}:
-                <strong>
-                  ${formatNumber(point.y, 4)}
-                </strong>
-              </div>
-            `;
-          })
-          .join("");
-
-        this.tooltip.innerHTML = `
-          <strong>
-            ${this.options.xLabel}:
-            ${formatNumber(closestX, 2)}
-          </strong>
-          ${rows}
+        // Current temp marker
+        const curPt = toXY(tempC, calcArrheniusQ10(tempC, eaKj));
+        ctx.fillStyle = "#A28EAC";
+        ctx.beginPath();
+        ctx.arc(curPt.x, curPt.y, 5.5, 0, Math.PI * 2);
+        ctx.fill();
+      } else if (activeChartType === "k") {
+        elements.chartTitle.textContent = "相對速率常數 k vs. Temperature（以 25°C 為基準）";
+        elements.chartSubtitle.textContent = `固定活化能 Eₐ = ${eaKj} kJ/mol，比較相對速率常數隨溫度增加的幅度`;
+        elements.chartLegend.innerHTML = `
+          <span class="legend-item"><span class="legend-line" style="background:#8299A6"></span>Arrhenius k_rel</span>
+          <span class="legend-item"><span class="legend-line" style="background:#C28F7B"></span>Collision k_rel</span>
         `;
+        elements.chartExplanation.textContent = "速率常數隨溫度呈非線性快速上升（高活化能時更陡峭）。以 25°C (298.15 K) 的速率常數為 1.0，可直觀看出不同溫度區間的速率放大倍數。";
 
-        this.tooltip.style.display = "block";
+        const minT = 0;
+        const maxT = 200;
+        const refT = cToK(25);
+        const eaJ = eaKj * 1000;
+        const refArr = Math.exp(-eaJ / (R * refT));
+        const refCol = Math.sqrt(refT) * refArr;
 
-        const left =
-          Math.min(
-            event.clientX + 14,
-            window.innerWidth - 295
-          );
+        const ptsA = [];
+        const ptsC = [];
+        let maxVal = 2;
 
-        const top =
-          Math.min(
-            event.clientY + 14,
-            window.innerHeight - 170
-          );
+        for (let t = minT; t <= maxT; t += 4) {
+          const tk = cToK(t);
+          const ka = Math.exp(-eaJ / (R * tk)) / refArr;
+          const kc = (Math.sqrt(tk) * Math.exp(-eaJ / (R * tk))) / refCol;
+          ptsA.push({ t, val: ka });
+          ptsC.push({ t, val: kc });
+          maxVal = Math.max(maxVal, ka, kc);
+        }
 
-        this.tooltip.style.left =
-          `${Math.max(8, left)}px`;
+        const yMax = Math.max(2, maxVal * 1.08);
+        const yMin = 0;
 
-        this.tooltip.style.top =
-          `${Math.max(8, top)}px`;
-      }
-    }
+        for (let i = 0; i <= rows; i++) {
+          const val = yMax - ((yMax - yMin) * i) / rows;
+          const y = pad.top + (plotH * i) / rows;
+          ctx.textAlign = "right";
+          ctx.fillText(val >= 100 ? val.toFixed(0) : val.toFixed(1), pad.left - 8, y + 4);
+        }
 
-    const chart = new InteractiveChart(
-      elements.mainChart,
-      elements.tooltip
-    );
+        for (let t = 0; t <= 200; t += 40) {
+          const x = pad.left + ((t - minT) / (maxT - minT)) * plotW;
+          ctx.textAlign = "center";
+          ctx.fillText(`${t}°C`, x, pad.top + plotH + 20);
+        }
+        ctx.fillText("溫度 T (°C)", pad.left + plotW / 2, height - 8);
 
-    function temperatureArray(
-      minimum = 0,
-      maximum = 200,
-      step = 2
-    ) {
-      const values = [];
+        const toXY = (t, v) => ({
+          x: pad.left + ((t - minT) / (maxT - minT)) * plotW,
+          y: pad.top + (1 - (Math.min(v, yMax) - yMin) / (yMax - yMin)) * plotH
+        });
 
-      for (
-        let temperature = minimum;
-        temperature <= maximum;
-        temperature += step
-      ) {
-        values.push(temperature);
-      }
+        drawSeries(ctx, ptsA, "#8299A6", toXY, "Arrhenius k_rel");
+        drawSeries(ctx, ptsC, "#C28F7B", toXY, "Collision k_rel");
+      } else {
+        elements.chartTitle.textContent = "使 Q₁₀ = 2 所需的活化能 vs. Temperature";
+        elements.chartSubtitle.textContent = "在不同起始溫度下，要讓升溫 10°C 速率恰好翻倍所需的 Eₐ";
+        elements.chartLegend.innerHTML = `
+          <span class="legend-item"><span class="legend-line" style="background:#8299A6"></span>Arrhenius 所需 Eₐ</span>
+          <span class="legend-item"><span class="legend-line" style="background:#C28F7B"></span>Collision 所需 Eₐ</span>
+          <span class="legend-item"><span class="legend-line" style="background:#A28EAC"></span>目前 Eₐ (${eaKj} kJ/mol)</span>
+        `;
+        elements.chartExplanation.textContent = "起始溫度越高，分子平均熱能越高，若要維持升溫 10°C 翻倍（Q₁₀ = 2），就需要更高的活化能；Collision 模型因包含 T¹/² 升溫增益，所需 Eₐ 略低於 Arrhenius 模型。";
 
-      return values;
-    }
+        const minT = 0;
+        const maxT = 200;
+        const ptsA = [];
+        const ptsC = [];
 
-    function createLegend(items) {
-      elements.chartLegend.innerHTML =
-        items.map(item => `
-          <span class="legend-item">
-            <span
-              class="legend-line"
-              style="
-                background:${item.color};
-                ${item.dashed
-                  ? "border-top:2px dashed " +
-                    item.color +
-                    ";background:transparent;"
-                  : ""}
-              "
-            ></span>
-            ${item.name}
-          </span>
-        `).join("");
-    }
+        for (let t = minT; t <= maxT; t += 4) {
+          ptsA.push({ t, val: calcRequiredEaArrhenius(t, TARGET_Q10) });
+          ptsC.push({ t, val: calcRequiredEaCollision(t, TARGET_Q10) });
+        }
 
-    function updateChart(parameters) {
-      const temperaturesC = temperatureArray();
+        const yMin = 20;
+        const yMax = 140;
 
-      if (activeChart === "q10") {
-        const arrheniusPoints =
-          temperaturesC.map(temperatureC => ({
-            x: temperatureC,
-            y: arrheniusQ10(
-              temperatureC + 273.15,
-              parameters.activationEnergyKJ
-            )
-          }));
+        for (let i = 0; i <= rows; i++) {
+          const val = yMax - ((yMax - yMin) * i) / rows;
+          const y = pad.top + (plotH * i) / rows;
+          ctx.textAlign = "right";
+          ctx.fillText(`${val.toFixed(0)}`, pad.left - 8, y + 4);
+        }
 
-        const collisionPoints =
-          temperaturesC.map(temperatureC => ({
-            x: temperatureC,
-            y: collisionQ10(
-              temperatureC + 273.15,
-              parameters.activationEnergyKJ
-            )
-          }));
+        for (let t = 0; t <= 200; t += 40) {
+          const x = pad.left + ((t - minT) / (maxT - minT)) * plotW;
+          ctx.textAlign = "center";
+          ctx.fillText(`${t}°C`, x, pad.top + plotH + 20);
+        }
+        ctx.fillText("起始溫度 T (°C)", pad.left + plotW / 2, height - 8);
 
-        const lowerBound =
-          TARGET_Q10 *
-          (
-            1 -
-            parameters.tolerancePercent / 100
-          );
+        const toXY = (t, v) => ({
+          x: pad.left + ((t - minT) / (maxT - minT)) * plotW,
+          y: pad.top + (1 - (Math.min(Math.max(v, yMin), yMax) - yMin) / (yMax - yMin)) * plotH
+        });
 
-        const upperBound =
-          TARGET_Q10 *
-          (
-            1 +
-            parameters.tolerancePercent / 100
-          );
+        drawSeries(ctx, ptsA, "#8299A6", toXY, "Arrhenius 所需 Eₐ (kJ/mol)");
+        drawSeries(ctx, ptsC, "#C28F7B", toXY, "Collision 所需 Eₐ (kJ/mol)");
 
-        const targetPoints = [
-          { x: 0, y: TARGET_Q10 },
-          { x: 200, y: TARGET_Q10 }
-        ];
-
-        const lowerPoints = [
-          { x: 0, y: lowerBound },
-          { x: 200, y: lowerBound }
-        ];
-
-        const upperPoints = [
-          { x: 0, y: upperBound },
-          { x: 200, y: upperBound }
-        ];
-
-        const allValues = [
-          ...arrheniusPoints.map(point => point.y),
-          ...collisionPoints.map(point => point.y),
-          upperBound
-        ];
-
-        elements.chartTitle.innerHTML =
-          "Q<sub>10</sub> vs. Temperature";
-
-        elements.chartSubtitle.innerHTML =
-          `固定 E<sub>a</sub> = ` +
-          `${parameters.activationEnergyKJ.toFixed(0)} ` +
-          `kJ/mol，觀察不同起始溫度的 Q₁₀。`;
-
-        elements.chartExplanation.innerHTML =
-          `曲線通常隨起始溫度升高而下降。這是因為固定的 ` +
-          `10 K 升溫，在高溫時只占絕對溫度較小的比例。` +
-          `綠色虛線為 Q<sub>10</sub> = 2；灰色虛線為目前` +
-          `容許誤差的上下界。`;
-
-        createLegend([
-          {
-            name: "Arrhenius Q₁₀",
-            color: "#2563eb"
-          },
-          {
-            name: "Collision Q₁₀",
-            color: "#ef7d32"
-          },
-          {
-            name: "目標 Q₁₀ = 2",
-            color: "#16a34a",
-            dashed: true
-          },
-          {
-            name: "容許範圍",
-            color: "#98a2b3",
-            dashed: true
-          }
-        ]);
-
-        chart.setData(
-          [
-            {
-              name: "Arrhenius Q₁₀",
-              color: "#2563eb",
-              points: arrheniusPoints
-            },
-            {
-              name: "Collision Q₁₀",
-              color: "#ef7d32",
-              points: collisionPoints
-            },
-            {
-              name: "目標 Q₁₀",
-              color: "#16a34a",
-              points: targetPoints,
-              dashed: true,
-              width: 2
-            },
-            {
-              name: "容許下界",
-              color: "#98a2b3",
-              points: lowerPoints,
-              dashed: true,
-              width: 1.5
-            },
-            {
-              name: "容許上界",
-              color: "#98a2b3",
-              points: upperPoints,
-              dashed: true,
-              width: 1.5
-            }
-          ],
-          {
-            xLabel: "起始溫度 / °C",
-            yLabel: "Q₁₀ = k(T + 10) / k(T)",
-            xMin: 0,
-            xMax: 200,
-            yMin: 0,
-            yMax:
-              Math.max(
-                2.6,
-                Math.max(...allValues) * 1.08
-              ),
-            verticalMarker:
-              parameters.temperatureC
-          }
-        );
+        // Current Ea horizontal line
+        if (eaKj >= yMin && eaKj <= yMax) {
+          const yCurEa = pad.top + (1 - (eaKj - yMin) / (yMax - yMin)) * plotH;
+          ctx.save();
+          ctx.setLineDash([5, 5]);
+          ctx.strokeStyle = "#A28EAC";
+          ctx.lineWidth = 1.5;
+          ctx.beginPath();
+          ctx.moveTo(pad.left, yCurEa);
+          ctx.lineTo(pad.left + plotW, yCurEa);
+          ctx.stroke();
+          ctx.restore();
+        }
       }
 
-      if (activeChart === "k") {
-        const referenceTemperatureK =
-          parameters.temperatureK;
-
-        const arrheniusPoints =
-          temperaturesC.map(temperatureC => ({
-            x: temperatureC,
-            y: relativeArrheniusK(
-              temperatureC + 273.15,
-              referenceTemperatureK,
-              parameters.activationEnergyKJ
-            )
-          }));
-
-        const collisionPoints =
-          temperaturesC.map(temperatureC => ({
-            x: temperatureC,
-            y: relativeCollisionK(
-              temperatureC + 273.15,
-              referenceTemperatureK,
-              parameters.activationEnergyKJ
-            )
-          }));
-
-        const maximumValue =
-          Math.max(
-            ...arrheniusPoints.map(point => point.y),
-            ...collisionPoints.map(point => point.y)
-          );
-
-        const displayedMaximum =
-          Math.min(
-            Math.max(maximumValue * 1.05, 2),
-            200
-          );
-
-        elements.chartTitle.innerHTML =
-          "Relative k vs. Temperature";
-
-        elements.chartSubtitle.innerHTML =
-          `以目前起始溫度 ` +
-          `${parameters.temperatureC.toFixed(0)}°C ` +
-          `的 k 設為 1，觀察相對速率常數。`;
-
-        elements.chartExplanation.innerHTML =
-          `由於沒有指定前指數因子 A 或 C，圖中使用` +
-          `<strong>相對速率常數</strong>。目前起始溫度的 ` +
-          `k 被正規化為 1；若曲線在高 10°C 處接近 2，` +
-          `即表示符合 10°C rule。為避免極高數值壓縮圖形，` +
-          `垂直軸顯示上限設為 200。`;
-
-        createLegend([
-          {
-            name: "Arrhenius 相對 k",
-            color: "#2563eb"
-          },
-          {
-            name: "Collision 相對 k",
-            color: "#ef7d32"
-          }
-        ]);
-
-        chart.setData(
-          [
-            {
-              name: "Arrhenius 相對 k",
-              color: "#2563eb",
-              points: arrheniusPoints
-            },
-            {
-              name: "Collision 相對 k",
-              color: "#ef7d32",
-              points: collisionPoints
-            }
-          ],
-          {
-            xLabel: "溫度 / °C",
-            yLabel: "相對速率常數 k / kref",
-            xMin: 0,
-            xMax: 200,
-            yMin: 0,
-            yMax: displayedMaximum,
-            verticalMarker:
-              parameters.temperatureC
-          }
-        );
-      }
-
-      if (activeChart === "requiredEa") {
-        const requiredArrheniusPoints =
-          temperaturesC.map(temperatureC => ({
-            x: temperatureC,
-            y: requiredEaForArrhenius(
-              temperatureC + 273.15
-            )
-          }));
-
-        const requiredCollisionPoints =
-          temperaturesC.map(temperatureC => ({
-            x: temperatureC,
-            y: requiredEaForCollision(
-              temperatureC + 273.15
-            )
-          }));
-
-        const currentEaPoints = [
-          {
-            x: 0,
-            y: parameters.activationEnergyKJ
-          },
-          {
-            x: 200,
-            y: parameters.activationEnergyKJ
-          }
-        ];
-
-        const maximumValue =
-          Math.max(
-            100,
-            ...requiredArrheniusPoints.map(
-              point => point.y
-            ),
-            ...requiredCollisionPoints.map(
-              point => point.y
-            )
-          );
-
-        elements.chartTitle.innerHTML =
-          "達到 Q<sub>10</sub> = 2 所需的活化能";
-
-        elements.chartSubtitle.innerHTML =
-          `比較不同起始溫度下，兩個模型要恰好加倍所需的 ` +
-          `E<sub>a</sub>。`;
-
-        elements.chartExplanation.innerHTML =
-          `所需活化能會隨起始溫度改變，因此不存在一個` +
-          `適用於所有溫度的固定 E<sub>a</sub>，能讓每次升高 ` +
-          `10°C 都恰好加倍。紫色虛線表示目前選擇的活化能。`;
-
-        createLegend([
-          {
-            name: "Arrhenius 所需 Eₐ",
-            color: "#2563eb"
-          },
-          {
-            name: "Collision 所需 Eₐ",
-            color: "#ef7d32"
-          },
-          {
-            name: "目前 Eₐ",
-            color: "#7c3aed",
-            dashed: true
-          }
-        ]);
-
-        chart.setData(
-          [
-            {
-              name: "Arrhenius 所需 Eₐ",
-              color: "#2563eb",
-              points: requiredArrheniusPoints
-            },
-            {
-              name: "Collision 所需 Eₐ",
-              color: "#ef7d32",
-              points: requiredCollisionPoints
-            },
-            {
-              name: "目前 Eₐ",
-              color: "#7c3aed",
-              points: currentEaPoints,
-              dashed: true,
-              width: 2
-            }
-          ],
-          {
-            xLabel: "起始溫度 / °C",
-            yLabel: "所需活化能 / kJ mol⁻¹",
-            xMin: 0,
-            xMax: 200,
-            yMin: 0,
-            yMax: maximumValue * 1.08,
-            verticalMarker:
-              parameters.temperatureC
-          }
-        );
-      }
+      ctx.restore();
     }
 
-    function updateAll() {
-      const parameters = getParameters();
+    function drawSeries(ctx, points, color, toXY, label) {
+      if (!points.length) return;
+      ctx.strokeStyle = color;
+      ctx.lineWidth = 2.4;
+      ctx.beginPath();
 
-      updateParameterLabels(parameters);
-      updateResults(parameters);
-      updateChart(parameters);
+      points.forEach((pt, idx) => {
+        const pos = toXY(pt.t, pt.val);
+        if (idx === 0) ctx.moveTo(pos.x, pos.y);
+        else ctx.lineTo(pos.x, pos.y);
+
+        chartHoverPoints.push({
+          x: pos.x,
+          y: pos.y,
+          t: pt.t,
+          val: pt.val,
+          label
+        });
+      });
+
+      ctx.stroke();
     }
 
+    function applyReactionPreset(key) {
+      const preset = REACTION_PRESETS[key];
+      if (!preset) return;
+
+      selectedReaction = key;
+      const note = document.getElementById('reactionAssumption');
+      if(note) note.textContent = `目前未提供此反應經核實的文獻動力學參數。右側 Arrhenius 與 Q₁₀ 為獨立的理論探索滑桿結果，並非此反應的實測預測。`;
+      elements.reactionEquation.textContent = preset.equation;
+      elements.reactionDescription.textContent = preset.description;
+      elements.reactionType.textContent = preset.type;
+      elements.presetMassA.textContent = `${preset.massA} g/mol`;
+      elements.presetMassB.textContent = `${preset.massB} g/mol`;
+      elements.presetStericFactor.textContent = preset.steric.toFixed(2);
+
+      elements.reactionMoleculeA.innerHTML = `<span class="particle-chip">${preset.molA}</span>`;
+      elements.reactionMoleculeB.innerHTML = `<span class="particle-chip">${preset.molB}</span>`;
+      elements.reactionProducts.innerHTML = preset.products
+        .map(p => `<span class="particle-chip product">${p}</span>`)
+        .join(" ");
+
+      if (preset) {
+        elements.moleculeARadius.value = preset.radiusA;
+        elements.moleculeBRadius.value = preset.radiusB;
+        elements.moleculeAMass.value = preset.massA;
+        elements.moleculeBMass.value = preset.massB;
+        elements.stericFactor.value = preset.steric.toFixed(2);
+      }
+
+      updateOutputs();
+    }
+
+    function stepCollisionAnimation(now) {
+      const dt = Math.min(0.05, (now - animState.lastTime) / 1000);
+      animState.lastTime = now;
+
+      const canvas = elements.collisionCanvas;
+      const dpr = window.devicePixelRatio || 1;
+      const rect = canvas.getBoundingClientRect();
+      const w = Math.max(240, rect.width);
+      const h = Math.max(150, rect.height);
+
+      if (canvas.width !== Math.round(w * dpr) || canvas.height !== Math.round(h * dpr)) {
+        canvas.width = Math.round(w * dpr);
+        canvas.height = Math.round(h * dpr);
+      }
+
+      const ctx = canvas.getContext("2d");
+      ctx.save();
+      ctx.scale(dpr, dpr);
+      ctx.clearRect(0, 0, w, h);
+
+      const tempC = Number(elements.startTemperature.value);
+      const rAPm = Number(elements.moleculeARadius.value);
+      const rBPm = Number(elements.moleculeBRadius.value);
+      const mA = Number(elements.moleculeAMass.value);
+      const mB = Number(elements.moleculeBMass.value);
+      const stericP = Number(elements.stericFactor.value);
+
+      const phys = getCollisionPhysics(tempC, rAPm, rBPm, mA, mB, stericP);
+      const speedPxPerSec = Math.min(360, Math.max(45, phys.vRel * 0.14));
+
+      const radA = Math.max(12, Math.min(44, rAPm * 0.13));
+      const radB = Math.max(12, Math.min(44, rBPm * 0.13));
+      const cy = h / 2;
+
+      // Speed inversely proportional to sqrt(mass) for visual intuition
+      const totalInvSqrt = 1 / Math.sqrt(mA) + 1 / Math.sqrt(mB);
+      const vA = speedPxPerSec * ((1 / Math.sqrt(mA)) / totalInvSqrt) * 1.6;
+      const vB = speedPxPerSec * ((1 / Math.sqrt(mB)) / totalInvSqrt) * 1.6;
+
+      animState.xA += animState.dirA * vA * dt;
+      animState.xB += animState.dirB * vB * dt;
+
+      const minXA = radA + 14;
+      const maxXB = w - radB - 14;
+
+      if (animState.xA < minXA) {
+        animState.xA = minXA;
+        animState.dirA = 1;
+      }
+      if (animState.xB > maxXB) {
+        animState.xB = maxXB;
+        animState.dirB = -1;
+      }
+
+      // Check collision between A and B
+      if (animState.xB - animState.xA <= radA + radB) {
+        const mid = (animState.xA + animState.xB) / 2;
+        animState.xA = mid - (radA + radB) / 2;
+        animState.xB = mid + (radA + radB) / 2;
+        animState.dirA = -1;
+        animState.dirB = 1;
+        animState.flashTimer = 0.25;
+      }
+
+      if (animState.flashTimer > 0) {
+        animState.flashTimer = Math.max(0, animState.flashTimer - dt);
+        const midX = (animState.xA + animState.xB) / 2;
+        ctx.fillStyle = `rgba(239, 125, 50, ${animState.flashTimer * 1.6})`;
+        ctx.beginPath();
+        ctx.arc(midX, cy, Math.max(radA, radB) * 1.1, 0, Math.PI * 2);
+        ctx.fill();
+      }
+
+      // Draw molecule A
+      ctx.fillStyle = "#8299A6";
+      ctx.beginPath();
+      ctx.arc(animState.xA, cy, radA, 0, Math.PI * 2);
+      ctx.fill();
+      ctx.fillStyle = "#FFFEFC";
+      ctx.font = "bold 12px sans-serif";
+      ctx.textAlign = "center";
+      ctx.textBaseline = "middle";
+      ctx.fillText("A", animState.xA, cy);
+
+      // Draw molecule B
+      ctx.fillStyle = "#C28F7B";
+      ctx.beginPath();
+      ctx.arc(animState.xB, cy, radB, 0, Math.PI * 2);
+      ctx.fill();
+      ctx.fillStyle = "#FFFEFC";
+      ctx.fillText("B", animState.xB, cy);
+
+      ctx.restore();
+      requestAnimationFrame(stepCollisionAnimation);
+    }
+
+    // Event bindings
     [
       elements.startTemperature,
       elements.activationEnergy,
-      elements.tolerance
+      elements.tolerance,
+      elements.moleculeARadius,
+      elements.moleculeBRadius,
+      elements.moleculeAMass,
+      elements.moleculeBMass,
+      elements.stericFactor
     ].forEach(input => {
-      input.addEventListener("input", updateAll);
+      input.addEventListener("input", () => {
+        if (
+          input === elements.moleculeARadius ||
+          input === elements.moleculeBRadius ||
+          input === elements.moleculeAMass ||
+          input === elements.moleculeBMass ||
+          input === elements.stericFactor
+        ) {
+          // 分子模型的調整不會更改實際反應選單。
+        }
+        updateOutputs();
+      });
     });
 
-    document
-      .querySelectorAll(".chart-button")
-      .forEach(button => {
-        button.addEventListener("click", () => {
-          document
-            .querySelectorAll(".chart-button")
-            .forEach(currentButton => {
-              currentButton.classList.remove("active");
-            });
+    elements.reactionPreset.addEventListener("change", e => {
+      applyReactionPreset(e.target.value);
+    });
 
-          button.classList.add("active");
-          activeChart = button.dataset.chart;
-          updateChart(getParameters());
-        });
+    document.querySelectorAll("[data-collision-tab]").forEach(btn => {
+      btn.addEventListener("click", () => {
+        document.querySelectorAll("[data-collision-tab]").forEach(b => b.classList.remove("active"));
+        btn.classList.add("active");
+
+        const tab = btn.getAttribute("data-collision-tab");
+        $("moleculeParameterTab").classList.toggle("active", tab === "molecule");
+        $("reactionPresetTab").classList.toggle("active", tab === "reaction");
       });
+    });
 
-    elements.resetButton.addEventListener(
-      "click",
-      () => {
-        elements.startTemperature.value = 25;
-        elements.activationEnergy.value = 53;
-        elements.tolerance.value = 5;
-        activeChart = "q10";
+    document.querySelectorAll("[data-chart]").forEach(btn => {
+      btn.addEventListener("click", () => {
+        document.querySelectorAll("[data-chart]").forEach(b => b.classList.remove("active"));
+        btn.classList.add("active");
+        activeChartType = btn.getAttribute("data-chart");
+        drawMainChart();
+      });
+    });
 
-        document
-          .querySelectorAll(".chart-button")
-          .forEach(button => {
-            button.classList.toggle(
-              "active",
-              button.dataset.chart === "q10"
-            );
-          });
+    elements.resetButton.addEventListener("click", () => {
+      elements.startTemperature.value = DEFAULTS.startTemperature;
+      elements.activationEnergy.value = DEFAULTS.activationEnergy;
+      elements.tolerance.value = DEFAULTS.tolerance;
+      elements.moleculeAType.value = DEFAULTS.moleculeAType;
+      elements.moleculeBType.value = DEFAULTS.moleculeBType;
+      elements.moleculeARadius.value = DEFAULTS.moleculeARadius;
+      elements.moleculeBRadius.value = DEFAULTS.moleculeBRadius;
+      elements.moleculeAMass.value = DEFAULTS.moleculeAMass;
+      elements.moleculeBMass.value = DEFAULTS.moleculeBMass;
+      elements.stericFactor.value = DEFAULTS.stericFactor.toFixed(2);
+      elements.reactionPreset.value = DEFAULTS.reactionPreset;
+      applyReactionPreset(DEFAULTS.reactionPreset);
+    });
 
-        updateAll();
+    elements.mainChart.addEventListener("mousemove", e => {
+      const rect = elements.mainChart.getBoundingClientRect();
+      const mx = e.clientX - rect.left;
+      const my = e.clientY - rect.top;
+
+      let closest = null;
+      let bestDist = 18;
+
+      for (const pt of chartHoverPoints) {
+        const d = Math.hypot(pt.x - mx, pt.y - my);
+        if (d < bestDist) {
+          bestDist = d;
+          closest = pt;
+        }
       }
-    );
 
-    updateAll();
-  </script>
+      if (closest) {
+        elements.tooltip.style.display = "block";
+        elements.tooltip.style.left = `${e.clientX + 12}px`;
+        elements.tooltip.style.top = `${e.clientY + 12}px`;
+        elements.tooltip.innerHTML = `<strong>${closest.label}</strong><br>溫度 T = ${closest.t}°C<br>數值 = ${closest.val.toFixed(3)}`;
+      } else {
+        elements.tooltip.style.display = "none";
+      }
+    });
+
+    elements.mainChart.addEventListener("mouseleave", () => {
+      elements.tooltip.style.display = "none";
+    });
+
+    window.addEventListener("resize", drawMainChart);
+
+
+// Combined result tabs: reuse the same interactive canvas for all chart views.
+const sharedChartBody = document.getElementById('sharedChartBody');
+document.querySelectorAll('[data-result-view]').forEach(button => {
+  button.addEventListener('click', () => {
+    const key=button.dataset.resultView;
+    document.querySelectorAll('[data-result-view]').forEach(b=>b.classList.toggle('active',b===button));
+    document.querySelectorAll('.result-view').forEach(v=>v.classList.toggle('active',v.id===key+'View'));
+    if(['q10','k','requiredEa'].includes(key)) {
+      document.getElementById(key+'View').appendChild(sharedChartBody);
+      activeChartType=key;
+      drawMainChart();
+    }
+  });
+});
+
+    // Initialize
+    applyReactionPreset(DEFAULTS.reactionPreset);
+    updateOutputs();
+    requestAnimationFrame(stepCollisionAnimation);
+  
+// Experiment parameter tab switching
+document.querySelectorAll('[data-experiment-tab]').forEach(btn => {
+  btn.addEventListener('click', () => {
+    document.querySelectorAll('[data-experiment-tab]').forEach(b => b.classList.toggle('active', b === btn));
+    document.getElementById('basicParameterTab').classList.toggle('active',btn.dataset.experimentTab==='basic');
+    document.getElementById('collisionParameterTab').classList.toggle('active',btn.dataset.experimentTab==='collision');
+    document.getElementById('labParameterTab').classList.toggle('active',btn.dataset.experimentTab==='lab');
+  });
+});
+
+// Molecular ball-and-stick visualization. Geometry is illustrative, not a reaction trajectory.
+(function animateReaction(){
+ const canvas=document.getElementById('reactionCanvas');if(!canvas)return;
+ const ctx=canvas.getContext('2d');
+ const models={
+  CO:[[['C',-14,0],['O',14,0]],[[0,1,3]]],H2:[[['H',-12,0],['H',12,0]],[[0,1,1]]],
+  CH4:[[['C',0,0],['H',-25,-18],['H',25,-18],['H',-22,22],['H',22,22]],[[0,1,1],[0,2,1],[0,3,1],[0,4,1]]],
+  H2O:[[['O',0,-8],['H',-23,17],['H',23,17]],[[0,1,1],[0,2,1]]],
+  Na:[[['Na',0,0]],[]],Cl2:[[['Cl',-17,0],['Cl',17,0]],[[0,1,1]]],NaCl:[[['Na',-18,0],['Cl',18,0]],[[0,1,1]]],Cl:[[['Cl',0,0]],[]],
+  K:[[['K',0,0]],[]],Br2:[[['Br',-17,0],['Br',17,0]],[[0,1,1]]],KBr:[[['K',-18,0],['Br',18,0]],[[0,1,1]]],Br:[[['Br',0,0]],[]],
+  H:[[['H',0,0]],[]],NO:[[['N',-15,0],['O',15,0]],[[0,1,2]]],
+  O3:[[['O',-25,12],['O',0,-12],['O',25,12]],[[0,1,1],[1,2,2]]],
+  NO2:[[['N',0,-9],['O',-23,16],['O',23,16]],[[0,1,2],[0,2,1]]],
+  O2:[[['O',-15,0],['O',15,0]],[[0,1,2]]],OH:[[['O',-10,0],['H',16,0]],[[0,1,1]]],
+  CO2:[[['O',-28,0],['C',0,0],['O',28,0]],[[0,1,2],[1,2,2]]],
+  I2:[[['I',-19,0],['I',19,0]],[[0,1,1]]],HI:[[['H',-13,0],['I',13,0]],[[0,1,1]]]
+ };
+ const reactions={
+  methanation:{lhs:[['CO',1],['H2',3]],rhs:[['CH4',1],['H2O',1]],note:'催化甲烷化總反應；不是單一步驟碰撞機構。'},
+  naCl2:{lhs:[['Na',1],['Cl2',1]],rhs:[['NaCl',1],['Cl',1]]},
+  kBr2:{lhs:[['K',1],['Br2',1]],rhs:[['KBr',1],['Br',1]]},
+  hH2:{lhs:[['H',1],['H2',1]],rhs:[['H2',1],['H',1]]},
+  noO3:{lhs:[['NO',1],['O3',1]],rhs:[['NO2',1],['O2',1]]},
+  ohH2:{lhs:[['OH',1],['H2',1]],rhs:[['H2O',1],['H',1]]},
+  ohCO:{lhs:[['OH',1],['CO',1]],rhs:[['CO2',1],['H',1]]},
+  h2I2:{lhs:[['H2',1],['I2',1]],rhs:[['HI',2]]}
+ };
+ const palette={H:['#f9fafb','#b6c1d0'],O:['#fa5757','#a91f27'],C:['#555e70','#1f2937'],N:['#4f88ed','#1e40af'],Cl:['#58c982','#187b46'],Na:['#b29af3','#7054af'],K:['#b69df4','#7956b8'],Br:['#bb6550','#703626'],I:['#aa73c9','#683d86']};
+ const radius={H:10,O:17,C:17,N:16,Cl:20,Na:21,K:23,Br:21,I:22};
+ function sphere(x,y,el,scale){const r=radius[el]*scale,colors=palette[el]||palette.C;
+  const grad=ctx.createRadialGradient(x-r*.35,y-r*.40,r*.05,x+r*.18,y+r*.20,r*1.25);
+  grad.addColorStop(0,'#ffffff');grad.addColorStop(.23,colors[0]);grad.addColorStop(1,colors[1]);
+  ctx.fillStyle=grad;ctx.beginPath();ctx.arc(x,y,r,0,Math.PI*2);ctx.fill();
+  ctx.strokeStyle='rgba(35,48,65,.18)';ctx.lineWidth=.8;ctx.stroke();
+ }
+ function molecule(id,x,y,scale=1,alpha=1){const model=models[id];if(!model)return;ctx.save();ctx.globalAlpha=alpha;
+  const [atoms,bonds]=model;
+  for(const [i,j,n] of bonds){const a=atoms[i],b=atoms[j],dx=b[1]-a[1],dy=b[2]-a[2],len=Math.hypot(dx,dy)||1,nx=-dy/len,ny=dx/len;
+   for(let q=0;q<n;q++){let off=(q-(n-1)/2)*4;ctx.beginPath();ctx.moveTo(x+(a[1]+nx*off)*scale,y+(a[2]+ny*off)*scale);ctx.lineTo(x+(b[1]+nx*off)*scale,y+(b[2]+ny*off)*scale);ctx.strokeStyle='#8997a8';ctx.lineWidth=5*scale;ctx.lineCap='round';ctx.stroke();}}
+  for(const [el,ax,ay] of atoms)sphere(x+ax*scale,y+ay*scale,el,scale);
+  ctx.restore();}
+ function drawGroup(specs, w, y, phase, kind, alpha){
+  const expanded=[];for(const [id,count] of specs)for(let i=0;i<count;i++)expanded.push(id);
+  const n=expanded.length;
+  // Initial separated molecules converge on a single contact region, then products emerge there.
+  const spread=Math.min(100,(w-64)/Math.max(2,n));
+  expanded.forEach((id,i)=>{
+   const offset=(i-(n-1)/2)*spread;
+   const rowOffset=(i%2===0?-24:24);
+   const startX=w/2+offset*1.35;
+   const startY=y+rowOffset;
+   const contactX=w/2+offset*.32;
+   const contactY=y+rowOffset*.28;
+   const endX=w/2+offset*1.18;
+   const endY=y+rowOffset*.8;
+   let x,ypos;
+   if(kind==='reactant'){
+     const u=Math.max(0,Math.min(1,phase/.42));const smooth=u*u*(3-2*u);
+     x=startX+(contactX-startX)*smooth;ypos=startY+(contactY-startY)*smooth;
+   }else{
+     const u=Math.max(0,Math.min(1,(phase-.57)/.32));const smooth=u*u*(3-2*u);
+     x=contactX+(endX-contactX)*smooth;ypos=contactY+(endY-contactY)*smooth;
+   }
+   molecule(id,x,ypos,n>3?.67:.82,alpha);
+  });
+ }
+ let lastKey='';function draw(t){const rect=canvas.getBoundingClientRect(),w=Math.max(290,rect.width),h=230,dpr=window.devicePixelRatio||1;
+  if(canvas.width!==Math.round(w*dpr)||canvas.height!==Math.round(h*dpr)){canvas.width=Math.round(w*dpr);canvas.height=Math.round(h*dpr)}
+  ctx.setTransform(dpr,0,0,dpr,0,0);ctx.clearRect(0,0,w,h);
+  const key=document.getElementById('reactionPreset').value,rx=reactions[key]||reactions.methanation;
+  if(key!==lastKey){lastKey=key;const note=document.getElementById('reactionAnimationNote');if(note)note.textContent=(rx.note||'球棒模型為分子結構示意，不代表實際過渡態或反應路徑。')+' 分子比例及鍵結僅用於視覺教學。';}
+  const phase=(t/7600)%1;
+  // Visible contact at 42–57% of the animation; transformation happens only after contact.
+  const reactAlpha=phase<.46?1:phase<.57?1-(phase-.46)/.11:0;
+  const prodAlpha=phase<.49?0:phase<.60?(phase-.49)/.11:1;
+  ctx.fillStyle='#173b68';ctx.font='600 14px sans-serif';ctx.textAlign='center';
+  ctx.fillText((REACTION_PRESETS[key]||REACTION_PRESETS.methanation).equation,w/2,26);
+  drawGroup(rx.lhs,w,114,phase,'reactant',reactAlpha);
+  drawGroup(rx.rhs,w,114,phase,'product',prodAlpha);
+  if(phase>.41&&phase<.60){
+    const strength=Math.sin(Math.PI*(phase-.41)/.19);
+    const glow=ctx.createRadialGradient(w/2,114,3,w/2,114,58);
+    glow.addColorStop(0,'rgba(37,99,235,'+(.18*strength)+')');glow.addColorStop(1,'rgba(37,99,235,0)');
+    ctx.fillStyle=glow;ctx.beginPath();ctx.arc(w/2,114,58,0,Math.PI*2);ctx.fill();
+  }
+  ctx.fillStyle='#53677f';ctx.font='12px sans-serif';
+  ctx.fillText(phase<.41?'反應物逐漸靠近':phase<.60?'分子接觸 → 化學計量轉換示意': '產物從接觸區分離',w/2,205);
+  requestAnimationFrame(draw);
+ }requestAnimationFrame(draw);
+})();
+
+    document.querySelectorAll('[data-explore]').forEach(btn=>btn.addEventListener('click',()=>{
+      activeLesson=btn.dataset.explore;
+      document.querySelectorAll('[data-explore]').forEach(b=>b.classList.toggle('active',b===btn));
+      document.querySelectorAll('.guided-control').forEach(el=>{el.style.display=el.dataset.lesson===activeLesson?'':'none'});
+      const prompts={size:'預測：分子半徑增加，碰撞機會會增加還是減少？',mass:'預測：相同溫度下，較重的分子會移動得比較快還是比較慢？',orientation:'預測：碰撞能量足夠，但方向不對時，一定會生成產物嗎？'};
+      document.getElementById('lessonPrompt').textContent=prompts[activeLesson];
+      updateOutputs();
+    }));
+
+
+// Teaching extension: independent illustrative simulations and charts.
+(function(){
+const $=id=>document.getElementById(id);
+const temp=()=>Number($('startTemperature').value)+273.15;
+const ea=()=>Number($('activationEnergy').value)*1000;
+const steric=()=>Number($('stericFactor').value);
+let prediction=null,running=false,total=0,energetic=0,successful=0,last=0,lastEvent='';
+const cv=$('labCanvas'),cx=cv.getContext('2d');
+function collisionEvent(){
+ total++;
+ const enough=Math.random()<Math.exp(-ea()/(R*temp()));
+ const aligned=Math.random()<steric();
+ if(enough)energetic++;
+ if(enough&&aligned)successful++;
+ lastEvent=!enough?'能量不足：碰撞後分開':!aligned?'方向不合適：未發生反應':'有效碰撞：符合能量與取向條件';
+ $('collisionCount').textContent=total;$('energeticCount').textContent=energetic;$('successCount').textContent=successful;
+ $('collisionOutcome').textContent=lastEvent+'。累積有效比例：'+(100*successful/total).toFixed(1)+'%（模型隨機值）。';
+}
+function drawLab(t){
+ const w=cv.width,h=cv.height;cx.clearRect(0,0,w,h);
+ cx.fillStyle='#f9f8f4';cx.fillRect(0,0,w,h);
+ const phase=(t%1250)/1250;const d=Math.abs(phase-.5)*210;
+ function ball(x,y,color,label){cx.beginPath();cx.arc(x,y,24,0,Math.PI*2);cx.fillStyle=color;cx.fill();cx.fillStyle='#fff';cx.font='bold 14px sans-serif';cx.textAlign='center';cx.fillText(label,x,y+5)}
+ ball(w/2-d,116,'#8299a6','A');ball(w/2+d,116,'#c28f7b','B');
+ cx.textAlign='center';cx.fillStyle='#536760';cx.font='15px sans-serif';cx.fillText(lastEvent||'觀察分子靠近與碰撞',w/2,37);
+ cx.font='12px sans-serif';cx.fillText(running?'模擬進行中':'已暫停',w/2,h-18);
+ if(running&&t-last>1200){collisionEvent();last=t;}
+ requestAnimationFrame(drawLab);
+}
+requestAnimationFrame(drawLab);
+$('startSimulation').addEventListener('click',()=>{running=true;last=performance.now();$('predictionFeedback').textContent=prediction==='up'?'你的預測：增加。升溫通常會提高跨越活化能門檻的機率。':prediction==='same'?'你的預測：不變。觀察升溫後模型的能量通過率是否改變。':prediction==='down'?'你的預測：減少。觀察升溫後模型的能量通過率是否改變。':'已開始模擬。你也可以先選擇預測。';});
+$('pauseSimulation').addEventListener('click',()=>running=false);
+$('resetSimulation').addEventListener('click',()=>{total=energetic=successful=0;lastEvent='';['collisionCount','energeticCount','successCount'].forEach(id=>$(id).textContent='0');$('collisionOutcome').textContent='計數已重置。';});
+document.querySelectorAll('[data-predict]').forEach(b=>b.addEventListener('click',()=>{prediction=b.dataset.predict;document.querySelectorAll('[data-predict]').forEach(x=>x.classList.toggle('selected',x===b));$('predictionFeedback').textContent='已記錄預測，按「開始模擬」觀察結果。';}));
+function setup(canvas){let ctx=canvas.getContext('2d');let w=canvas.width,h=canvas.height;ctx.clearRect(0,0,w,h);ctx.fillStyle='#fbfaf7';ctx.fillRect(0,0,w,h);return {ctx,w,h};}
+function line(ctx,x1,y1,x2,y2,color='#a4ada7',width=1){ctx.strokeStyle=color;ctx.lineWidth=width;ctx.beginPath();ctx.moveTo(x1,y1);ctx.lineTo(x2,y2);ctx.stroke();}
+function label(ctx,text,x,y,color='#53615d',size=13){ctx.fillStyle=color;ctx.font=size+'px sans-serif';ctx.fillText(text,x,y);}
+function drawDistribution(){
+ const canvas=$('distributionCanvas'),{ctx,w,h}=setup(canvas);
+ const T=temp(),E=ea()/1000;
+ // Maxwell-Boltzmann probability density of 3D translational kinetic energy,
+ // expressed per mole (kJ/mol). Integral over E from 0 to infinity is 1.
+ const Rk=R/1000;
+ const density=(energy,kelvin)=>energy<=0?0:2/Math.sqrt(Math.PI)*Math.sqrt(energy)/Math.pow(Rk*kelvin,1.5)*Math.exp(-energy/(Rk*kelvin));
+ const T2=T+10;
+ const xmax=Math.max(35,E*1.45,12*Rk*T2),left=78,right=w-28,top=36,bottom=h-62;
+ const X=e=>left+e/xmax*(right-left);
+ let ymax=0;for(let i=1;i<=700;i++){const e=i*xmax/700;ymax=Math.max(ymax,density(e,T),density(e,T2));}
+ const Y=v=>bottom-v/ymax*(bottom-top)*.91;
+ // Axis and grid; x-axis is kinetic energy, NOT molecular speed or reaction coordinate.
+ ctx.textAlign='center';ctx.font='12px sans-serif';
+ for(let i=0;i<=5;i++){
+   const v=i*xmax/5,x=X(v);line(ctx,x,top,x,bottom,'#e5edf7',1);
+   ctx.fillStyle='#42566e';ctx.fillText(v.toFixed(0),x,bottom+20);
+ }
+ line(ctx,left,bottom,right,bottom,'#52677f',1.5);line(ctx,left,top,left,bottom,'#52677f',1.5);
+ ctx.fillStyle='#1d3553';ctx.font='600 13px sans-serif';ctx.fillText('平動動能 E（kJ/mol）',w/2,h-14);
+ ctx.textAlign='left';ctx.font='12px sans-serif';ctx.fillText('機率密度（mol/kJ）',left,19);
+ // Fill area under current T curve beyond Ea.
+ if(E<xmax){ctx.beginPath();ctx.moveTo(X(E),bottom);for(let i=0;i<=500;i++){
+ const e=E+(xmax-E)*i/500;ctx.lineTo(X(e),Y(density(e,T)));
+ }ctx.lineTo(right,bottom);ctx.closePath();ctx.fillStyle='rgba(37,99,235,.16)';ctx.fill();}
+ const plot=(kelvin,color)=>{ctx.beginPath();for(let i=0;i<=700;i++){
+ const e=i*xmax/700;if(i===0)ctx.moveTo(X(e),Y(density(e,kelvin)));else ctx.lineTo(X(e),Y(density(e,kelvin)));
+ }ctx.strokeStyle=color;ctx.lineWidth=3;ctx.stroke();};
+ plot(T,'#2563eb');plot(T2,'#ea580c');
+ if(E<=xmax){line(ctx,X(E),top,X(E),bottom,'#9b3045',2);ctx.fillStyle='#9b3045';ctx.textAlign='left';ctx.fillText('Eₐ',Math.min(right-25,X(E)+5),top+15);}
+ // Numerical quadrature for Gamma(3/2) tail with finite upper bound large enough for high accuracy.
+ const upper=Math.max(E+80*Rk*T,E+120),N=2000,step=(upper-E)/N;
+ let sum=0;for(let i=0;i<=N;i++){const e=E+i*step;sum+=(i===0||i===N?1:i%2?4:2)*density(e,T);}
+ const tail=Math.max(0,Math.min(1,sum*step/3));
+ const legendY=top+9;ctx.font='12px sans-serif';ctx.textAlign='left';
+ ctx.fillStyle='#2563eb';ctx.fillRect(right-185,legendY,13,3);ctx.fillStyle='#1d3553';ctx.fillText((T-273.15).toFixed(0)+'°C',right-165,legendY+5);
+ ctx.fillStyle='#ea580c';ctx.fillRect(right-102,legendY,13,3);ctx.fillStyle='#1d3553';ctx.fillText((T2-273.15).toFixed(0)+'°C',right-82,legendY+5);
+ $('distributionInsight').textContent='藍線：目前溫度 '+(T-273.15).toFixed(0)+'°C；橘線：升高 10°C。橫軸是每莫耳分子的平動動能（kJ/mol），不是反應進度。藍色陰影為平動能高於示意門檻 Eₐ='+E.toFixed(1)+' kJ/mol 的理想氣體分布比例（約 '+(tail*100).toPrecision(3)+'%）。此門檻比較僅作概念示範，不能直接等同 Arrhenius 因子或真實反應機率。';
+}
+function drawBarrier(){const {ctx,w,h}=setup($('barrierCanvas'));const E=ea()/1000,delta=-20, ymax=Math.max(E+20,60),base=h-80,scale=210/(ymax+25);const y=v=>base-v*scale;
+ line(ctx,50,base,w-30,base);label(ctx,'反應座標 →',w/2-30,h-20);
+ const pts=[];for(let i=0;i<=180;i++){let x=i/180, v=delta*x+(E+10)*Math.sin(Math.PI*x)**2;pts.push([65+x*(w-120),y(v)]);}const max=pts.reduce((a,b)=>b[1]<a[1]?b:a,pts[0]);
+ ctx.beginPath();pts.forEach((p,i)=>i?ctx.lineTo(...p):ctx.moveTo(...p));ctx.strokeStyle='#8299a6';ctx.lineWidth=4;ctx.stroke();
+ const reactY=y(0),peakY=y(E+10+delta*.5);line(ctx,130,reactY,130,peakY,'#c28f7b',2);label(ctx,'Ea (示意)',140,(reactY+peakY)/2,'#9b6653');label(ctx,'反應物',62,reactY+22);label(ctx,'產物',w-122,y(delta)+22);label(ctx,'過渡態',max[0]-22,max[1]-12);
+ $('barrierInsight').textContent='目前活化能參數為 '+E.toFixed(0)+' kJ/mol。圖中能量曲線為概念示意，並非根據實際反應的勢能面計算；ΔH 也不是實測值。';
+}
+let A=null,B=null;
+function snapshot(){let t=temp(),e=ea();return {t:t-273.15,e:e/1000,qA:calcArrheniusQ10(t-273.15,e/1000),qC:calcCollisionQ10(t-273.15,e/1000),kA:Math.exp(-e/(R*t)),kC:Math.sqrt(t/298.15)*Math.exp(-e/(R*t))};}
+function compare(){const rows=[['溫度 (°C)','t',1],['活化能 (kJ/mol)','e',1],['Arrhenius Q₁₀','qA',3],['Collision Q₁₀','qC',3],['相對 k (Arrhenius)','kA',5],['相對 k (Collision)','kC',5]];const val=(o,k,n)=>o?o[k].toFixed(n):'—';$('compareTable').innerHTML='<table><thead><tr><th>參數</th><th>實驗 A</th><th>實驗 B</th></tr></thead><tbody>'+rows.map(([name,k,n])=>'<tr><td>'+name+'</td><td>'+val(A,k,n)+'</td><td>'+val(B,k,n)+'</td></tr>').join('')+'</tbody></table>';}
+$('saveA').addEventListener('click',()=>{A=snapshot();compare()});$('saveB').addEventListener('click',()=>{B=snapshot();compare()});$('clearAB').addEventListener('click',()=>{A=B=null;compare()});
+function refresh(){drawDistribution();}
+['startTemperature','activationEnergy','stericFactor'].forEach(id=>$(id).addEventListener('input',refresh));
+$('reactionPreset').addEventListener('change',()=>setTimeout(refresh,0));$('resetButton').addEventListener('click',()=>setTimeout(refresh,0));
+document.querySelectorAll('[data-result-view]').forEach(b=>b.addEventListener('click',()=>{if(b.dataset.resultView==='distribution')refresh();}));
+refresh();
+})();
+</script>
 </body>
 </html>
+<style>.result-view-button.active,.experiment-tab.active,.collision-tab.active{color:#fff!important}#distributionCanvas{background:#fff!important}</style>
+目前顯示的是「Chemical_Kinetics_Collision_Distribution_Fixed-2.html」。 第 1 頁，共 8 頁
